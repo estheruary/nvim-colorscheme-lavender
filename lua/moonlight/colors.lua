@@ -45,12 +45,17 @@ M.grey = M.gray
 -- FIX: Deprecate
 M.cyan = M.purple2
 
+-- TODO: bg transparency check cannot happen here as "bg" is used directly
+-- as a colour elsewhere
+--
+-- if not config.background then
+--   M.bg      = M.none
+--   M.sidebar = M.none
+--   M.float   = M.none
+-- elseif config.contrast then
+
 -- High(er) contrast backgrounds for sidebars and floating windows
-if not config.background then
-  M.bg      = M.none
-  M.sidebar = M.none
-  M.float   = M.none
-elseif config.contrast then
+if config.contrast then
   M.sidebar = M.bg_alt
   M.float   = M.bg_alt
 else
