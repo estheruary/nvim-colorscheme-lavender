@@ -6,7 +6,7 @@ Mirror: <https://forge.jthv.ai/elias/moonlight.nvim>
 
 Purple-hued dark mode colorscheme for [Neovim](https://neovim.io/).
 
-Palette taken from [atomiks/moonlight-vscode-theme](https://github.com/atomiks/moonlight-vscode-theme); a complete
+Palette inspired by [atomiks/moonlight-vscode-theme](https://github.com/atomiks/moonlight-vscode-theme); a complete
 rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.nvim), which is no longer maintained.
 
 ## Features
@@ -85,7 +85,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 ### Acknowledgements
 
-- [atomiks/moonlight-vscode-theme](https://github.com/atomiks/moonlight-vscode-theme) for the palette,
+- [atomiks/moonlight-vscode-theme](https://github.com/atomiks/moonlight-vscode-theme) for the aesthetic,
   [MIT License](https://github.com/atomiks/moonlight-vscode-theme/blob/master/LICENSE)
 - [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.nvim) for the initial Neovim port,
   [GNU GPL v2.0](https://github.com/shaunsingh/moonlight.nvim/blob/pure-lua/LICENSE)
