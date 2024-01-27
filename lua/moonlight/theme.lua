@@ -84,7 +84,7 @@ local M = {
   QuickFixLine = {}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
   Search = {}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
   IncSearch = {}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-  CurSearch = {},
+  CurSearch = { link = "IncSearch" },
   SpecialKey = {}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
   SpellBad = {}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
   SpellCap = {}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -101,8 +101,9 @@ local M = {
   WarningMsg = {}, -- warning messages
   Whitespace = {}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
   WildMenu = {}, -- current match in 'wildmenu' completion
-  WinBar = {}, -- window bar
-  WinBarNC = {}, -- window bar in inactive windows
+  WinBar = { link = "StatusLine" }, -- window bar
+  WinBarNC = { link = "StatusLineNC" }, -- window bar in inactive windows
+
 
   -- These groups are not listed as default vim groups,
   -- but they are defacto standard group names for syntax highlighting.
@@ -181,7 +182,7 @@ local M = {
   debugPC = {}, -- used for highlighting the current line in terminal-debug
   debugBreakpoint = {}, -- used for breakpoint colors in terminal-debug
 
-  dosIniLabel = {},
+  dosIniLabel = { link = "@property" },
 
   -- These groups are for the native LSP client. Some other LSP clients may
   -- use these groups, or use their own. Consult your LSP client's
@@ -190,21 +191,21 @@ local M = {
   LspReferenceRead = {}, -- used for highlighting "read" references
   LspReferenceWrite = {}, -- used for highlighting "write" references
 
-  DiagnosticError = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticWarn = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticInfo = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticHint = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticError = { fg = c.error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticWarn = { fg = c.yellow }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticInfo = { fg = c.paleblue }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticHint = { fg = c.purple }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticUnnecessary = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
-  DiagnosticVirtualTextError = {}, -- Used for "Error" diagnostic virtual text
-  DiagnosticVirtualTextWarn = {}, -- Used for "Warning" diagnostic virtual text
-  DiagnosticVirtualTextInfo = {}, -- Used for "Information" diagnostic virtual text
-  DiagnosticVirtualTextHint = {}, -- Used for "Hint" diagnostic virtual text
+  DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text
+  DiagnosticVirtualTextWarn = { link = "DiagnosticWarn" }, -- Used for "Warning" diagnostic virtual text
+  DiagnosticVirtualTextInfo = { link = "DiagnosticInfo" }, -- Used for "Information" diagnostic virtual text
+  DiagnosticVirtualTextHint = { link = "DiagnosticHint" }, -- Used for "Hint" diagnostic virtual text
 
-  DiagnosticUnderlineError = {}, -- Used to underline "Error" diagnostics
-  DiagnosticUnderlineWarn = {}, -- Used to underline "Warning" diagnostics
-  DiagnosticUnderlineInfo = {}, -- Used to underline "Information" diagnostics
-  DiagnosticUnderlineHint = {}, -- Used to underline "Hint" diagnostics
+  DiagnosticUnderlineError = { fg = c.error, undercurl = true }, -- Used to underline "Error" diagnostics
+  DiagnosticUnderlineWarn = { fg = c.yellow, undercurl = true }, -- Used to underline "Warning" diagnostics
+  DiagnosticUnderlineInfo = { fg = c.paleblue, undercurl = true }, -- Used to underline "Information" diagnostics
+  DiagnosticUnderlineHint = { fg = c.purple, undercurl = true }, -- Used to underline "Hint" diagnostics
 
   LspSignatureActiveParameter = {},
   LspCodeLens = {},
@@ -218,6 +219,7 @@ local M = {
   DapStoppedLine = {}, -- Used for "Warning" diagnostic virtual text
 
   -- These groups are for the Neovim tree-sitter highlights.
+  -- TODO: link like tokyonight or manually dictate like moonlight?
   ["@annotation"] = {},
   ["@attribute"] = {},
   ["@boolean"] = {},
@@ -321,11 +323,11 @@ local M = {
   ["@markup.list.unchecked"] = {}, -- For brackets and parens.
   ["@markup.list.checked"] = {}, -- For brackets and parens.
 
-  ["@diff.plus"] = {},
-  ["@diff.minus"] = {},
-  ["@diff.delta"] = {},
+  ["@diff.plus"] = { link = "DiffAdd" },
+  ["@diff.minus"] = { link = "DiffDelete" },
+  ["@diff.delta"] = { link = "DiffChange" },
 
-  ["@module"] = {},
+  ["@module"] = { link = "Include" },
 
   -- tsx
   ["@tag.tsx"] = {},
@@ -333,47 +335,47 @@ local M = {
   ["@tag.delimiter.tsx"] = {},
 
   -- LSP Semantic Token Groups
-  ["@lsp.type.boolean"] = {},
-  ["@lsp.type.builtinType"] = {},
-  ["@lsp.type.comment"] = {},
-  ["@lsp.type.decorator"] = {},
-  ["@lsp.type.deriveHelper"] = {},
-  ["@lsp.type.enum"] = {},
-  ["@lsp.type.enumMember"] = {},
-  ["@lsp.type.escapeSequence"] = {},
-  ["@lsp.type.formatSpecifier"] = {},
-  ["@lsp.type.generic"] = {},
+  ["@lsp.type.boolean"] = { link = "@boolean" },
+  ["@lsp.type.builtinType"] = { link = "@type.builtin" },
+  ["@lsp.type.comment"] = { link = "@comment" },
+  ["@lsp.type.decorator"] = { link = "@attribute" },
+  ["@lsp.type.deriveHelper"] = { link = "@attribute" },
+  ["@lsp.type.enum"] = { link = "@type" },
+  ["@lsp.type.enumMember"] = { link = "@constant" },
+  ["@lsp.type.escapeSequence"] = { link = "@string.escape" },
+  ["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
+  ["@lsp.type.generic"] = { link = "@variable" },
   ["@lsp.type.interface"] = {},
-  ["@lsp.type.keyword"] = {},
-  ["@lsp.type.lifetime"] = {},
-  ["@lsp.type.namespace"] = {},
-  ["@lsp.type.number"] = {},
-  ["@lsp.type.operator"] = {},
-  ["@lsp.type.parameter"] = {},
-  ["@lsp.type.property"] = {},
-  ["@lsp.type.selfKeyword"] = {},
-  ["@lsp.type.selfTypeKeyword"] = {},
-  ["@lsp.type.string"] = {},
-  ["@lsp.type.typeAlias"] = {},
+  ["@lsp.type.keyword"] = { link = "@keyword" },
+  ["@lsp.type.lifetime"] = { link = "@keyword.storage" },
+  ["@lsp.type.namespace"] = { link = "@module" },
+  ["@lsp.type.number"] = { link = "@number" },
+  ["@lsp.type.operator"] = { link = "@operator" },
+  ["@lsp.type.parameter"] = { link = "@variable.parameter" },
+  ["@lsp.type.property"] = { link = "@property" },
+  ["@lsp.type.selfKeyword"] = { link = "@variable.builtin" },
+  ["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
+  ["@lsp.type.string"] = { link = "@string" },
+  ["@lsp.type.typeAlias"] = { link = "@type.definition" },
   ["@lsp.type.unresolvedReference"] = {},
   ["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
-  ["@lsp.typemod.class.defaultLibrary"] = {},
-  ["@lsp.typemod.enum.defaultLibrary"] = {},
-  ["@lsp.typemod.enumMember.defaultLibrary"] = {},
-  ["@lsp.typemod.function.defaultLibrary"] = {},
-  ["@lsp.typemod.keyword.async"] = {},
-  ["@lsp.typemod.keyword.injected"] = {},
-  ["@lsp.typemod.macro.defaultLibrary"] = {},
-  ["@lsp.typemod.method.defaultLibrary"] = {},
-  ["@lsp.typemod.operator.injected"] = {},
-  ["@lsp.typemod.string.injected"] = {},
-  ["@lsp.typemod.struct.defaultLibrary"] = {},
+  ["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
+  ["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
+  ["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
+  ["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
+  ["@lsp.typemod.keyword.async"] = { link = "@keyword.coroutine" },
+  ["@lsp.typemod.keyword.injected"] = { link = "@keyword" },
+  ["@lsp.typemod.macro.defaultLibrary"] = { link = "@function.builtin" },
+  ["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
+  ["@lsp.typemod.operator.injected"] = { link = "@operator" },
+  ["@lsp.typemod.string.injected"] = { link = "@string" },
+  ["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
   ["@lsp.typemod.type.defaultLibrary"] = {},
   ["@lsp.typemod.typeAlias.defaultLibrary"] = {},
-  ["@lsp.typemod.variable.callable"] = {},
-  ["@lsp.typemod.variable.defaultLibrary"] = {},
-  ["@lsp.typemod.variable.injected"] = {},
-  ["@lsp.typemod.variable.static"] = {},
+  ["@lsp.typemod.variable.callable"] = { link = "@function" },
+  ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
+  ["@lsp.typemod.variable.injected"] = { link = "@variable" },
+  ["@lsp.typemod.variable.static"] = { link = "@constant" },
   -- NOTE: maybe add these with distinct highlights?
   -- ["@lsp.typemod.variable.globalScope"] (global variables)
 
@@ -529,8 +531,9 @@ local M = {
   WhichKeyValue = {},
 
   -- LspSaga
-  DiagnosticWarning = {},
-  DiagnosticInformation = {},
+  DiagnosticWarning = { link = "DiagnosticWarn" },
+  DiagnosticInformation = { link = "DiagnosticInfo" },
+
 
   LspFloatWinNormal = {},
   LspFloatWinBorder = {},
@@ -624,7 +627,7 @@ local M = {
   FlashLabel = {},
 
   LightspeedGreyWash = {},
-  -- LightspeedCursor = {},
+  -- LightspeedCursor = { link = "Cursor" },
   LightspeedLabel = {},
   LightspeedLabelDistant = {},
   LightspeedLabelDistantOverlapped = {},
@@ -633,8 +636,8 @@ local M = {
   LightspeedOneCharMatch = {},
   LightspeedPendingOpArea = {},
   LightspeedShortcut = {},
-  -- LightspeedShortcutOverlapped = {},
-  -- LightspeedUniqueChar = {},
+  -- LightspeedShortcutOverlapped = { link = "LightspeedShortcut" },
+  -- LightspeedUniqueChar = { link = "LightspeedUnlabeledMatch" },
   LightspeedUnlabeledMatch = {},
 
   -- Cmp
@@ -664,7 +667,7 @@ local M = {
 
   AerialNormal = {},
   AerialGuide = {},
-  AerialLine = {},
+  AerialLine = { link = "LspInlayHint" },
 
   IndentBlanklineChar = {},
   IndentBlanklineContextChar = {},
@@ -693,8 +696,8 @@ local M = {
   ScrollbarMisc = {},
 
   -- Yanky
-  YankyPut = {},
-  YankyYanked = {},
+  YankyPut = { link = "IncSearch" },
+  YankyYanked = { link = "IncSearch" },
 
   -- Lazy
   LazyProgressDone = {},
@@ -845,6 +848,7 @@ if not vim.diagnostic then
     Hint = "Hint",
   }
   local types = { "Default", "VirtualText", "Underline" }
+
   for _, type in ipairs(types) do
     for snew, sold in pairs(severity_map) do
       M["LspDiagnostics" .. type .. sold] = {
