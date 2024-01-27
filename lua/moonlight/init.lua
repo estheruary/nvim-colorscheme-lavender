@@ -1,9 +1,10 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
 
 ---@type Highlights
-local theme = require("moonlight.theme")
----@type table<string,function>
-local util  = require("moonlight.util")
+local theme  = require("moonlight.theme")
+---@type Palette
+local colors = require("moonlight.colors")
+local util   = require("moonlight.util")
 
 local M = {}
 
@@ -19,11 +20,11 @@ function M.load()
   vim.g.colors_name   = "moonlight"
 
   -- Load terminal colours
-  util.hl_terminal(theme)
-
-  -- TODO: load main highlights; autocmds
-  -- util.apply_theme(theme)
-  -- util.autocmds()
+  util.hl_terminal(colors)
+  -- Load main highlights
+  util.apply_theme(theme)
+  -- Define autocommands
+  util.autocmds()
 end
 
 return M

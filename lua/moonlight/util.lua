@@ -59,4 +59,29 @@ function M.hl_terminal(c)
   vim.g.terminal_color_15 = c.white
 end
 
+---Define autocommands
+function M.autocmds()
+  local group = vim.api.nvim_create_augroup("moonlight", { clear = true })
+
+  -- Clear autocommands when loading a colorscheme
+  -- (mostly useful when loading other colorschemes)
+  vim.api.nvim_create_autocmd("ColorSchemePre", {
+    group = group,
+    callback = function() vim.api.nvim_del_augroup_by_id(group) end,
+  })
+
+  -- Window local backgrounds
+  -- TODO: does this even look good?
+  local alt_hl = { "Normal:NormalFloat", "SignColumn:NormalFloat" }
+  vim.api.nvim_create_autocmd("TermOpen", {
+    group = group,
+    callback = function() vim.wo.winhighlight = alt_hl end
+  })
+  vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = { "packer", "qf" },
+    callback = function() vim.wo.winhighlight = alt_hl end
+  })
+end
+
 return M
