@@ -47,10 +47,10 @@ local M = {
   CursorColumn = {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
   CursorLine = {}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
   Directory = {}, -- directory names (and other special names in listings)
-  DiffAdd = {}, -- diff mode: Added line |diff.txt|
-  DiffChange = {}, -- diff mode: Changed line |diff.txt|
-  DiffDelete = {}, -- diff mode: Deleted line |diff.txt|
-  DiffText = {}, -- diff mode: Changed text within a changed line |diff.txt|
+  DiffAdd = { bg = c.green }, -- diff mode: Added line |diff.txt|
+  DiffChange = { bg = c.yellow }, -- diff mode: Changed line |diff.txt|
+  DiffDelete = { bg = c.red }, -- diff mode: Deleted line |diff.txt|
+  DiffText = { bg = c.selection }, -- diff mode: Changed text within a changed line |diff.txt|
   EndOfBuffer = {}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
   -- TermCursor = {}, -- cursor in a focused terminal
   -- TermCursorNC = {}, -- cursor in an unfocused terminal
@@ -380,36 +380,36 @@ local M = {
   -- ["@lsp.typemod.variable.globalScope"] (global variables)
 
   -- ts-rainbow
-  rainbowcol1 = {},
-  rainbowcol2 = {},
-  rainbowcol3 = {},
-  rainbowcol4 = {},
-  rainbowcol5 = {},
-  rainbowcol6 = {},
-  rainbowcol7 = {},
+  -- rainbowcol1 = {},
+  -- rainbowcol2 = {},
+  -- rainbowcol3 = {},
+  -- rainbowcol4 = {},
+  -- rainbowcol5 = {},
+  -- rainbowcol6 = {},
+  -- rainbowcol7 = {},
 
   -- ts-rainbow2 (maintained fork)
-  TSRainbowRed = {},
-  TSRainbowOrange = {},
-  TSRainbowYellow = {},
-  TSRainbowGreen = {},
-  TSRainbowBlue = {},
-  TSRainbowViolet = {},
-  TSRainbowCyan = {},
+  -- TSRainbowRed = {},
+  -- TSRainbowOrange = {},
+  -- TSRainbowYellow = {},
+  -- TSRainbowGreen = {},
+  -- TSRainbowBlue = {},
+  -- TSRainbowViolet = {},
+  -- TSRainbowCyan = {},
 
   -- rainbow-delimiters
-  RainbowDelimiterRed = {},
-  RainbowDelimiterOrange = {},
-  RainbowDelimiterYellow = {},
-  RainbowDelimiterGreen = {},
-  RainbowDelimiterBlue = {},
-  RainbowDelimiterViolet = {},
-  RainbowDelimiterCyan = {},
+  -- RainbowDelimiterRed = {},
+  -- RainbowDelimiterOrange = {},
+  -- RainbowDelimiterYellow = {},
+  -- RainbowDelimiterGreen = {},
+  -- RainbowDelimiterBlue = {},
+  -- RainbowDelimiterViolet = {},
+  -- RainbowDelimiterCyan = {},
 
   -- LspTrouble
-  TroubleText = {},
-  TroubleCount = {},
-  TroubleNormal = {},
+  TroubleText = { fg = c.text },
+  TroubleCount = { fg = c.purple, bg = c.active },
+  TroubleNormal = { fg = c.fg, bg = c.sidebar },
 
   -- Illuminate
   illuminatedWord = {},
@@ -419,14 +419,14 @@ local M = {
   IlluminatedWordWrite = {},
 
   -- diff
-  diffAdded = {},
-  diffRemoved = {},
-  diffChanged = {},
-  diffOldFile = {},
-  diffNewFile = {},
-  diffFile = {},
-  diffLine = {},
-  diffIndexLine = {},
+  diffAdded = { fg = c.green },
+  diffRemoved = { fg = c.red },
+  diffChanged = { fg = c.yellow },
+  diffOldFile = { fg = c.yelow },
+  diffNewFile = { fg = c.orange },
+  diffFile = { fg = c.blue },
+  diffLine = { fg = c.comments },
+  diffIndexLine = { fg = c.purple },
 
   -- Neogit
   NeogitBranch = {},
@@ -434,8 +434,8 @@ local M = {
   NeogitHunkHeader = {},
   NeogitHunkHeaderHighlight = {},
   NeogitDiffContextHighlight = {},
-  NeogitDiffDeleteHighlight = {},
-  NeogitDiffAddHighlight = {},
+  NeogitDiffDeleteHighlight = { link = "diffRemoved" },
+  NeogitDiffAddHighlight = { link = "diffAdded" },
 
   -- Neotest
   NeotestPassed = {},
@@ -457,17 +457,17 @@ local M = {
   --[[ NeotestUnknown = {}, ]]
 
   -- GitGutter
-  GitGutterAdd = {}, -- diff mode: Added line |diff.txt|
-  GitGutterChange = {}, -- diff mode: Changed line |diff.txt|
-  GitGutterDelete = {}, -- diff mode: Deleted line |diff.txt|
-  GitGutterAddLineNr = {},
-  GitGutterChangeLineNr = {},
-  GitGutterDeleteLineNr = {},
+  GitGutterAdd = { link = "diffAdded" }, -- diff mode: Added line |diff.txt|
+  GitGutterChange = { link = "diffChanged" }, -- diff mode: Changed line |diff.txt|
+  GitGutterDelete = { link = "diffRemoved" }, -- diff mode: Deleted line |diff.txt|
+  GitGutterAddLineNr = { link = "diffAdded" },
+  GitGutterChangeLineNr = { link = "diffChanged" },
+  GitGutterDeleteLineNr = { link = "diffRemoved" },
 
   -- GitSigns
-  GitSignsAdd = {}, -- diff mode: Added line |diff.txt|
-  GitSignsChange = {}, -- diff mode: Changed line |diff.txt|
-  GitSignsDelete = {}, -- diff mode: Deleted line |diff.txt|
+  GitSignsAdd = { link = "diffAdded" }, -- diff mode: Added line |diff.txt|
+  GitSignsChange = { link = "diffChanged" }, -- diff mode: Changed line |diff.txt|
+  GitSignsDelete = { link = "diffRemoved" }, -- diff mode: Deleted line |diff.txt|
 
   -- Telescope
   TelescopeBorder = {},
@@ -478,9 +478,9 @@ local M = {
   NvimTreeWinSeparator = {},
   NvimTreeNormalNC = {},
   NvimTreeRootFolder = {},
-  NvimTreeGitDirty = {},
-  NvimTreeGitNew = {},
-  NvimTreeGitDeleted = {},
+  NvimTreeGitDirty = { link = "diffChanged" },
+  NvimTreeGitNew = { link = "diffAdded" },
+  NvimTreeGitDeleted = { link = "diffDeleted" },
   NvimTreeOpenedFile = {},
   NvimTreeSpecialFile = {},
   NvimTreeIndentMarker = {},
@@ -497,13 +497,13 @@ local M = {
   FernBranchText = {},
 
   -- glyph palette
-  GlyphPalette1 = {},
-  GlyphPalette2 = {},
-  GlyphPalette3 = {},
-  GlyphPalette4 = {},
-  GlyphPalette6 = {},
-  GlyphPalette7 = {},
-  GlyphPalette9 = {},
+  -- GlyphPalette1 = {},
+  -- GlyphPalette2 = {},
+  -- GlyphPalette3 = {},
+  -- GlyphPalette4 = {},
+  -- GlyphPalette6 = {},
+  -- GlyphPalette7 = {},
+  -- GlyphPalette9 = {},
 
   -- Dashboard
   DashboardShortCut = {},
@@ -534,7 +534,6 @@ local M = {
   DiagnosticWarning = { link = "DiagnosticWarn" },
   DiagnosticInformation = { link = "DiagnosticInfo" },
 
-
   LspFloatWinNormal = {},
   LspFloatWinBorder = {},
   LspSagaBorderTitle = {},
@@ -553,9 +552,9 @@ local M = {
   TargetWord = {},
 
   -- NeoVim
-  healthError = {},
-  healthSuccess = {},
-  healthWarning = {},
+  healthError = { link = "DiagnosticError" },
+  healthSuccess = { fg = c.green },
+  healthWarning = { link = "DiagnosticWarn" },
 
   -- BufferLine
   BufferLineIndicatorSelected = {},
@@ -838,6 +837,14 @@ for kind, link in pairs(kinds) do
     M[plugin:format(kind)] = { link = base }
   end
 end
+
+---@type string[]
+-- local h_rainbow = { c.blue, c.yellow, c.green, c.teal, c.magenta, c.purple }
+-- for i, color in ipairs(h_rainbow) do
+--   M["@markup.heading." .. i .. ".markdown"] = { fg = color, bold = true }
+--   M["Headline" .. i] = { bg = util.darken(color, 0.05) }
+-- end
+-- M["Headline"] = { link = "Headline1" }
 
 -- diagnostic group links
 if not vim.diagnostic then
