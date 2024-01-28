@@ -65,6 +65,26 @@ vim.g.moonlight = {
 _I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
 [@mrcjkb](https://github.com/mrcjkb), developer of [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim)._
 
+## Palette
+
+| <!-- -->                                                           | <!-- -->                                                               |
+| ---                                                                | ---                                                                    |
+| `#000000` ![swatch](https://placehold.co/1/000000/000000)  _Black_ | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9)              |
+| `#1b1c2b` ![swatch](https://placehold.co/1/1b1c2b/1b1c2b)          | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0)              |
+| `#1b1e2b` ![swatch](https://placehold.co/1/1b1e2b/1b1e2b)          | `#5cb4fc` ![swatch](https://placehold.co/1/5cb4fc/5cb4fc)              |
+| `#212337` ![swatch](https://placehold.co/1/212337/212337)          | `#80cbc4` ![swatch](https://placehold.co/1/80cbc4/80cbc4)              |
+| `#403c64` ![swatch](https://placehold.co/1/403c64/403c64)          | `#add8e6` ![swatch](https://placehold.co/1/add8e6/add8e6)  _LightBlue_ |
+| `#414863` ![swatch](https://placehold.co/1/414863/414863)          | `#b4a4f4` ![swatch](https://placehold.co/1/b4a4f4/b4a4f4)              |
+| `#515772` ![swatch](https://placehold.co/1/515772/515772)          | `#b994f1` ![swatch](https://placehold.co/1/b994f1/b994f1)              |
+| `#596399` ![swatch](https://placehold.co/1/596399/596399)          | `#ecb2f0` ![swatch](https://placehold.co/1/ecb2f0/ecb2f0)              |
+| `#7486d6` ![swatch](https://placehold.co/1/7486d6/7486d6)          | `#f67f81` ![swatch](https://placehold.co/1/f67f81/f67f81)              |
+| `#757dac` ![swatch](https://placehold.co/1/757dac/757dac)          | `#ff5370` ![swatch](https://placehold.co/1/ff5370/ff5370)              |
+| `#a1abe0` ![swatch](https://placehold.co/1/a1abe0/a1abe0)          | `#ff757f` ![swatch](https://placehold.co/1/ff757f/ff757f)              |
+| `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1)          | `#ffc777` ![swatch](https://placehold.co/1/ffc777/ffc777)              |
+| `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0)          |                                                                        |
+| `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa)          |                                                                        |
+| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff)          |                                                                        |
+
 ## License
 
 Copyright 2024 Elias Elwyn <a@jthv.ai>, [GNU LGPL v3.0 only](./LICENSE).
