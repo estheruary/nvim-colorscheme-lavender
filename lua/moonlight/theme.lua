@@ -865,4 +865,7 @@ if not vim.diagnostic then
   end
 end
 
+-- Merge user-defined config
+M = vim.tbl_extend("force", M, config.overrides.colors or {})
+
 return M

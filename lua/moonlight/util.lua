@@ -3,30 +3,11 @@
 
 local M = {}
 
----Apply a highlight to a group (tokyonight.util.highlight)
----@param group string
----@param hl Highlight
-function M.highlight(group, hl)
-  -- Uncomment if hl.style is used for custom style overrides
-  -- if hl.style then
-  --   if type(hl.style) == "table" then
-  --     hl = vim.tbl_extend("force", hl, hl.style)
-  --   elseif hl.style:lower() ~= "none" then
-  --     -- handle old string style definitions
-  --     for s in string.gmatch(hl.style, "([^,]+)") do
-  --       hl[s] = true
-  --     end
-  --   end
-  --   hl.style = nil
-  -- end
-  vim.api.nvim_set_hl(0, group, hl)
-end
-
 ---Load main theme highlights (tokyonight.util.syntax)
 ---@param theme Highlights moonlight.theme
 function M.apply_theme(theme)
   for group, hl in pairs(theme) do
-    M.highlight(group, hl)
+    vim.api.nvim_set_hl(0, group, hl)
   end
 end
 

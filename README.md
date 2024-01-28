@@ -15,8 +15,7 @@ rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.n
 
 ## Requirements
 
-<!-- FIX: Find the actual version requirement -->
-- [Neovim](https://neovim.io/) >= [0.7.2](https://github.com/neovim/neovim/releases/tag/v0.7.2)
+- [Neovim](https://neovim.io/) >= [0.9.2](https://github.com/neovim/neovim/releases/tag/v0.9.2)
 
 ## Installation
 
@@ -24,6 +23,7 @@ rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.n
 the colorschemes are the same.
 
 [lazy.nvim](https://github.com/folke/lazy.nvim):
+
 ```lua
 {
   url = "https://codeberg.org/jthvai/moonlight.nvim.git",
@@ -47,23 +47,42 @@ vim.cmd "colorscheme moonlight"
 
 ## Configuration
 
+**WARNING**: Do not call `require("moonlight").setup()` — it does not exist, and is not used to configure this
+plugin[^1].
+
+Add `vim.g.moonlight` to `init.lua` or wherever else global variables may be set in lua[^2], _e.g._ lazy.nvim's `config`
+function.
+
 ```lua
 -- Default config in lua
 vim.g.moonlight = {
-  background = true,
-  borders    = false,
-  contrast   = true,
-  italic = {
-    comments  = false,
-    functions = false,
-    keywords  = false,
-    variables = false,
+  transparent = {
+    background = false, -- do not render the main background
+    float      = false, -- do not render the background in floating windows
+    sidebar    = false, -- do not render the background in sidebars
+  },
+  borders     = true, -- render the border between vertical splits
+  contrast    = true, -- colour the sidebar and floating windows differently to the main background
+
+  italic      = {
+    comments  = true, -- italic comments
+    functions = true, -- italic function names
+    keywords  = false, -- italic keywords
+    variables = false, -- italic variables
+  },
+
+  overrides = {
+    theme  = {}, -- highlight group overrides - see theme.lua
+    colors = {}, -- colour overrides - see colors.lua
   },
 }
 ```
 
-_I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
-[@mrcjkb](https://github.com/mrcjkb), developer of [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim)._
+[^1]: I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
+      [@mrcjkb](https://github.com/mrcjkb), developer of
+      [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim).
+[^2]: You could _probably_ do it in vimscript if you really wanted to, but I don't know how and certainly couldn't tell
+      you.
 
 ## Palette
 

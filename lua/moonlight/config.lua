@@ -2,10 +2,16 @@
 ---@mod moonlight.config plugin configuration
 
 ---@class (exact) MoonlightOpts
----@field background? boolean render the background colour
+---@field transparent? MoonlightTransparentOpts
 ---@field borders? boolean render the border between vertical splits
 ---@field contrast? boolean colour the sidebar and floating windows differently to the main background
 ---@field italic? MoonlightItalicOpts
+---@field overrides? MoonlightOverrides
+
+---@class (exact) MoonlightTransparentOpts
+---@field background? boolean do not render the main background
+---@field float? boolean do not render the background in floating windows
+---@field sidebar? boolean do not render the background in sidebars
 
 ---@class (exact) MoonlightItalicOpts
 ---@field comments? boolean italic comments
@@ -13,20 +19,35 @@
 ---@field keywords? boolean italic keywords
 ---@field variables? boolean italic variables
 
+---@class (exact) MoonlightOverrides
+---@field theme? Highlights highlight group overrides - see theme.lua
+---@field colors? Palette colour overrides - see colors.lua
+
 ---@type MoonlightOpts
 local M = {
-  background = true,
-  borders    = false,
-  contrast   = true,
-  italic     = {
-    comments  = false,
-    functions = false,
+  transparent = {
+    background = false,
+    float      = false,
+    sidebar    = false,
+  },
+  borders     = true,
+  contrast    = true,
+
+  italic      = {
+    comments  = true,
+    functions = true,
     keywords  = false,
     variables = false,
   },
+
+  overrides = {
+    theme  = {},
+    colors = {},
+  },
 }
 
--- Apply user-defined config
-M = vim.tbl_deep_extend("keep", vim.g.moonlight or {}, M)
+-- Merge user-defined config
+-- FIX: need to validate config!!
+M = vim.tbl_deep_extend("force", M, vim.g.moonlight or {})
 
 return M

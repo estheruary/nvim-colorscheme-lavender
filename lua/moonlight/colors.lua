@@ -6,6 +6,7 @@
 ---@type MoonlightOpts
 local config = require("moonlight.config")
 
+-- https://en.wikipedia.org/wiki/X11_color_names
 ---@type Palette
 local M = {
   white        = "#eeffff",
@@ -15,6 +16,7 @@ local M = {
   green        = "#2df4c0",
   yellow       = "#ffc777",
   paleblue     = "#d6e7f0",
+  lightblue    = "#add8e6", -- LightBlue
   -- cyan         = "#16fcf8",
   blue         = "#04d1f9",
   purple       = "#b4a4f4",
@@ -62,5 +64,8 @@ else
   M.sidebar = M.bg
   M.float   = M.bg
 end
+
+-- Merge user-defined config
+M = vim.tbl_extend("force", M, config.overrides.colors or {})
 
 return M
