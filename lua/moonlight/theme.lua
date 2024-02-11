@@ -1,6 +1,8 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
 ---@mod moonlight.theme highlight definitions
 
+-- renovate: tokyonight@610179f7f12db3d08540b6cc61434db2eaecbcff
+
 ---@type Palette
 local c = require("moonlight.colors")
 ---@type MoonlightOpts

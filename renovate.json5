@@ -1,0 +1,27 @@
+// This file is auto-generated from renovate.yaml by a pre-commit hook
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "schedule:weekly"
+  ],
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{footer}}}",
+  "enabledManagers": [
+    "custom.regex"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^lua/[^/]+/theme.lua$"
+      ],
+      "matchStrings": [
+        "\\n-- renovate: tokyonight@(?<currentDigest>[a-z0-9]+)\\n"
+      ],
+      "depNameTemplate": "folke/tokyonight.nvim",
+      "packageNameTemplate": "https://github.com/folke/tokyonight.nvim.git",
+      "datasourceTemplate": "git-refs",
+      "currentValueTemplate": "main"
+    }
+  ]
+}
