@@ -145,7 +145,7 @@ local M = {
   Special = {}, -- (preferred) any special symbol
   -- SpecialChar = {}, -- special character in a constant
   -- Tag = {}, -- you can use CTRL-] on this
-  -- Delimiter = {}, -- character that needs attention
+  Delimiter = { link = "Special" }, -- character that needs attention
   -- SpecialComment = {}, -- special things inside a comment
   Debug = { fg = c.orange }, -- debugging statements
 
