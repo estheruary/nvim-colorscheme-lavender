@@ -9,6 +9,18 @@
   "enabledManagers": [
     "custom.regex"
   ],
+  "packageRules": [
+    {
+      "matchDepNames": [
+        "folke/tokyonight.nvim"
+      ],
+      "matchDatasources": [
+        "git-refs"
+      ],
+      "semanticCommitType": "docs",
+      "semanticCommitScope": ""
+    }
+  ],
   "customManagers": [
     {
       "customType": "regex",
