@@ -1,5 +1,5 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
----@mod moonlight.colors colour definitions
+---@mod moonlight.colors.hex colour definitions in hex
 
 ---@alias Palette table<string,string>
 
@@ -17,7 +17,7 @@ local M = {
   yellow       = "#ffc777",
   paleblue     = "#d6e7f0",
   lightblue    = "#add8e6", -- LightBlue
-  -- cyan         = "#16fcf8",
+  cyan         = "#16fcf8",
   blue         = "#04d1f9",
   purple       = "#b4a4f4",
   purple2      = "#b994f1", -- FIX: old cyan
@@ -40,8 +40,6 @@ local M = {
   accent       = "#a3ace1",
   error        = "#ff5370",
   link         = "#80cbc4",
-
-  none         = "NONE",
 }
 M.grey = M.gray
 -- FIX: Deprecate
@@ -66,6 +64,6 @@ else
 end
 
 -- Merge user-defined config
-M = vim.tbl_extend("force", M, config.overrides.colors or {})
+M = vim.tbl_extend("force", M, config.overrides.colors.hex or {})
 
 return M

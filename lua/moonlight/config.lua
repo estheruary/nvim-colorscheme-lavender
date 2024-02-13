@@ -21,7 +21,11 @@
 
 ---@class (exact) MoonlightOverrides
 ---@field theme? Highlights highlight group overrides - see theme.lua
----@field colors? Palette colour overrides - see colors.lua
+---@field colors? MoonlightColorOverrides
+
+---@class (exact) MoonlightColorOverrides
+---@field cterm? ANSIPalette cterm colour overrides - see colors/cterm.lua
+---@field hex? Palette hex (true) colour overrides - see colors/hex.lua
 
 ---@type MoonlightOpts
 local M = {
@@ -42,7 +46,10 @@ local M = {
 
   overrides = {
     theme  = {},
-    colors = {},
+    colors = {
+      cterm = {},
+      hex = {},
+    },
   },
 }
 

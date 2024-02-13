@@ -6,6 +6,7 @@ local M = {}
 ---Load main theme highlights (tokyonight.util.syntax)
 ---@param theme Highlights moonlight.theme
 function M.apply_theme(theme)
+  -- TODO: map fg,bg to ctermfg,ctermbg
   for group, hl in pairs(theme) do
     vim.api.nvim_set_hl(0, group, hl)
   end

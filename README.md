@@ -73,10 +73,15 @@ vim.g.moonlight = {
 
   overrides = {
     theme  = {}, -- highlight group overrides - see theme.lua
-    colors = {}, -- colour overrides - see colors.lua
+    colors = {
+      cterm = {}, -- cterm colour overrides - see colors/cterm.lua
+      hex = {}, -- hex (true) colour overrides - see colors/hex.lua
+    },
   },
 }
 ```
+
+Custom hex colours are not mapped to 256-color on the fly for performance reasons.
 
 [^1]: I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
       [@mrcjkb](https://github.com/mrcjkb), developer of

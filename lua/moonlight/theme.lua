@@ -4,7 +4,7 @@
 -- renovate: tokyonight@610179f7f12db3d08540b6cc61434db2eaecbcff
 
 ---@type Palette
-local c = require("moonlight.colors")
+local c = require("moonlight.colors.hex")
 ---@type MoonlightOpts
 local config = require("moonlight.config")
 
