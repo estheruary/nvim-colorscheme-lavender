@@ -6,6 +6,8 @@ extends:
   - schedule:weekly
 prBodyTemplate: '{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{footer}}}'
 
+# Waiting on julia support
+# https://github.com/renovatebot/renovate/issues/6508
 enabledManagers: [custom.regex]
 
 packageRules:

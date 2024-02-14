@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+_:
+  #!/usr/bin/julia
+  import Pkg; Pkg.activate("."; io=devnull)
+  import HexToCterm; HexToCterm.convert()

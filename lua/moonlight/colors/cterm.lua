@@ -2,7 +2,7 @@
 ---@mod moonlight.colors.cterm colour mappings for cterm
 
 -- These mappings are best-effort, and generated from the hex colours based
--- on closeness in the CIELAB colour space to the standard 256-color palette.
+-- on closeness to the standard 256-color palette by the CIEDE2000 metric.
 -- See src/HexToCterm
 
 ---@alias ANSIPalette table<string,integer>
@@ -12,37 +12,38 @@ local config = require("moonlight.config")
 
 ---@type ANSIPalette
 local M = {
-  white = 0,
-  gray = 0,
+  -- HexToCterm: START
+  white = 195,
+  gray = 147,
   black = 0,
-  red = 0,
-  green = 0,
-  yellow = 0,
-  paleblue = 0,
-  lightblue = 0,
-  cyan = 0,
-  blue = 0,
-  purple = 0,
-  purple2 = 0,
-  orange = 0,
-  pink = 0,
-
-  bg = 0,
-  bg_alt = 0,
-  fg = 0,
-  text = 0,
-  comments = 0,
-  selection = 0,
-  contrast = 0,
-  active = 0,
-  border = 0,
-  line_numbers = 0,
-  highlight = 0,
-  disabled = 0,
-  cursor = 0,
-  accent = 0,
-  error = 0,
-  link = 0,
+  red = 210,
+  green = 50,
+  yellow = 222,
+  paleblue = 254,
+  lightblue = 152,
+  cyan = 14,
+  blue = 45,
+  purple = 147,
+  purple2 = 140,
+  orange = 210,
+  pink = 219,
+  bg = 235,
+  bg_alt = 234,
+  fg = 255,
+  text = 103,
+  comments = 104,
+  selection = 60,
+  contrast = 234,
+  active = 60,
+  border = 60,
+  line_numbers = 61,
+  highlight = 147,
+  disabled = 60,
+  cursor = 75,
+  accent = 147,
+  error = 204,
+  link = 116,
+  -- HexToCterm: END
 }
 M.grey = M.gray
 -- FIX: Deprecate

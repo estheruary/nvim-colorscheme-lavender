@@ -9,6 +9,7 @@ local config = require("moonlight.config")
 -- https://en.wikipedia.org/wiki/X11_color_names
 ---@type Palette
 local M = {
+  -- HexToCterm: START
   white        = "#eeffff",
   gray         = "#a1abe0",
   black        = "#000000",
@@ -40,6 +41,7 @@ local M = {
   accent       = "#a3ace1",
   error        = "#ff5370",
   link         = "#80cbc4",
+  -- HexToCterm: END
 }
 M.grey = M.gray
 -- FIX: Deprecate

@@ -27,8 +27,8 @@ local config = require("moonlight.config")
 ---@field nocombine? boolean
 ---@field link? string another highlight group to link to :help highlight-link
 ---@field default? boolean :help highlight-default
----@field ctermfg? integer foreground of cterm color :help ctermfg
----@field ctermbg? integer background of cterm color :help ctermbg
+---@field ctermfg? integer | string foreground of cterm color :help ctermfg
+---@field ctermbg? integer | string background of cterm color :help ctermbg
 ---@field cterm? string cterm attribute map :help highlight-args
 ---@field force? boolean
 -- For custom style overrides
