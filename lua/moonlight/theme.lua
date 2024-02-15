@@ -31,8 +31,6 @@ local config = require("moonlight.config")
 ---@field ctermbg? integer | string background of cterm color :help ctermbg
 ---@field cterm? string cterm attribute map :help highlight-args
 ---@field force? boolean
--- For custom style overrides
---- field style? string | Highlight legacy/custom style overrides; cannot be passed to nvim_set_hl
 
 ---@alias Highlights table<string,Highlight>
 

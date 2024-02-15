@@ -59,6 +59,7 @@ vim.g.moonlight = {
   transparent = {
     background = false, -- do not render the main background
     float      = false, -- do not render the background in floating windows
+    popup      = false, -- do not render the background in popup menus
     sidebar    = false, -- do not render the background in sidebars
   },
   borders     = true, -- render the border between vertical splits

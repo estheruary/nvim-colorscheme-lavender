@@ -11,6 +11,7 @@
 ---@class (exact) MoonlightTransparentOpts
 ---@field background? boolean do not render the main background
 ---@field float? boolean do not render the background in floating windows
+---@field popup? boolean do not render the background in popup menus
 ---@field sidebar? boolean do not render the background in sidebars
 
 ---@class (exact) MoonlightItalicOpts
@@ -32,6 +33,7 @@ local M = {
   transparent = {
     background = false,
     float      = false,
+    popup      = false,
     sidebar    = false,
   },
   borders     = true,
