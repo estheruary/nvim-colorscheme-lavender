@@ -1,5 +1,12 @@
 # SPDX-License-Identifier: LGPL-3.0-only
-_:
+
+convert:
   #!/usr/bin/julia
-  import Pkg; Pkg.activate("."; io=devnull)
+  import Pkg; Pkg.activate(".")
   import HexToCterm; HexToCterm.convert()
+
+update-packages:
+  #!/usr/bin/julia
+  import Dates,Pkg; Pkg.activate(".")
+  Pkg.gc(collect_delay=Dates.Day(0))
+  Pkg.Registry.update(); Pkg.update()
