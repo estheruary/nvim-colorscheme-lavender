@@ -1,5 +1,5 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
----@mod moonlight.colors.cterm colour mappings for cterm
+---@mod lavender.colors.cterm colour mappings for cterm
 
 -- These mappings are best-effort, and generated from the hex colours based
 -- on closeness to the standard 256-color palette by the CIEDE2000 metric.
@@ -7,8 +7,8 @@
 
 ---@alias ANSIPalette table<string,integer>
 
----@type MoonlightOpts
-local config = require("moonlight.config")
+---@type LavenderOpts
+local config = require("lavender.config")
 
 ---@type ANSIPalette
 local M = {

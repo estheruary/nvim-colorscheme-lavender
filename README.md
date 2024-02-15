@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: LGPL-3.0-only -->
 # Moonlight
 
-Canonical: <https://codeberg.org/jthvai/moonlight.nvim><br />
-Mirror: <https://forge.jthv.ai/elias/moonlight.nvim>
+Canonical: <https://codeberg.org/jthvai/lavender.nvim><br />
+Mirror: <https://forge.jthv.ai/elias/lavender.nvim>
 
 Purple-hued dark mode colorscheme for [Neovim](https://neovim.io/).
 
@@ -19,14 +19,11 @@ rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.n
 
 ## Installation
 
-**WARNING**: Conflicts with [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.nvim), as the names of
-the colorschemes are the same.
-
 [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  url = "https://codeberg.org/jthvai/moonlight.nvim.git",
+  url = "https://codeberg.org/jthvai/lavender.nvim",
   branch = "stable",
   lazy = false,
   priority = 1000,
@@ -37,25 +34,25 @@ the colorschemes are the same.
 
 ```vim
 " Vimscript
-colorscheme moonlight
+colorscheme lavender
 ```
 
 ```lua
 -- Lua
-vim.cmd "colorscheme moonlight"
+vim.cmd "colorscheme lavender"
 ```
 
 ## Configuration
 
-**WARNING**: Do not call `require("moonlight").setup()` — it does not exist, and is not used to configure this
+**WARNING**: Do not call `require("lavender").setup()` — it does not exist, and is not used to configure this
 plugin[^1].
 
-Add `vim.g.moonlight` to `init.lua` or wherever else global variables may be set in lua[^2], _e.g._ lazy.nvim's `config`
+Add `vim.g.lavender` to `init.lua` or wherever else global variables may be set in lua[^2], _e.g._ lazy.nvim's `config`
 function.
 
 ```lua
 -- Default config in lua
-vim.g.moonlight = {
+vim.g.lavender = {
   transparent = {
     background = false, -- do not render the main background
     float      = false, -- do not render the background in floating windows

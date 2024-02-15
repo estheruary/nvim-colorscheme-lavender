@@ -1,10 +1,10 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
----@mod moonlight.util utility functions
+---@mod lavender.util utility functions
 
 local M = {}
 
 ---Load main theme highlights (tokyonight.util.syntax)
----@param theme Highlights moonlight.theme
+---@param theme Highlights lavender.theme
 function M.apply_theme(theme)
   -- TODO: map fg,bg to ctermfg,ctermbg
   for group, hl in pairs(theme) do
@@ -13,7 +13,7 @@ function M.apply_theme(theme)
 end
 
 ---Load terminal colours (tokyonight.util.terminal)
----@param c Palette moonlight.colors
+---@param c Palette lavender.colors
 function M.hl_terminal(c)
   -- terminfo(5)
   vim.g.terminal_color_0  = c.black
@@ -43,7 +43,7 @@ end
 
 ---Define autocommands
 function M.autocmds()
-  local group = vim.api.nvim_create_augroup("moonlight", { clear = true })
+  local group = vim.api.nvim_create_augroup("lavender", { clear = true })
 
   -- Clear autocommands when loading a colorscheme
   -- (mostly useful when loading other colorschemes)

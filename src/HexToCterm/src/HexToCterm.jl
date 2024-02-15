@@ -5,8 +5,11 @@ using Colors
 using FixedPointNumbers
 import TOML as T
 
-const hexf   = "../../lua/moonlight/colors/hex.lua"
-const ctermf = "../../lua/moonlight/colors/cterm.lua"
+const hexf   = "../../lua/lavender/colors/hex.lua"
+const ctermf = "../../lua/lavender/colors/cterm.lua"
+
+@assert isfile(hexf)
+@assert isfile(ctermf)
 
 const HexRGB = RGB{N0f8}
 

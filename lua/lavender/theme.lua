@@ -1,12 +1,12 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
----@mod moonlight.theme highlight definitions
+---@mod lavender.theme highlight definitions
 
 -- renovate: tokyonight@610179f7f12db3d08540b6cc61434db2eaecbcff
 
 ---@type Palette
-local c = require("moonlight.colors.hex")
----@type MoonlightOpts
-local config = require("moonlight.config")
+local c = require("lavender.colors.hex")
+---@type LavenderOpts
+local config = require("lavender.config")
 
 ---:help nvim_set_hl
 ---@class (exact) Highlight

@@ -1,8 +1,8 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
----@mod lualine.themes.moonlight moonlight lualine theme
+---@mod lualine.themes.lavender lavender lualine theme
 
 ---@type Palette
-local c = require("moonlight.colors")
+local c = require("lavender.colors")
 
 ---@type table<string,Highlights>
 local M = {

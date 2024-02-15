@@ -1,10 +1,10 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
----@mod moonlight.colors.hex colour definitions in hex
+---@mod lavender.colors.hex colour definitions in hex
 
 ---@alias Palette table<string,string>
 
----@type MoonlightOpts
-local config = require("moonlight.config")
+---@type LavenderOpts
+local config = require("lavender.config")
 
 -- https://en.wikipedia.org/wiki/X11_color_names
 ---@type Palette
