@@ -3,7 +3,7 @@ module HexToCterm
 
 using Colors
 using FixedPointNumbers
-import TOML as T
+import TOML
 
 const hexf   = "../../lua/lavender/colors/hex.lua"
 const ctermf = "../../lua/lavender/colors/cterm.lua"
@@ -13,10 +13,12 @@ const ctermf = "../../lua/lavender/colors/cterm.lua"
 
 const HexRGB = RGB{N0f8}
 
+const ansi_strs::Dict{String, String} = TOML.parsefile("ansi_rgb.toml")
+
 const ansi::Dict{String,HexRGB} =
   (function()
     d = Dict{String,HexRGB}()
-    for (k, v) ∈ (pairs ∘ (T.parsefile))("ansi_rgb.toml")
+    for (k, v) ∈ pairs(ansi_strs)
       d[k] = parse(HexRGB, "#$v")
     end
     return d
@@ -63,7 +65,9 @@ function convert()
       continue
     end
 
-    doc *= m[:head] * m[:name] * " = " * _find_closest(m[:name]) * ",\n"
+    cid = _find_closest(m[:name])
+    doc *= m[:head] * m[:name] * " = " * cid *
+             ", -- #" * ansi_strs[cid] * "\n"
   end
 
   open(ctermf, "w") do f
