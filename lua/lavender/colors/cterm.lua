@@ -13,20 +13,24 @@ local config = require("lavender.config")
 ---@type ANSIPalette
 local M = {
   -- HexToCterm: START
-  white = 195,
+  black = 16,
   gray = 147,
-  black = 0,
-  red = 210,
-  green = 50,
-  yellow = 222,
-  paleblue = 254,
   lightblue = 152,
-  cyan = 14,
+  paleblue = 254,
+  white = 195,
+  red = 210,
+  red2 = 210,
+  orange = 216,
+  yellow = 222,
+  green = 50,
+  cyan = 51,
   blue = 45,
+  purple2 = 141,
+  purple3 = 140,
   purple = 147,
-  purple2 = 140,
-  orange = 210,
   pink = 219,
+  pink2 = 211,
+
   bg = 235,
   bg_alt = 234,
   fg = 255,
@@ -47,7 +51,8 @@ local M = {
 }
 M.grey = M.gray
 -- FIX: Deprecate
-M.cyan = M.purple2
+M.cyan = M.purple3
+M.orange = M.red2
 
 if config.contrast then
   M.sidebar = M.bg_alt

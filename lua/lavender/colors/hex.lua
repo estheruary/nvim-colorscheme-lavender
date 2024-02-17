@@ -10,20 +10,23 @@ local config = require("lavender.config")
 ---@type Palette
 local M = {
   -- HexToCterm: START
-  white        = "#eeffff",
-  gray         = "#a1abe0",
   black        = "#000000",
-  red          = "#ff757f",
-  green        = "#2df4c0",
-  yellow       = "#ffc777",
-  paleblue     = "#d6e7f0",
+  gray         = "#a1abe0",
   lightblue    = "#add8e6", -- LightBlue
+  paleblue     = "#d6e7f0",
+  white        = "#eeffff",
+  red          = "#ff757f",
+  red2         = "#f67f81", -- FIX: old orange
+  orange       = "#ff9e7b",
+  yellow       = "#ffc777",
+  green        = "#2df4c0",
   cyan         = "#16fcf8",
   blue         = "#04d1f9",
+  purple2      = "#ad82ed",
+  purple3      = "#b994f1", -- FIX: old cyan; deprecate
   purple       = "#b4a4f4",
-  purple2      = "#b994f1", -- FIX: old cyan
-  orange       = "#f67f81",
   pink         = "#ecb2f0",
+  pink2        = "#f77eae",
 
   bg           = "#212337",
   bg_alt       = "#1b1e2b",
@@ -45,7 +48,8 @@ local M = {
 }
 M.grey = M.gray
 -- FIX: Deprecate
-M.cyan = M.purple2
+M.cyan = M.purple3
+M.orange = M.red2
 
 -- TODO: bg transparency check cannot happen here as "bg" is used directly
 -- as a colour elsewhere

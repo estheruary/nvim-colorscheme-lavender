@@ -57,7 +57,7 @@ function convert()
       continue
     end
 
-    m = match(r"^(?<head> +)(?<name>\S+) = \d{1,3},$", l)
+    m = match(r"^(?<head> +)(?<name>\S+) += (\d{1,3}|\"\S{7}\"),.*$", l)
     if m === nothing
       doc *= l
       continue

@@ -5,9 +5,22 @@ local M = {}
 
 ---Load main theme highlights (tokyonight.util.syntax)
 ---@param theme Highlights lavender.theme
-function M.apply_theme(theme)
-  -- TODO: map fg,bg to ctermfg,ctermbg
+---@param colors table lavender.colors
+function M.apply_theme(theme, colors)
   for group, hl in pairs(theme) do
+    local fg_name = hl.fg
+    local bg_name = hl.bg
+
+    hl.fg = colors.hex[fg_name]
+    hl.bg = colors.hex[bg_name]
+
+    if hl.ctermfg == nil then
+      hl.ctermfg = colors.cterm[fg_name]
+    end
+    if hl.ctermbg == nil then
+      hl.ctermbg = colors.cterm[bg_name]
+    end
+
     vim.api.nvim_set_hl(0, group, hl)
   end
 end

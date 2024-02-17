@@ -93,23 +93,23 @@ Custom hex colours are not mapped to 256-color on the fly for performance reason
 
 ## Palette
 
-| <!-- -->                                                           | <!-- -->                                                               |
-| ---                                                                | ---                                                                    |
-| `#000000` ![swatch](https://placehold.co/1/000000/000000)  _Black_ | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9)              |
-| `#1b1c2b` ![swatch](https://placehold.co/1/1b1c2b/1b1c2b)          | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0)              |
-| `#1b1e2b` ![swatch](https://placehold.co/1/1b1e2b/1b1e2b)          | `#5cb4fc` ![swatch](https://placehold.co/1/5cb4fc/5cb4fc)              |
-| `#212337` ![swatch](https://placehold.co/1/212337/212337)          | `#80cbc4` ![swatch](https://placehold.co/1/80cbc4/80cbc4)              |
-| `#403c64` ![swatch](https://placehold.co/1/403c64/403c64)          | `#add8e6` ![swatch](https://placehold.co/1/add8e6/add8e6)  _LightBlue_ |
-| `#414863` ![swatch](https://placehold.co/1/414863/414863)          | `#b4a4f4` ![swatch](https://placehold.co/1/b4a4f4/b4a4f4)              |
-| `#515772` ![swatch](https://placehold.co/1/515772/515772)          | `#b994f1` ![swatch](https://placehold.co/1/b994f1/b994f1)              |
-| `#596399` ![swatch](https://placehold.co/1/596399/596399)          | `#ecb2f0` ![swatch](https://placehold.co/1/ecb2f0/ecb2f0)              |
-| `#7486d6` ![swatch](https://placehold.co/1/7486d6/7486d6)          | `#f67f81` ![swatch](https://placehold.co/1/f67f81/f67f81)              |
-| `#757dac` ![swatch](https://placehold.co/1/757dac/757dac)          | `#ff5370` ![swatch](https://placehold.co/1/ff5370/ff5370)              |
-| `#a1abe0` ![swatch](https://placehold.co/1/a1abe0/a1abe0)          | `#ff757f` ![swatch](https://placehold.co/1/ff757f/ff757f)              |
-| `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1)          | `#ffc777` ![swatch](https://placehold.co/1/ffc777/ffc777)              |
-| `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0)          |                                                                        |
-| `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa)          |                                                                        |
-| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff)          |                                                                        |
+| <!-- -->                                                  | <!-- -->                                                  |
+| ---                                                       | ---                                                       |
+| `#000000` ![swatch](https://placehold.co/1/000000/000000) | `#b4a4f4` ![swatch](https://placehold.co/1/b4a4f4/b4a4f4) |
+| `#1b1c2b` ![swatch](https://placehold.co/1/1b1c2b/1b1c2b) | `#b994f1` ![swatch](https://placehold.co/1/b994f1/b994f1) |
+| `#1b1e2b` ![swatch](https://placehold.co/1/1b1e2b/1b1e2b) | `#ad82ed` ![swatch](https://placehold.co/1/ad82ed/ad82ed) |
+| `#212337` ![swatch](https://placehold.co/1/212337/212337) | `#ecb2f0` ![swatch](https://placehold.co/1/ecb2f0/ecb2f0) |
+| `#403c64` ![swatch](https://placehold.co/1/403c64/403c64) | `#f77eae` ![swatch](https://placehold.co/1/f77eae/f77eae) |
+| `#414863` ![swatch](https://placehold.co/1/414863/414863) | `#ff5370` ![swatch](https://placehold.co/1/ff5370/ff5370) |
+| `#515772` ![swatch](https://placehold.co/1/515772/515772) | `#ff757f` ![swatch](https://placehold.co/1/ff757f/ff757f) |
+| `#596399` ![swatch](https://placehold.co/1/596399/596399) | `#f67f81` ![swatch](https://placehold.co/1/f67f81/f67f81) |
+| `#7486d6` ![swatch](https://placehold.co/1/7486d6/7486d6) | `#ff9e7b` ![swatch](https://placehold.co/1/ff9e7b/ff9e7b) |
+| `#757dac` ![swatch](https://placehold.co/1/757dac/757dac) | `#ffc777` ![swatch](https://placehold.co/1/ffc777/ffc777) |
+| `#a1abe0` ![swatch](https://placehold.co/1/a1abe0/a1abe0) | `#add8e6` ![swatch](https://placehold.co/1/add8e6/add8e6) |
+| `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1) | `#80cbc4` ![swatch](https://placehold.co/1/80cbc4/80cbc4) |
+| `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0) | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0) |
+| `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa) | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9) |
+| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) | `#5cb4fc` ![swatch](https://placehold.co/1/5cb4fc/5cb4fc) |
 
 ## License
 

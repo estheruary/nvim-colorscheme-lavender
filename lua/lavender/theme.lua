@@ -3,16 +3,14 @@
 
 -- renovate: tokyonight@610179f7f12db3d08540b6cc61434db2eaecbcff
 
----@type Palette
-local c = require("lavender.colors.hex")
 ---@type LavenderOpts
 local config = require("lavender.config")
 
 ---:help nvim_set_hl
 ---@class (exact) Highlight
----@field fg? string foreground
----@field bg? string background
----@field sp? string background
+---@field fg? string foreground - name of a colour defined in lavender.colors.hex
+---@field bg? string background - name of a colour as above
+---@field sp? string special - name of a colour as above
 ---@field blend? integer between 0 and 100
 ---@field bold? boolean
 ---@field standout? boolean
@@ -47,10 +45,10 @@ local M = {
   CursorColumn = {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
   CursorLine = {}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
   Directory = {}, -- directory names (and other special names in listings)
-  DiffAdd = { bg = c.green }, -- diff mode: Added line |diff.txt|
-  DiffChange = { bg = c.yellow }, -- diff mode: Changed line |diff.txt|
-  DiffDelete = { bg = c.red }, -- diff mode: Deleted line |diff.txt|
-  DiffText = { bg = c.selection }, -- diff mode: Changed text within a changed line |diff.txt|
+  DiffAdd = { bg = "green" }, -- diff mode: Added line |diff.txt|
+  DiffChange = { bg = "yellow" }, -- diff mode: Changed line |diff.txt|
+  DiffDelete = { bg = "red" }, -- diff mode: Deleted line |diff.txt|
+  DiffText = { bg = "selection" }, -- diff mode: Changed text within a changed line |diff.txt|
   EndOfBuffer = {}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
   -- TermCursor = {}, -- cursor in a focused terminal
   -- TermCursorNC = {}, -- cursor in an unfocused terminal
@@ -145,7 +143,7 @@ local M = {
   -- Tag = {}, -- you can use CTRL-] on this
   Delimiter = { link = "Special" }, -- character that needs attention
   -- SpecialComment = {}, -- special things inside a comment
-  Debug = { fg = c.orange }, -- debugging statements
+  Debug = { fg = "red2" }, -- debugging statements
 
   Underlined = {}, -- (preferred) text that stands out, HTML links
   Bold = {},
@@ -191,10 +189,10 @@ local M = {
   LspReferenceRead = {}, -- used for highlighting "read" references
   LspReferenceWrite = {}, -- used for highlighting "write" references
 
-  DiagnosticError = { fg = c.error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticWarn = { fg = c.yellow }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticInfo = { fg = c.paleblue }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticHint = { fg = c.purple }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticError = { fg = "error" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticWarn = { fg = "yellow" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticInfo = { fg = "paleblue" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticHint = { fg = "purple" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticUnnecessary = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
   DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text
@@ -202,10 +200,10 @@ local M = {
   DiagnosticVirtualTextInfo = { link = "DiagnosticInfo" }, -- Used for "Information" diagnostic virtual text
   DiagnosticVirtualTextHint = { link = "DiagnosticHint" }, -- Used for "Hint" diagnostic virtual text
 
-  DiagnosticUnderlineError = { fg = c.error, undercurl = true }, -- Used to underline "Error" diagnostics
-  DiagnosticUnderlineWarn = { fg = c.yellow, undercurl = true }, -- Used to underline "Warning" diagnostics
-  DiagnosticUnderlineInfo = { fg = c.paleblue, undercurl = true }, -- Used to underline "Information" diagnostics
-  DiagnosticUnderlineHint = { fg = c.purple, undercurl = true }, -- Used to underline "Hint" diagnostics
+  DiagnosticUnderlineError = { fg = "error", undercurl = true }, -- Used to underline "Error" diagnostics
+  DiagnosticUnderlineWarn = { fg = "yellow", undercurl = true }, -- Used to underline "Warning" diagnostics
+  DiagnosticUnderlineInfo = { fg = "paleblue", undercurl = true }, -- Used to underline "Information" diagnostics
+  DiagnosticUnderlineHint = { fg = "purple", undercurl = true }, -- Used to underline "Hint" diagnostics
 
   LspSignatureActiveParameter = {},
   LspCodeLens = {},
@@ -407,9 +405,9 @@ local M = {
   -- RainbowDelimiterCyan = {},
 
   -- LspTrouble
-  TroubleText = { fg = c.text },
-  TroubleCount = { fg = c.purple, bg = c.active },
-  TroubleNormal = { fg = c.fg, bg = c.sidebar },
+  TroubleText = { fg = "text" },
+  TroubleCount = { fg = "purple", bg = "active" },
+  TroubleNormal = { fg = "fg", bg = "sidebar" },
 
   -- Illuminate
   illuminatedWord = {},
@@ -419,14 +417,14 @@ local M = {
   IlluminatedWordWrite = {},
 
   -- diff
-  diffAdded = { fg = c.green },
-  diffRemoved = { fg = c.red },
-  diffChanged = { fg = c.yellow },
-  diffOldFile = { fg = c.yelow },
-  diffNewFile = { fg = c.orange },
-  diffFile = { fg = c.blue },
-  diffLine = { fg = c.comments },
-  diffIndexLine = { fg = c.purple },
+  diffAdded = { fg = "green" },
+  diffRemoved = { fg = "red" },
+  diffChanged = { fg = "yellow" },
+  diffOldFile = { fg = "yelow" },
+  diffNewFile = { fg = "red2" },
+  diffFile = { fg = "blue" },
+  diffLine = { fg = "comments" },
+  diffIndexLine = { fg = "purple" },
 
   -- Neogit
   NeogitBranch = {},
@@ -553,7 +551,7 @@ local M = {
 
   -- NeoVim
   healthError = { link = "DiagnosticError" },
-  healthSuccess = { fg = c.green },
+  healthSuccess = { fg = "green" },
   healthWarning = { link = "DiagnosticWarn" },
 
   -- BufferLine
@@ -839,7 +837,7 @@ for kind, link in pairs(kinds) do
 end
 
 ---@type string[]
--- local h_rainbow = { c.blue, c.yellow, c.green, c.teal, c.magenta, c.purple }
+-- local h_rainbow = { "blue", "yellow", "green", "teal", "magenta", "purple" }
 -- for i, color in ipairs(h_rainbow) do
 --   M["@markup.heading." .. i .. ".markdown"] = { fg = color, bold = true }
 --   M["Headline" .. i] = { bg = util.darken(color, 0.05) }

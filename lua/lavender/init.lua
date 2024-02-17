@@ -3,6 +3,7 @@
 ---@type Highlights
 local theme     = require("lavender.theme")
 ---@type Palette
+local colors    = require("lavender.colors")
 local hexcolors = require("lavender.colors.hex")
 local util      = require("lavender.util")
 
@@ -22,7 +23,7 @@ function M.load()
   -- Load terminal colours
   util.hl_terminal(hexcolors)
   -- Load main highlights
-  util.apply_theme(theme)
+  util.apply_theme(theme, colors)
   -- Define autocommands
   util.autocmds()
 end
