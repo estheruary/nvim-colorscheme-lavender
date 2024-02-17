@@ -48,7 +48,7 @@ vim.cmd "colorscheme lavender"
 plugin[^1].
 
 Add `vim.g.lavender` to `init.lua` or wherever else global variables may be set in lua[^2], _e.g._ lazy.nvim's `config`
-function.
+function. Do this before calling `:colorscheme lavender`.
 
 ```lua
 -- Default config in lua
@@ -69,11 +69,15 @@ vim.g.lavender = {
     variables = false, -- italic variables
   },
 
+  -- new values will be merged in
   overrides = {
-    theme  = {}, -- highlight group overrides - see theme.lua
+    -- highlight groups - see theme.lua
+    -- existing groups will be entirely replaced
+    theme = {},
+
     colors = {
-      cterm = {}, -- cterm colour overrides - see colors/cterm.lua
-      hex = {}, -- hex (true) colour overrides - see colors/hex.lua
+      cterm = {}, -- cterm colours - see colors/cterm.lua
+      hex = {}, -- hex (true) colours - see colors/hex.lua
     },
   },
 }
