@@ -13,6 +13,7 @@ function M.apply_theme(theme, colors)
 
     hl.fg = colors.hex[fg_name]
     hl.bg = colors.hex[bg_name]
+    hl.sp = colors.hex[hl.sp]
 
     if hl.ctermfg == nil then
       hl.ctermfg = colors.cterm[fg_name]

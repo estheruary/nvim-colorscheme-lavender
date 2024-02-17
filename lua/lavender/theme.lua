@@ -84,10 +84,10 @@ local M = {
   IncSearch = {}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
   CurSearch = { link = "IncSearch" },
   SpecialKey = {}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
-  SpellBad = {}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-  SpellCap = {}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-  SpellLocal = {}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-  SpellRare = {}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
+  SpellBad = { sp = "error", undercurl = true }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+  SpellCap = { sp = "blue", undercurl = true }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+  SpellLocal = { sp = "yellow", undercurl = true }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+  SpellRare = { sp = "purple", undercurl = true }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
   StatusLine = {}, -- status line of current window
   StatusLineNC = {}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
   TabLine = {}, -- tab pages line, not active tab page label
@@ -376,39 +376,30 @@ local M = {
   -- NOTE: maybe add these with distinct highlights?
   -- ["@lsp.typemod.variable.globalScope"] (global variables)
 
-  -- ts-rainbow
-  -- rainbowcol1 = {},
-  -- rainbowcol2 = {},
-  -- rainbowcol3 = {},
-  -- rainbowcol4 = {},
-  -- rainbowcol5 = {},
-  -- rainbowcol6 = {},
-  -- rainbowcol7 = {},
+  -- HiPhish/nvim-ts-rainbow2
+  TSRainbowRed = { fg = "red" },
+  TSRainbowOrange = { fg = "orange" },
+  TSRainbowYellow = { fg = "yellow" },
+  TSRainbowGreen = { fg = "green" },
+  TSRainbowBlue = { fg = "blue" },
+  TSRainbowViolet = { fg = "purple2" },
+  TSRainbowCyan = { fg = "cyan" },
 
-  -- ts-rainbow2 (maintained fork)
-  -- TSRainbowRed = {},
-  -- TSRainbowOrange = {},
-  -- TSRainbowYellow = {},
-  -- TSRainbowGreen = {},
-  -- TSRainbowBlue = {},
-  -- TSRainbowViolet = {},
-  -- TSRainbowCyan = {},
+  -- HiPhish/rainbow-delimiters.nvim
+  RainbowDelimiterRed = { link = "TSRainbowRed" },
+  RainbowDelimiterOrange = { link = "TSRainbowOrange" },
+  RainbowDelimiterYellow = { link = "TSRainbowYellow" },
+  RainbowDelimiterGreen = { link = "TSRainbowGreen" },
+  RainbowDelimiterBlue = { link = "TSRainbowBlue" },
+  RainbowDelimiterViolet = { link = "TSRainbowViolet" },
+  RainbowDelimiterCyan = { link = "TSRainbowCyan" },
 
-  -- rainbow-delimiters
-  -- RainbowDelimiterRed = {},
-  -- RainbowDelimiterOrange = {},
-  -- RainbowDelimiterYellow = {},
-  -- RainbowDelimiterGreen = {},
-  -- RainbowDelimiterBlue = {},
-  -- RainbowDelimiterViolet = {},
-  -- RainbowDelimiterCyan = {},
-
-  -- LspTrouble
+  -- folke/trouble.nvim
   TroubleText = { fg = "text" },
   TroubleCount = { fg = "purple", bg = "active" },
   TroubleNormal = { fg = "fg", bg = "sidebar" },
 
-  -- Illuminate
+  -- RRethy/vim-illuminate
   illuminatedWord = {},
   illuminatedCurWord = {},
   IlluminatedWordText = {},
@@ -425,7 +416,7 @@ local M = {
   diffLine = { fg = "comments" },
   diffIndexLine = { fg = "purple" },
 
-  -- Neogit
+  -- NeogitOrg/neogit
   NeogitBranch = {},
   NeogitRemote = {},
   NeogitHunkHeader = {},
@@ -434,7 +425,7 @@ local M = {
   NeogitDiffDeleteHighlight = { link = "diffRemoved" },
   NeogitDiffAddHighlight = { link = "diffAdded" },
 
-  -- Neotest
+  -- nvim-neotest/neotest
   NeotestPassed = {},
   NeotestRunning = {},
   NeotestFailed = {},
@@ -451,9 +442,9 @@ local M = {
   NeotestWinSelect = {},
   NeotestMarked = {},
   NeotestTarget = {},
-  --[[ NeotestUnknown = {}, ]]
+  -- NeotestUnknown = {},
 
-  -- GitGutter
+  -- airblade/vim-gitgutter
   GitGutterAdd = { link = "diffAdded" }, -- diff mode: Added line |diff.txt|
   GitGutterChange = { link = "diffChanged" }, -- diff mode: Changed line |diff.txt|
   GitGutterDelete = { link = "diffRemoved" }, -- diff mode: Deleted line |diff.txt|
@@ -461,16 +452,19 @@ local M = {
   GitGutterChangeLineNr = { link = "diffChanged" },
   GitGutterDeleteLineNr = { link = "diffRemoved" },
 
-  -- GitSigns
+  -- lewis6991/gitsigns.nvim
   GitSignsAdd = { link = "diffAdded" }, -- diff mode: Added line |diff.txt|
   GitSignsChange = { link = "diffChanged" }, -- diff mode: Changed line |diff.txt|
   GitSignsDelete = { link = "diffRemoved" }, -- diff mode: Deleted line |diff.txt|
 
-  -- Telescope
-  TelescopeBorder = {},
-  TelescopeNormal = {},
+  -- nvim-telescope/telescope.nvim
+  TelescopeNormal = { fg = "fg", bg = "float" },
+  TelescopeBorder = { fg = "purple3" },
+  TelescopePreviewBorder = { fg = "green" },
+  TelescopeSelection = { fg = "purple" },
+  TelescopeMatching = { fg = "purple3" },
 
-  -- NvimTree
+  -- nvim-tree/nvim-tree.lua
   NvimTreeNormal = {},
   NvimTreeWinSeparator = {},
   NvimTreeNormalNC = {},
@@ -486,23 +480,25 @@ local M = {
   NvimTreeFolderIcon = {},
   -- NvimTreeFolderName= {},
 
+  -- nvim-neo-tree/neo-tree.nvim
   NeoTreeNormal = {},
   NeoTreeNormalNC = {},
   NeoTreeDimText = {},
 
-  -- Fern
+  -- lambdalisue/fern.vim
   FernBranchText = {},
 
-  -- glyph palette
-  -- GlyphPalette1 = {},
-  -- GlyphPalette2 = {},
-  -- GlyphPalette3 = {},
-  -- GlyphPalette4 = {},
-  -- GlyphPalette6 = {},
-  -- GlyphPalette7 = {},
-  -- GlyphPalette9 = {},
+  -- lambdalisue/glyph-palette.vim
+  GlyphPalette1 = { fg = "red2" },
+  GlyphPalette2 = { fg = "green" },
+  GlyphPalette3 = { fg = "yellow" },
+  GlyphPalette4 = { fg = "blue" },
+  GlyphPalette6 = { fg = "cyan" },
+  GlyphPalette7 = { fg = "fg" },
+  GlyphPalette9 = { fg = "orange" },
+  GlyphPaletteDirectory = { fg = "text" },
 
-  -- Dashboard
+  -- nvimdev/dashboard-nvim
   DashboardShortCut = {},
   DashboardHeader = {},
   DashboardCenter = {},
@@ -511,23 +507,22 @@ local M = {
   DashboardDesc = {},
   DashboardIcon = {},
 
-  -- Alpha
+  -- goolord/alpha-nvim
   AlphaShortcut = {},
   AlphaHeader = {},
   AlphaHeaderLabel = {},
   AlphaFooter = {},
   AlphaButtons = {},
 
-  -- WhichKey
-  WhichKey = {},
-  WhichKeyGroup = {},
-  WhichKeyDesc = {},
-  WhichKeySeperator = {},
-  WhichKeySeparator = {},
-  WhichKeyFloat = {},
-  WhichKeyValue = {},
+  -- folke/which-key.nvim
+  WhichKey = { fg = "accent", bold = true },
+  WhichKeyGroup = { fg = "text" },
+  WhichKeyDesc = { fg = "blue", italic = true },
+  WhichKeySeparator = { fg = "fg" },
+  WhichKeyFloat = { bg = "float" },
+  WhichKeyValue = { bg = "float" },
 
-  -- LspSaga
+  -- nvimdev/lspsaga.nvim
   DiagnosticWarning = { link = "DiagnosticWarn" },
   DiagnosticInformation = { link = "DiagnosticInfo" },
 
@@ -548,15 +543,15 @@ local M = {
   ReferencesIcon = {},
   TargetWord = {},
 
-  -- NeoVim
+  -- Neovim
   healthError = { link = "DiagnosticError" },
   healthSuccess = { fg = "green" },
   healthWarning = { link = "DiagnosticWarn" },
 
-  -- BufferLine
+  -- akinsho/bufferline.nvim
   BufferLineIndicatorSelected = {},
 
-  -- Barbar
+  -- romgrk/barbar.nvim
   BufferCurrent = {},
   BufferCurrentERROR = {},
   BufferCurrentHINT = {},
@@ -601,27 +596,31 @@ local M = {
   BufferTabpageFill = {},
   BufferTabpages = {},
 
-  -- Sneak
-  Sneak = {},
-  SneakScope = {},
+  -- justinmk/vim-sneak
+  Sneak = { fg = "bg", bg = "accent" },
+  SneakScope = { bg = "selection" },
 
-  -- Hop
+  -- smoka7/hop.nvim
   HopNextKey = {},
   HopNextKey1 = {},
   HopNextKey2 = {},
   HopUnmatched = {},
 
+  -- mfussenegger/nvim-treehopper
   TSNodeKey = {},
   TSNodeUnmatched = {},
 
+  -- ggandor/leap.nvim
   LeapMatch = {},
   LeapLabelPrimary = {},
   LeapLabelSecondary = {},
   LeapBackdrop = {},
 
+  -- folke/flash.nvim
   FlashBackdrop = {},
   FlashLabel = {},
 
+  -- ggandor/lightspeed.nvim
   LightspeedGreyWash = {},
   -- LightspeedCursor = { link = "Cursor" },
   LightspeedLabel = {},
@@ -636,7 +635,7 @@ local M = {
   -- LightspeedUniqueChar = { link = "LightspeedUnlabeledMatch" },
   LightspeedUnlabeledMatch = {},
 
-  -- Cmp
+  -- hrsh7th/nvim-cmp
   CmpDocumentation = {},
   CmpDocumentationBorder = {},
   CmpGhostText = {},
@@ -654,23 +653,24 @@ local M = {
   CmpItemKindCopilot = {},
   CmpItemKindTabNine = {},
 
-  -- headlines.nvim
+  -- lukas-reineke/headlines.nvim
   CodeBlock = {},
 
-  -- navic
+  -- SmiteshP/nvim-navic
   NavicSeparator = {},
   NavicText = {},
 
+  -- stevearc/aerial.nvim
   AerialNormal = {},
   AerialGuide = {},
   AerialLine = { link = "LspInlayHint" },
 
-  IndentBlanklineChar = {},
-  IndentBlanklineContextChar = {},
-  IblIndent = {},
-  IblScope = {},
+  -- lukas-reineke/indent-blankline.nvim
+  IblIndent = { link = "Whitespace" },
+  IblWhitespace = { link = "Whitespace" },
+  IblScope = { fg = "highlight" },
 
-  -- Scrollbar
+  -- petertriho/nvim-scrollbar
   ScrollbarHandle = {},
 
   ScrollbarSearchHandle = {},
@@ -691,15 +691,15 @@ local M = {
   ScrollbarMiscHandle = {},
   ScrollbarMisc = {},
 
-  -- Yanky
+  -- gbprod/yanky.nvim
   YankyPut = { link = "IncSearch" },
   YankyYanked = { link = "IncSearch" },
 
-  -- Lazy
+  -- folke/lazy.nvim
   LazyProgressDone = {},
   LazyProgressTodo = {},
 
-  -- Notify
+  -- rcarriga/nvim-notify
   NotifyBackground = {},
   --- Border
   NotifyERRORBorder = {},
@@ -726,19 +726,25 @@ local M = {
   NotifyDEBUGBody = {},
   NotifyTRACEBody = {},
 
-  -- Mini
+  -- echasnovski/mini.nvim
+  -- mini.completion
   MiniCompletionActiveParameter = {},
 
+  -- mini.cursorword
   MiniCursorword = {},
   MiniCursorwordCurrent = {},
 
+  -- mini.indentscope
   MiniIndentscopeSymbol = {},
   MiniIndentscopePrefix = {}, -- Make it invisible
 
+  -- mini.jump
   MiniJump = {},
 
+  -- mini.jump2d
   MiniJump2dSpot = {},
 
+  -- mini.starter
   MiniStarterCurrent = {},
   MiniStarterFooter = {},
   MiniStarterHeader = {},
@@ -749,6 +755,7 @@ local M = {
   MiniStarterSection = {},
   MiniStarterQuery = {},
 
+  -- mini.statusline
   MiniStatuslineDevinfo = {},
   MiniStatuslineFileinfo = {},
   MiniStatuslineFilename = {},
@@ -760,8 +767,10 @@ local M = {
   MiniStatuslineModeReplace = {},
   MiniStatuslineModeVisual = {},
 
+  -- mini.surround
   MiniSurround = {},
 
+  -- mini.tabline
   MiniTablineCurrent = {},
   MiniTablineFill = {},
   MiniTablineHidden = {},
@@ -771,19 +780,24 @@ local M = {
   MiniTablineTabpagesection = {},
   MiniTablineVisible = {},
 
+  -- mini.test
   MiniTestEmphasis = {},
   MiniTestFail = {},
   MiniTestPass = {},
 
+  -- mini.trailspace
   MiniTrailspace = {},
 
-  -- Noice
+  -- folke/noice.nvim
   NoiceCompletionItemKindDefault = {},
 
+  -- nvim-treesitter/nvim-treesitter-context
   TreesitterContext = {},
+
+  -- m-demare/hlargs.nvim
   Hlargs = {},
 
-  -- Lualine (custom)
+  -- nvim-lualine/lualine.nvim (custom)
   LualineNormalA = { fg = "bg", bg = "accent", bold = true },
   LualineNormalB = { fg = "title", bg = "border" },
   LualineNormalC = { fg = "fg", bg = "selection" },
@@ -883,7 +897,19 @@ if not vim.diagnostic then
   end
 end
 
--- Merge user-defined config
+-- Apply user-defined config
+-- if config.transparent.background then
+-- if config.transparent.float then
+-- if config.transparent.popup then
+-- if config.transparent.sidebar then
+-- if config.borders then
+-- if config.contrast then
+-- if config.italic.comments then
+-- if config.italic.functions then
+-- if config.italic.keywords then
+-- if config.italic.variables then
+
+-- Merge user-defined overrides
 M = vim.tbl_extend("force", M, config.overrides.theme or {})
 
 return M

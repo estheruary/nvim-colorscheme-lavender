@@ -47,9 +47,6 @@ local M = {
   -- HexToCterm: END
 }
 M.grey = M.gray
--- FIX: Deprecate
-M.cyan = M.purple3
-M.orange = M.red2
 
 -- TODO: bg transparency check cannot happen here as "bg" is used directly
 -- as a colour elsewhere

@@ -50,9 +50,6 @@ local M = {
   -- HexToCterm: END
 }
 M.grey = M.gray
--- FIX: Deprecate
-M.cyan = M.purple3
-M.orange = M.red2
 
 if config.contrast then
   M.sidebar = M.bg_alt
