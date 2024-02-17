@@ -1,41 +1,38 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
 ---@mod lualine.themes.lavender lavender lualine theme
 
----@type Palette
-local c = require("lavender.colors")
-
----@type table<string,Highlights>
+---@type table<string,table<string, string>>
 local M = {
   normal = {
-    a = { fg = c.bg, bg = c.accent, gui = "bold" },
-    b = { fg = c.title, bg = c.active },
-    c = { fg = c.fg, bg = c.selection },
+    a = "LualineNormalA",
+    b = "LualineNormalB",
+    c = "LualineNormalC",
   },
 
   insert = {
-    a = { fg = c.bg, bg = c.green, gui = "bold" },
-    b = { fg = c.title, bg = c.active },
+    a = "LualineInsertA",
+    b = "LualineInsertB",
   },
 
   visual = {
-    a = { fg = c.bg, bg = c.purple, gui = "bold" },
-    b = { fg = c.title, bg = c.active },
+    a = "LualineVisualA",
+    b = "LualineVisualB",
   },
 
   replace = {
-    a = { fg = c.bg, bg = c.red, gui = "bold" },
-    b = { fg = c.title, bg = c.active },
+    a = "LualineReplaceA",
+    b = "LualineReplaceB",
   },
 
   command = {
-    a = { fg = c.bg, bg = c.yellow, gui = "bold" },
-    b = { fg = c.title, bg = c.active },
+    a = "LualineCommandA",
+    b = "LualineCommandB",
   },
 
   inactive = {
-    a = { fg = c.disabled, bg = c.bg, gui = "bold" },
-    b = { fg = c.disabled, bg = c.bg },
-    c = { fg = c.disabled, bg = c.selection },
+    a = "LualineInactiveA",
+    b = "LualineInactiveB",
+    c = "LualineInactiveC",
   },
 }
 

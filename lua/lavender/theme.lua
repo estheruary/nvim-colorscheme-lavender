@@ -783,6 +783,27 @@ local M = {
 
   TreesitterContext = {},
   Hlargs = {},
+
+  -- Lualine (custom)
+  LualineNormalA = { fg = "bg", bg = "accent", bold = true },
+  LualineNormalB = { fg = "title", bg = "border" },
+  LualineNormalC = { fg = "fg", bg = "selection" },
+
+  LualineInsertA = { fg = "bg", bg = "green", bold = true },
+  LualineInsertB = { link = "LualineNormalB" },
+
+  LualineVisualA = { fg = "bg", bg = "purple", bold = true },
+  LualineVisualB = { link = "LualineNormalB" },
+
+  LualineReplaceA = { fg = "bg", bg = "red", bold = true },
+  LualineReplaceB = { link = "LualineNormalB" },
+
+  LualineCommandA = { fg = "bg", bg = "yellow", bold = true },
+  LualineCommandB = { link = "LualineNormalB" },
+
+  LualineInactiveA = { fg = "disabled", bg = "bg", bold = true },
+  LualineInactiveB = { fg = "disabled", bg = "bg" },
+  LualineInactiveC = { fg = "disabled", bg = "selection" },
 }
 
 -- lsp symbol kind and completion kind highlights
