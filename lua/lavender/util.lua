@@ -15,10 +15,10 @@ function M.apply_theme(theme, colors)
     hl.bg = colors.hex[bg_name]
     hl.sp = colors.hex[hl.sp]
 
-    if hl.ctermfg == nil then
+    if hl.ctermfg == nil and not (colors.cterm[fg_name] == nil) then
       hl.ctermfg = colors.cterm[fg_name]
     end
-    if hl.ctermbg == nil then
+    if hl.ctermbg == nil and not (colors.cterm[bg_name] == nil) then
       hl.ctermbg = colors.cterm[bg_name]
     end
 
