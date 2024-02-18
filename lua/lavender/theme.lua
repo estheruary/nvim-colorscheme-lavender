@@ -232,6 +232,8 @@ local M = {
   ["@markup.environment"] = { link = "Macro" },
   ["@markup.environment.name"] = { link = "Type" },
 
+  ["@markup.heading.gitcommit"] = { link = "Title" },
+
   ["@markup.math"] = { link = "Special" },
 
   ["@markup.strong"] = { bold = true },
@@ -323,9 +325,9 @@ local M = {
   ["@tag.delimiter"] = { link = "Delimiter" },
 
   --- Misc
-  ["@diff.plus"] = { link = "DiffAdd" },
-  ["@diff.minus"] = { link = "DiffDelete" },
-  ["@diff.delta"] = { link = "DiffChange" },
+  ["@diff.plus"] = { link = "diffAdded" },
+  ["@diff.minus"] = { link = "diffRemoved" },
+  ["@diff.delta"] = { link = "diffChanged" },
 
   -- LSP Semantic Token Groups
   ["@lsp.type.boolean"] = { link = "@boolean" },
@@ -391,16 +393,7 @@ local M = {
   RainbowDelimiterCyan = { link = "TSRainbowCyan" },
 
   -- folke/trouble.nvim
-  TroubleText = { fg = "text" },
-  TroubleCount = { fg = "purple", bg = "border" },
   TroubleNormal = { link = "NormalSB" },
-
-  -- RRethy/vim-illuminate
-  -- illuminatedWord = {},
-  -- illuminatedCurWord = {},
-  -- IlluminatedWordText = {},
-  -- IlluminatedWordRead = {},
-  -- IlluminatedWordWrite = {},
 
   -- diff
   diffAdded = { fg = "green" },
@@ -420,25 +413,6 @@ local M = {
   NeogitDiffContextHighlight = { fg = "text", bg = "contrast" },
   NeogitDiffDeleteHighlight = { link = "diffRemoved" },
   NeogitDiffAddHighlight = { link = "diffAdded" },
-
-  -- nvim-neotest/neotest
-  -- NeotestPassed = {},
-  -- NeotestRunning = {},
-  -- NeotestFailed = {},
-  -- NeotestSkipped = {},
-  -- NeotestTest = {},
-  -- NeotestNamespace = {},
-  -- NeotestFocused = {},
-  -- NeotestFile = {},
-  -- NeotestDir = {},
-  -- NeotestBorder = {},
-  -- NeotestIndent = {},
-  -- NeotestExpandMarker = {},
-  -- NeotestAdapterName = {},
-  -- NeotestWinSelect = {},
-  -- NeotestMarked = {},
-  -- NeotestTarget = {},
-  -- NeotestUnknown = {},
 
   -- airblade/vim-gitgutter
   GitGutterAdd = { link = "diffAdded" }, -- diff mode: Added line |diff.txt|
@@ -460,14 +434,10 @@ local M = {
   TelescopeSelection = { fg = "purple" },
   TelescopeMatching = { fg = "purple3" },
 
-  -- nvim-tree/nvim-tree.lua
-  -- TODO: maybe
-  NvimTreeNormal = { link = "NormalSB" },
-
   -- nvim-neo-tree/neo-tree.nvim
   -- TODO: hunt down the "(n hidden items)" highlight group
   NeoTreeNormal = { link = "NormalSB" },
-  NeoTreeCursorLine = { bold = true },
+  -- NeoTreeCursorLine = { bold = true },
   NeoTreeIndentMarker = { link = "Whitespace" },
   NeoTreeTabActive = { fg = "bg", bg = "accent" },
   NeoTreeTabInactive = { fg = "title", bg = "border" },
@@ -480,9 +450,6 @@ local M = {
   NeoTreeGitDeleted = { link = "diffRemoved" },
   NeoTreeGitModified = { link = "diffChanged" },
   NeoTreeGitUntracked = { fg = "orange", italic = true },
-
-  -- lambdalisue/fern.vim
-  -- FernBranchText = {},
 
   -- lambdalisue/glyph-palette.vim
   GlyphPalette1 = { fg = "red2" },
@@ -502,13 +469,6 @@ local M = {
   -- DashboardKey = {},
   -- DashboardDesc = {},
   -- DashboardIcon = {},
-
-  -- goolord/alpha-nvim
-  -- AlphaShortcut = {},
-  -- AlphaHeader = {},
-  -- AlphaHeaderLabel = {},
-  -- AlphaFooter = {},
-  -- AlphaButtons = {},
 
   -- folke/which-key.nvim
   WhichKey = { fg = "accent", bold = true },
@@ -550,60 +510,9 @@ local M = {
   BufferLineIndicatorSelected = { fg = "accent" },
   BufferLineFill = {},
 
-  -- romgrk/barbar.nvim
-  -- BufferCurrent = {},
-  -- BufferCurrentERROR = {},
-  -- BufferCurrentHINT = {},
-  -- -- BufferCurrentIcon = {},
-  -- BufferCurrentINFO = {},
-  -- BufferCurrentWARN = {},
-  -- BufferCurrentIndex = {},
-  -- BufferCurrentMod = {},
-  -- BufferCurrentSign = {},
-  -- BufferCurrentTarget = {},
-  -- BufferAlternate = {},
-  -- BufferAlternateERROR = {},
-  -- BufferAlternateHINT = {},
-  -- -- BufferAlternateIcon = {},
-  -- BufferAlternateIndex = {},
-  -- BufferAlternateINFO = {},
-  -- BufferAlternateMod = {},
-  -- BufferAlternateSign = {},
-  -- BufferAlternateTarget = {},
-  -- BufferAlternateWARN = {},
-  -- BufferVisible = {},
-  -- BufferVisibleERROR = {},
-  -- BufferVisibleHINT = {},
-  -- -- BufferVisibleIcon = {},
-  -- BufferVisibleINFO = {},
-  -- BufferVisibleWARN = {},
-  -- BufferVisibleIndex = {},
-  -- BufferVisibleMod = {},
-  -- BufferVisibleSign = {},
-  -- BufferVisibleTarget = {},
-  -- BufferInactive = {},
-  -- BufferInactiveERROR = {},
-  -- BufferInactiveHINT = {},
-  -- -- BufferInactiveIcon = {},
-  -- BufferInactiveINFO = {},
-  -- BufferInactiveWARN = {},
-  -- BufferInactiveIndex = {},
-  -- BufferInactiveMod = {},
-  -- BufferInactiveSign = {},
-  -- BufferInactiveTarget = {},
-  -- BufferOffset = {},
-  -- BufferTabpageFill = {},
-  -- BufferTabpages = {},
-
   -- justinmk/vim-sneak
   Sneak = { fg = "bg", bg = "accent" },
   SneakScope = { bg = "selection" },
-
-  -- smoka7/hop.nvim
-  -- HopNextKey = {},
-  -- HopNextKey1 = {},
-  -- HopNextKey2 = {},
-  -- HopUnmatched = {},
 
   -- mfussenegger/nvim-treehopper
   -- TSNodeKey = {},
@@ -618,21 +527,6 @@ local M = {
   -- folke/flash.nvim
   FlashBackdrop = { fg = "text" },
   FlashLabel = { bg = "pink2" },
-
-  -- ggandor/lightspeed.nvim
-  -- LightspeedGreyWash = {},
-  -- -- LightspeedCursor = { link = "Cursor" },
-  -- LightspeedLabel = {},
-  -- LightspeedLabelDistant = {},
-  -- LightspeedLabelDistantOverlapped = {},
-  -- LightspeedLabelOverlapped = {},
-  -- LightspeedMaskedChar = {},
-  -- LightspeedOneCharMatch = {},
-  -- LightspeedPendingOpArea = {},
-  -- LightspeedShortcut = {},
-  -- -- LightspeedShortcutOverlapped = { link = "LightspeedShortcut" },
-  -- -- LightspeedUniqueChar = { link = "LightspeedUnlabeledMatch" },
-  -- LightspeedUnlabeledMatch = {},
 
   -- hrsh7th/nvim-cmp
   -- TODO: cmp
@@ -652,9 +546,6 @@ local M = {
   -- CmpItemKindCopilot = {},
   -- CmpItemKindTabNine = {},
 
-  -- lukas-reineke/headlines.nvim
-  -- CodeBlock = {},
-
   -- SmiteshP/nvim-navic
   -- NavicSeparator = {},
   -- NavicText = {},
@@ -669,34 +560,19 @@ local M = {
   IblWhitespace = { link = "Whitespace" },
   IblScope = { fg = "highlight" },
 
-  -- petertriho/nvim-scrollbar
-  -- ScrollbarHandle = {},
-  --
-  -- ScrollbarSearchHandle = {},
-  -- ScrollbarSearch = {},
-  --
-  -- ScrollbarErrorHandle = {},
-  -- ScrollbarError = {},
-  --
-  -- ScrollbarWarnHandle = {},
-  -- ScrollbarWarn = {},
-  --
-  -- ScrollbarInfoHandle = {},
-  -- ScrollbarInfo = {},
-  --
-  -- ScrollbarHintHandle = {},
-  -- ScrollbarHint = {},
-  --
-  -- ScrollbarMiscHandle = {},
-  -- ScrollbarMisc = {},
-
   -- gbprod/yanky.nvim
   YankyPut = { link = "IncSearch" },
   YankyYanked = { link = "IncSearch" },
 
   -- folke/lazy.nvim
-  -- LazyProgressDone = {},
-  -- LazyProgressTodo = {},
+  LazyButton = { bold = true },
+  LazyButtonActive = { fg = "white", bg = "selection", bold = true },
+  LazyDimmed = { fg = "text" },
+  LazyDir = { fg = "blue" },
+  LazyH1 = { fg = "white", bg = "highlight", bold = true },
+  LazyProgressDone = { fg = "green" },
+  LazyProp = { fg = "purple" },
+  LazyUrl = { link = "@markup.link.url" },
 
   -- rcarriga/nvim-notify
   -- NotifyBackground = {},
@@ -720,76 +596,11 @@ local M = {
   NotifyDEBUGTitle = { link = "NotifyDEBUGIcon" },
   NotifyTRACETitle = { link = "NotifyTRACEIcon" },
 
-  -- echasnovski/mini.nvim
-  -- mini.completion
-  -- MiniCompletionActiveParameter = {},
-
-  -- mini.cursorword
-  -- MiniCursorword = {},
-  -- MiniCursorwordCurrent = {},
-
-  -- mini.indentscope
-  -- MiniIndentscopeSymbol = {},
-  -- MiniIndentscopePrefix = {}, -- Make it invisible
-
-  -- mini.jump
-  -- MiniJump = {},
-
-  -- mini.jump2d
-  -- MiniJump2dSpot = {},
-
-  -- mini.starter
-  -- MiniStarterCurrent = {},
-  -- MiniStarterFooter = {},
-  -- MiniStarterHeader = {},
-  -- MiniStarterInactive = {},
-  -- MiniStarterItem = {},
-  -- MiniStarterItemBullet = {},
-  -- MiniStarterItemPrefix = {},
-  -- MiniStarterSection = {},
-  -- MiniStarterQuery = {},
-
-  -- mini.statusline
-  -- MiniStatuslineDevinfo = {},
-  -- MiniStatuslineFileinfo = {},
-  -- MiniStatuslineFilename = {},
-  -- MiniStatuslineInactive = {},
-  -- MiniStatuslineModeCommand = {},
-  -- MiniStatuslineModeInsert = {},
-  -- MiniStatuslineModeNormal = {},
-  -- MiniStatuslineModeOther = {},
-  -- MiniStatuslineModeReplace = {},
-  -- MiniStatuslineModeVisual = {},
-
-  -- mini.surround
-  -- MiniSurround = {},
-
-  -- mini.tabline
-  -- MiniTablineCurrent = {},
-  -- MiniTablineFill = {},
-  -- MiniTablineHidden = {},
-  -- MiniTablineModifiedCurrent = {},
-  -- MiniTablineModifiedHidden = {},
-  -- MiniTablineModifiedVisible = {},
-  -- MiniTablineTabpagesection = {},
-  -- MiniTablineVisible = {},
-
-  -- mini.test
-  -- MiniTestEmphasis = {},
-  -- MiniTestFail = {},
-  -- MiniTestPass = {},
-
-  -- mini.trailspace
-  -- MiniTrailspace = {},
-
   -- folke/noice.nvim
   -- NoiceCompletionItemKindDefault = {},
 
   -- nvim-treesitter/nvim-treesitter-context
   -- TreesitterContext = {},
-
-  -- m-demare/hlargs.nvim
-  -- Hlargs = {},
 
   -- nvim-lualine/lualine.nvim (custom)
   LualineNormalA = { fg = "bg", bg = "accent", bold = true },
@@ -899,6 +710,7 @@ end
 -- Apply user-defined config
 if config.transparent.background then
   M.Normal.bg = "NONE"
+  M.CursorLine = { bold = true, italic = true }
 end
 if config.transparent.float then
   M.NormalFloat.bg = "NONE"
@@ -906,7 +718,8 @@ if config.transparent.float then
 end
 if config.transparent.popup then
   M.Pmenu.bg = "NONE"
-  M.PmenuSel = { fg = "highlight", italic = true }
+  M.PmenuSel = { bold = true, italic = true }
+  -- M.PmenuSel = { fg = "highlight", italic = true }
 end
 if config.transparent.sidebar then
   M.NormalSB.bg = "NONE"
