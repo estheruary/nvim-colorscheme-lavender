@@ -3,7 +3,6 @@
 
 ---@class (exact) LavenderOpts
 ---@field transparent? LavenderTransparentOpts
----@field borders? boolean render the border between vertical splits
 ---@field contrast? boolean colour the sidebar and floating windows differently to the main background
 ---@field italic? LavenderItalicOpts
 ---@field overrides? LavenderOverrides
@@ -36,7 +35,6 @@ local M = {
     popup      = false,
     sidebar    = false,
   },
-  borders     = true,
   contrast    = true,
 
   italic      = {

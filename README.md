@@ -59,7 +59,6 @@ vim.g.lavender = {
     popup      = false, -- do not render the background in popup menus
     sidebar    = false, -- do not render the background in sidebars
   },
-  borders     = true, -- render the border between vertical splits
   contrast    = true, -- colour the sidebar and floating windows differently to the main background
 
   italic      = {
@@ -105,12 +104,12 @@ Custom hex colours are not mapped to 256-color on the fly for performance reason
 | `#596399` ![swatch](https://placehold.co/1/596399/596399) | `#f67f81` ![swatch](https://placehold.co/1/f67f81/f67f81) |
 | `#7486d6` ![swatch](https://placehold.co/1/7486d6/7486d6) | `#ff9e7b` ![swatch](https://placehold.co/1/ff9e7b/ff9e7b) |
 | `#757dac` ![swatch](https://placehold.co/1/757dac/757dac) | `#ffc777` ![swatch](https://placehold.co/1/ffc777/ffc777) |
-| `#a1abe0` ![swatch](https://placehold.co/1/a1abe0/a1abe0) | `#add8e6` ![swatch](https://placehold.co/1/add8e6/add8e6) |
-| `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1) | `#80cbc4` ![swatch](https://placehold.co/1/80cbc4/80cbc4) |
-| `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0) | `#59d6b5` ![swatch](https://placehold.co/1/59d6b5/59d6b5) |
-| `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa) | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0) |
-| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9) |
-|                                                           | `#5cb4fc` ![swatch](https://placehold.co/1/5cb4fc/5cb4fc) |
+| `#a19bb5` ![swatch](https://placehold.co/1/a19bb5/a19bb5) | `#add8e6` ![swatch](https://placehold.co/1/add8e6/add8e6) |
+| `#a1abe0` ![swatch](https://placehold.co/1/a1abe0/a1abe0) | `#80cbc4` ![swatch](https://placehold.co/1/80cbc4/80cbc4) |
+| `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1) | `#59d6b5` ![swatch](https://placehold.co/1/59d6b5/59d6b5) |
+| `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0) | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0) |
+| `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa) | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9) |
+| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) |                                                           |
 
 ## License
 

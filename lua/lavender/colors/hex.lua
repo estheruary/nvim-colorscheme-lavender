@@ -39,7 +39,7 @@ local M = {
   line_numbers = "#596399",
   highlight    = "#a1abe0",
   disabled     = "#515772",
-  cursor       = "#5cb4fc",
+  cursor       = "#a19bb5",
   accent       = "#a3ace1",
   error        = "#ff5370",
   link         = "#80cbc4",
@@ -48,15 +48,6 @@ local M = {
 -- FIX: deprecate
 M.gray = M.highlight
 M.active = M.border
-
--- TODO: bg transparency check cannot happen here as "bg" is used directly
--- as a colour elsewhere
---
--- if not config.background then
---   M.bg      = M.none
---   M.sidebar = M.none
---   M.float   = M.none
--- elseif config.contrast then
 
 -- High(er) contrast backgrounds for sidebars and floating windows
 if config.contrast then

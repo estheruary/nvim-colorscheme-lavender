@@ -34,71 +34,69 @@ local config = require("lavender.config")
 
 ---@type Highlights
 local M = {
-  Foo = {},
-
   Comment = { fg = "comments", italic = config.italic.comments }, -- any comment
-  ColorColumn = {}, -- used for the columns set with 'colorcolumn'
-  Conceal = {}, -- placeholder characters substituted for concealed text (see 'conceallevel')
-  Cursor = {}, -- character under the cursor
-  lCursor = {}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
-  CursorIM = {}, -- like Cursor, but used when in IME mode |CursorIM|
-  CursorColumn = {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-  CursorLine = {}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-  Directory = {}, -- directory names (and other special names in listings)
+  ColorColumn = { bg = "border" }, -- used for the columns set with 'colorcolumn'
+  Conceal = { fg = "disabled" }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+  Cursor = { bg = "cursor" }, -- character under the cursor
+  lCursor = { link = "Cursor" }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+  CursorIM = { link = "Cursor" }, -- like Cursor, but used when in IME mode |CursorIM|
+  CursorColumn = { bg = "border" }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+  CursorLine = { bg = "border" }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+  Directory = { fg = "blue" }, -- directory names (and other special names in listings)
   DiffAdd = { fg = "green", reverse = true }, -- diff mode: Added line |diff.txt|
   DiffChange = { fg = "yellow", reverse = true }, -- diff mode: Changed line |diff.txt|
   DiffDelete = { fg = "red", reverse = true }, -- diff mode: Deleted line |diff.txt|
   DiffText = { fg = "selection", reverse = true }, -- diff mode: Changed text within a changed line |diff.txt|
-  EndOfBuffer = {}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+  EndOfBuffer = { fg = "disabled" }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
   -- TermCursor = {}, -- cursor in a focused terminal
   -- TermCursorNC = {}, -- cursor in an unfocused terminal
-  ErrorMsg = {}, -- error messages on the command line
-  VertSplit = { fg = "bg" }, -- the column separating vertically split windows
-  WinSeparator = {}, -- the column separating vertically split windows
-  Folded = {}, -- line used for closed folds
-  FoldColumn = {}, -- 'foldcolumn'
+  ErrorMsg = { fg = "error" }, -- error messages on the command line
+  VertSplit = { fg = "border" }, -- the column separating vertically split windows
+  -- WinSeparator = {}, -- the column separating vertically split windows
+  Folded = { fg = "disabled", italic = true }, -- line used for closed folds
+  FoldColumn = { fg = "accent" }, -- 'foldcolumn'
   SignColumn = { link = "Normal" }, -- column where |signs| are displayed
   -- SignColumnSB = {}, -- column where |signs| are displayed
-  Substitute = {}, -- |:substitute| replacement text highlighting
-  LineNr = {}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-  CursorLineNr = {}, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-  MatchParen = {}, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-  ModeMsg = {}, -- 'showmode' message (e.g., "-- INSERT -- ")
-  MsgArea = {}, -- Area for messages and cmdline
+  -- Substitute = {}, -- |:substitute| replacement text highlighting
+  LineNr = { fg = "line_numbers" }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+  CursorLineNr = { fg = "accent" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+  MatchParen = { fg = "yellow", bold = true }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+  ModeMsg = { fg = "accent" }, -- 'showmode' message (e.g., "-- INSERT -- ")
+  MsgArea = { fg = "accent" }, -- Area for messages and cmdline
   -- MsgSeparator = {}, -- Separator for scrolled messages, `msgsep` flag of 'display'
-  MoreMsg = {}, -- |more-prompt|
+  -- MoreMsg = {}, -- |more-prompt|
   NonText = { fg = "disabled" }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
   Normal = { fg = "fg", bg = "bg" }, -- normal text
   -- NormalNC = {}, -- normal text in non-current windows
   NormalSB = { fg = "fg", bg = "sidebar" }, -- normal text in sidebar
   NormalFloat = { fg = "fg", bg = "float" }, -- Normal text in floating windows.
-  -- FloatBorder = {},
+  FloatBorder = { fg = "border", bg = "float" },
   -- FloatTitle = {},
-  Pmenu = {}, -- Popup menu: normal item.
-  PmenuSel = {}, -- Popup menu: selected item.
-  PmenuSbar = {}, -- Popup menu: scrollbar.
-  PmenuThumb = {}, -- Popup menu: Thumb of the scrollbar.
-  Question = {}, -- |hit-enter| prompt and yes/no questions
+  Pmenu = { fg = "text", bg = "contrast" }, -- Popup menu: normal item.
+  PmenuSel = { bg = "border" }, -- Popup menu: selected item.
+  PmenuSbar = { fg = "text", bg = "contrast" }, -- Popup menu: scrollbar.
+  PmenuThumb = { fg = "fg", bg = "accent" }, -- Popup menu: Thumb of the scrollbar.
+  Question = { fg = "green" }, -- |hit-enter| prompt and yes/no questions
   QuickFixLine = { fg = "highlight", italic = true }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
   Search = { fg = "white", bg = "highlight" }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-  IncSearch = {}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+  IncSearch = { link = "Search" }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
   CurSearch = { link = "IncSearch" },
-  SpecialKey = {}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+  SpecialKey = { link = "SpecialChar" }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
   SpellBad = { sp = "error", undercurl = true }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
   SpellCap = { sp = "blue", undercurl = true }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
   SpellLocal = { sp = "yellow", undercurl = true }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
   SpellRare = { sp = "purple", undercurl = true }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-  StatusLine = {}, -- status line of current window
-  StatusLineNC = {}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-  TabLine = {}, -- tab pages line, not active tab page label
+  StatusLine = { fg = "fg", bg = "border" }, -- status line of current window
+  StatusLineNC = { fg = "disabled", bg = "selection" }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+  TabLine = { fg = "fg" }, -- tab pages line, not active tab page label
   TabLineFill = {}, -- tab pages line, where there are no labels
-  TabLineSel = {}, -- tab pages line, active tab page label
+  TabLineSel = { fg = "bg", bg = "accent" }, -- tab pages line, active tab page label
   Title = { fg = "green", bold = true }, -- titles for output from ":set all", ":autocmd" etc.
-  Visual = {}, -- Visual mode selection
-  VisualNOS = {}, -- Visual mode selection when vim is "Not Owning the Selection".
-  WarningMsg = {}, -- warning messages
+  Visual = { bg = "selection" }, -- Visual mode selection
+  VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
+  WarningMsg = { fg = "orange" }, -- warning messages
   Whitespace = { link = "NonText" }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-  WildMenu = {}, -- current match in 'wildmenu' completion
+  WildMenu = { fg = "red2", bold = true }, -- current match in 'wildmenu' completion
   WinBar = { link = "StatusLine" }, -- window bar
   WinBarNC = { link = "StatusLineNC" }, -- window bar in inactive windows
 
@@ -156,14 +154,22 @@ local M = {
 
   htmlLink = { link = "@markup.link.url" },
 
-  markdownCode = {},
-  markdownCodeBlock = {},
-  markdownLinkText = {},
+  -- TODO: check (find more) markdown regex highlight groups
+  markdownCodeBlock = { link = "@markup.raw" },
+  markdownLinkText = { link = "@markup.link.label" },
+  markdownLinkTextDelimiter = { link = "Delimiter" },
+  markdownLink = { link = "@markup.link.markdown_inline" },
+  markdownLinkDelimiter = { link = "Delimiter" },
+  markdownUrl = { link = "@markup.link.url" },
 
-  helpCommand = {},
+  markdownListMarker = { link = "@markup.list" },
 
-  debugPC = {}, -- used for highlighting the current line in terminal-debug
-  debugBreakpoint = {}, -- used for breakpoint colors in terminal-debug
+  -- TODO: asciidoc highlight groups
+
+  -- helpCommand = {},
+
+  -- debugPC = {}, -- used for highlighting the current line in terminal-debug
+  -- debugBreakpoint = {}, -- used for breakpoint colors in terminal-debug
 
   dosIniLabel = { link = "@property" },
 
@@ -173,6 +179,7 @@ local M = {
   LspReferenceText = { bg = "highlight" }, -- used for highlighting "text" references
   LspReferenceRead = { bg = "highlight" }, -- used for highlighting "read" references
   LspReferenceWrite = { bg = "highlight" }, -- used for highlighting "write" references
+  -- LspInlayHint = {},
 
   DiagnosticError = { fg = "error" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticWarn = { fg = "orange" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
@@ -190,16 +197,15 @@ local M = {
   DiagnosticUnderlineInfo = { sp = "lightblue", underline = true }, -- Used to underline "Information" diagnostics
   DiagnosticUnderlineHint = { sp = "purple", underline = true }, -- Used to underline "Hint" diagnostics
 
-  LspSignatureActiveParameter = {},
-  LspCodeLens = {},
-  LspInlayHint = {},
+  LspSignatureActiveParameter = { bold = true },
+  LspCodeLens = { italic = true },
 
-  LspInfoBorder = {},
+  ALEErrorSign = { link = "DiagnosticError" },
+  ALEWarningSign = { link = "DiagnosticWarn" },
 
-  ALEErrorSign = {},
-  ALEWarningSign = {},
-
-  DapStoppedLine = {}, -- Used for "Warning" diagnostic virtual text
+  -- mfussenegger/nvim-dap
+  -- TODO: find highlight + sign documentation
+  DapStoppedLine = { bg = "yellow" }, -- Used for "Warning" diagnostic virtual text
 
   -- nvim-treesitter/nvim-treesitter
   ["@none"] = {},
@@ -222,35 +228,41 @@ local M = {
 
   --- Markup
   ["@markup"] = { link = "@none" },
+
   ["@markup.environment"] = { link = "Macro" },
   ["@markup.environment.name"] = { link = "Type" },
-  ["@markup.raw"] = { fg = "fg" },
+
   ["@markup.math"] = { link = "Special" },
+
   ["@markup.strong"] = { bold = true },
   ["@markup.emphasis"] = { italic = true },
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.underline"] = { underline = true },
-  -- ["@markup.heading"] = { link = "Title" },
-  -- ["@markup.link"] = {},
-  ["@markup.link.url"] = { link = "@string.special.url" },
-  -- ["@markup.link.label"] = { link = "SpecialChar" },
-  ["@markup.link.label.symbol"] = { link = "Identifier" },
-  -- ["@markup.raw.markdown"] = {},
-  -- ["@markup.raw.markdown_inline"] = {},
 
-  ["@markup.list"] = {}, -- For special punctutation that does not fall in the catagories before.
-  ["@markup.list.markdown"] = {},
-  ["@markup.list.unchecked"] = {}, -- For brackets and parens.
-  ["@markup.list.checked"] = {}, -- For brackets and parens.
+  ["@markup.link"] = { fg = "link" },
+  ["@markup.link.url"] = { link = "@string.special.url" },
+  ["@markup.link.label"] = { link = "Identifier" },
+  ["@markup.link.label.symbol"] = { link = "SpecialChar" },
+  ["@markup.link.markdown_inline"] = { link = "Delimiter" },
+
+  ["@markup.raw"] = { fg = "paleblue" },
+  ["@markup.raw.delimiter"] = { link = "Delimiter" },
+  ["@markup.raw.markdown"] = { link = "@markup.raw" },
+  ["@markup.raw.markdown_inline"] = { link = "@markup.raw" },
+
+  ["@markup.list"] = { link = "Label" }, -- For special punctutation that does not fall in the catagories before.
+  -- ["@markup.list.markdown"] = {},
+  ["@markup.list.unchecked"] = { link = "Delimiter" }, -- For brackets and parens.
+  ["@markup.list.checked"] = { link = "Delimiter" }, -- For brackets and parens.
 
   --- Literals
   -- ["@constant"] = { link = "Constant" },
   ["@constant.builtin"] = { fg = "blue" },
   ["@constant.macro"] = { fg = "blue" },
 
-  ["@string.documentation"] = {},
+  -- ["@string.documentation"] = {},
   ["@string.special.url"] = { fg = "link", underline = true },
-  ["@string.escape"] = { fg = "highlight" }, -- For escape characters within a string.
+  -- ["@string.escape"] = {}, -- For escape characters within a string.
   ["@string.regexp"] = { fg = "green2" }, -- For regexes.
 
   -- ["@character"] = { link = "Character" },
@@ -267,13 +279,13 @@ local M = {
   ["@function.method"] = { link = "Function" },
   ["@function.method.call"] = { link = "@function.method" },
 
-  ["@property"] = { fg = "paleblue" },
+  -- ["@property"] = { link = "Identifier" },
 
   -- ["@constructor"] = { fg = "purple" }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
   -- ["@constructor.tsx"] = {},
 
   --- Keywords
-  ["@label"] = {}, -- For labels: `label:` in C and `:label:` in Lua.
+  -- ["@label"] = { link = "Label" }, -- For labels: `label:` in C and `:label:` in Lua.
   -- ["@operator"] = {}, -- For any operator: `+`, but also `->` and `*` in C.
   -- ["@keyword"] = {}, -- For keywords that don't fall in previous categories.
   ["@keyword.conditional"] = { link = "Conditional" },
@@ -297,14 +309,14 @@ local M = {
   -- ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
   -- ["@type"] = { link = "Type" },
-  ["@type.builtin"] = {},
+  -- ["@type.builtin"] = {},
   -- ["@type.definition"] = { link = "Typedef" },
   ["@type.qualifier"] = { link = "@keyword" },
 
   ["@namespace.builtin"] = { link = "@variable.builtin" },
 
   ["@module"] = { link = "Include" },
-  ["@module.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
+  -- ["@module.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
 
   ["@tag"] = { link = "Label" },
   ["@tag.attribute"] = { link = "@property" },
@@ -326,7 +338,7 @@ local M = {
   ["@lsp.type.escapeSequence"] = { link = "@string.escape" },
   ["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
   ["@lsp.type.generic"] = { link = "@variable" },
-  ["@lsp.type.interface"] = {},
+  ["@lsp.type.interface"] = { link = "@type" },
   ["@lsp.type.keyword"] = { link = "@keyword" },
   ["@lsp.type.lifetime"] = { link = "@keyword.storage" },
   ["@lsp.type.namespace"] = { link = "@module" },
@@ -338,7 +350,7 @@ local M = {
   ["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
   ["@lsp.type.string"] = { link = "@string" },
   ["@lsp.type.typeAlias"] = { link = "@type.definition" },
-  ["@lsp.type.unresolvedReference"] = {},
+  ["@lsp.type.unresolvedReference"] = { link = "@markup.link" },
   ["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
   ["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
   ["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
@@ -351,8 +363,8 @@ local M = {
   ["@lsp.typemod.operator.injected"] = { link = "@operator" },
   ["@lsp.typemod.string.injected"] = { link = "@string" },
   ["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
-  ["@lsp.typemod.type.defaultLibrary"] = {},
-  ["@lsp.typemod.typeAlias.defaultLibrary"] = {},
+  ["@lsp.typemod.type.defaultLibrary"] = { link = "@type.builtin" },
+  ["@lsp.typemod.typeAlias.defaultLibrary"] = { link = "@type.builtin" },
   ["@lsp.typemod.variable.callable"] = { link = "@function" },
   ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
   ["@lsp.typemod.variable.injected"] = { link = "@variable" },
@@ -380,15 +392,15 @@ local M = {
 
   -- folke/trouble.nvim
   TroubleText = { fg = "text" },
-  TroubleCount = { fg = "purple", bg = "active" },
-  TroubleNormal = { fg = "fg", bg = "sidebar" },
+  TroubleCount = { fg = "purple", bg = "border" },
+  TroubleNormal = { link = "NormalSB" },
 
   -- RRethy/vim-illuminate
-  illuminatedWord = {},
-  illuminatedCurWord = {},
-  IlluminatedWordText = {},
-  IlluminatedWordRead = {},
-  IlluminatedWordWrite = {},
+  -- illuminatedWord = {},
+  -- illuminatedCurWord = {},
+  -- IlluminatedWordText = {},
+  -- IlluminatedWordRead = {},
+  -- IlluminatedWordWrite = {},
 
   -- diff
   diffAdded = { fg = "green" },
@@ -401,31 +413,31 @@ local M = {
   diffIndexLine = { fg = "purple" },
 
   -- NeogitOrg/neogit
-  NeogitBranch = {},
-  NeogitRemote = {},
-  NeogitHunkHeader = {},
-  NeogitHunkHeaderHighlight = {},
-  NeogitDiffContextHighlight = {},
+  NeogitBranch = { fg = "paleblue" },
+  NeogitRemote = { fg = "purple" },
+  NeogitHunkHeader = { fg = "fg", bg = "highlight" },
+  NeogitHunkHeaderHighlight = { fg = "blue", bg = "contrast" },
+  NeogitDiffContextHighlight = { fg = "text", bg = "contrast" },
   NeogitDiffDeleteHighlight = { link = "diffRemoved" },
   NeogitDiffAddHighlight = { link = "diffAdded" },
 
   -- nvim-neotest/neotest
-  NeotestPassed = {},
-  NeotestRunning = {},
-  NeotestFailed = {},
-  NeotestSkipped = {},
-  NeotestTest = {},
-  NeotestNamespace = {},
-  NeotestFocused = {},
-  NeotestFile = {},
-  NeotestDir = {},
-  NeotestBorder = {},
-  NeotestIndent = {},
-  NeotestExpandMarker = {},
-  NeotestAdapterName = {},
-  NeotestWinSelect = {},
-  NeotestMarked = {},
-  NeotestTarget = {},
+  -- NeotestPassed = {},
+  -- NeotestRunning = {},
+  -- NeotestFailed = {},
+  -- NeotestSkipped = {},
+  -- NeotestTest = {},
+  -- NeotestNamespace = {},
+  -- NeotestFocused = {},
+  -- NeotestFile = {},
+  -- NeotestDir = {},
+  -- NeotestBorder = {},
+  -- NeotestIndent = {},
+  -- NeotestExpandMarker = {},
+  -- NeotestAdapterName = {},
+  -- NeotestWinSelect = {},
+  -- NeotestMarked = {},
+  -- NeotestTarget = {},
   -- NeotestUnknown = {},
 
   -- airblade/vim-gitgutter
@@ -442,35 +454,35 @@ local M = {
   GitSignsDelete = { link = "diffRemoved" }, -- diff mode: Deleted line |diff.txt|
 
   -- nvim-telescope/telescope.nvim
-  TelescopeNormal = { fg = "fg", bg = "float" },
+  TelescopeNormal = { link = "NormalFloat" },
   TelescopeBorder = { fg = "purple3" },
   TelescopePreviewBorder = { fg = "green" },
   TelescopeSelection = { fg = "purple" },
   TelescopeMatching = { fg = "purple3" },
 
   -- nvim-tree/nvim-tree.lua
-  NvimTreeNormal = {},
-  NvimTreeWinSeparator = {},
-  NvimTreeNormalNC = {},
-  NvimTreeRootFolder = {},
-  NvimTreeGitDirty = { link = "diffChanged" },
-  NvimTreeGitNew = { link = "diffAdded" },
-  NvimTreeGitDeleted = { link = "diffDeleted" },
-  NvimTreeOpenedFile = {},
-  NvimTreeSpecialFile = {},
-  NvimTreeIndentMarker = {},
-  NvimTreeImageFile = {},
-  NvimTreeSymlink = {},
-  NvimTreeFolderIcon = {},
-  -- NvimTreeFolderName= {},
+  -- TODO: maybe
+  NvimTreeNormal = { link = "NormalSB" },
 
   -- nvim-neo-tree/neo-tree.nvim
-  NeoTreeNormal = {},
-  NeoTreeNormalNC = {},
-  NeoTreeDimText = {},
+  -- TODO: hunt down the "(n hidden items)" highlight group
+  NeoTreeNormal = { link = "NormalSB" },
+  NeoTreeCursorLine = { bold = true },
+  NeoTreeIndentMarker = { link = "Whitespace" },
+  NeoTreeTabActive = { fg = "bg", bg = "accent" },
+  NeoTreeTabInactive = { fg = "title", bg = "border" },
+
+  NeoTreeDimText = { fg = "text" },
+  NeoTreeDotfile = { fg = "text" },
+
+  NeoTreeGitAdded = { link = "diffAdded" },
+  NeoTreeGitConflict = { fg = "orange", bold = true, italic = true },
+  NeoTreeGitDeleted = { link = "diffRemoved" },
+  NeoTreeGitModified = { link = "diffChanged" },
+  NeoTreeGitUntracked = { fg = "orange", italic = true },
 
   -- lambdalisue/fern.vim
-  FernBranchText = {},
+  -- FernBranchText = {},
 
   -- lambdalisue/glyph-palette.vim
   GlyphPalette1 = { fg = "red2" },
@@ -492,40 +504,42 @@ local M = {
   -- DashboardIcon = {},
 
   -- goolord/alpha-nvim
-  AlphaShortcut = {},
-  AlphaHeader = {},
-  AlphaHeaderLabel = {},
-  AlphaFooter = {},
-  AlphaButtons = {},
+  -- AlphaShortcut = {},
+  -- AlphaHeader = {},
+  -- AlphaHeaderLabel = {},
+  -- AlphaFooter = {},
+  -- AlphaButtons = {},
 
   -- folke/which-key.nvim
   WhichKey = { fg = "accent", bold = true },
   WhichKeyGroup = { fg = "text" },
   WhichKeyDesc = { fg = "blue", italic = true },
   WhichKeySeparator = { fg = "fg" },
-  WhichKeyFloat = { bg = "float" },
-  WhichKeyValue = { bg = "float" },
+  WhichKeyFloat = { link = "NormalFloat"},
+  WhichKeyValue = { link = "NormalFloat" },
 
   -- nvimdev/lspsaga.nvim
   DiagnosticWarning = { link = "DiagnosticWarn" },
   DiagnosticInformation = { link = "DiagnosticInfo" },
 
-  LspFloatWinNormal = {},
-  LspFloatWinBorder = {},
-  LspSagaBorderTitle = {},
-  LspSagaHoverBorder = {},
-  LspSagaRenameBorder = {},
-  LspSagaDefPreviewBorder = {},
-  LspSagaCodeActionBorder = {},
-  LspSagaFinderSelection = {},
-  LspSagaCodeActionTitle = {},
-  LspSagaCodeActionContent = {},
-  LspSagaSignatureHelpBorder = {},
-  ReferencesCount = {},
-  DefinitionCount = {},
-  DefinitionIcon = {},
-  ReferencesIcon = {},
-  TargetWord = {},
+  LspFloatWinNormal = { bg = "contrast" },
+  LspFloatWinBorder = { fg = "purple" },
+
+  LspSagaBorderTitle = { fg = "purple3" },
+  LspSagaHoverBorder = { fg = "paleblue" },
+  LspSagaRenameBorder = { fg = "green" },
+  LspSagaDefPreviewBorder = { fg = "green" },
+  LspSagaCodeActionBorder = { fg = "blue" },
+  LspSagaFinderSelection = { fg = "green" },
+  LspSagaCodeActionTitle = { fg = "paleblue" },
+  LspSagaCodeActionContent = { fg = "purple" },
+  LspSagaSignatureHelpBorder = { fg = "pink" },
+
+  ReferencesCount = { fg = "purple" },
+  DefinitionCount = { fg = "purple" },
+  DefinitionIcon = { fg = "blue" },
+  ReferencesIcon = { fg = "blue" },
+  TargetWord = { fg = "purple3" },
 
   -- Neovim
   healthError = { link = "DiagnosticError" },
@@ -533,120 +547,121 @@ local M = {
   healthWarning = { link = "DiagnosticWarn" },
 
   -- akinsho/bufferline.nvim
-  BufferLineIndicatorSelected = {},
+  BufferLineIndicatorSelected = { fg = "accent" },
+  BufferLineFill = {},
 
   -- romgrk/barbar.nvim
-  BufferCurrent = {},
-  BufferCurrentERROR = {},
-  BufferCurrentHINT = {},
-  -- BufferCurrentIcon = {},
-  BufferCurrentINFO = {},
-  BufferCurrentWARN = {},
-  BufferCurrentIndex = {},
-  BufferCurrentMod = {},
-  BufferCurrentSign = {},
-  BufferCurrentTarget = {},
-  BufferAlternate = {},
-  BufferAlternateERROR = {},
-  BufferAlternateHINT = {},
-  -- BufferAlternateIcon = {},
-  BufferAlternateIndex = {},
-  BufferAlternateINFO = {},
-  BufferAlternateMod = {},
-  BufferAlternateSign = {},
-  BufferAlternateTarget = {},
-  BufferAlternateWARN = {},
-  BufferVisible = {},
-  BufferVisibleERROR = {},
-  BufferVisibleHINT = {},
-  -- BufferVisibleIcon = {},
-  BufferVisibleINFO = {},
-  BufferVisibleWARN = {},
-  BufferVisibleIndex = {},
-  BufferVisibleMod = {},
-  BufferVisibleSign = {},
-  BufferVisibleTarget = {},
-  BufferInactive = {},
-  BufferInactiveERROR = {},
-  BufferInactiveHINT = {},
-  -- BufferInactiveIcon = {},
-  BufferInactiveINFO = {},
-  BufferInactiveWARN = {},
-  BufferInactiveIndex = {},
-  BufferInactiveMod = {},
-  BufferInactiveSign = {},
-  BufferInactiveTarget = {},
-  BufferOffset = {},
-  BufferTabpageFill = {},
-  BufferTabpages = {},
+  -- BufferCurrent = {},
+  -- BufferCurrentERROR = {},
+  -- BufferCurrentHINT = {},
+  -- -- BufferCurrentIcon = {},
+  -- BufferCurrentINFO = {},
+  -- BufferCurrentWARN = {},
+  -- BufferCurrentIndex = {},
+  -- BufferCurrentMod = {},
+  -- BufferCurrentSign = {},
+  -- BufferCurrentTarget = {},
+  -- BufferAlternate = {},
+  -- BufferAlternateERROR = {},
+  -- BufferAlternateHINT = {},
+  -- -- BufferAlternateIcon = {},
+  -- BufferAlternateIndex = {},
+  -- BufferAlternateINFO = {},
+  -- BufferAlternateMod = {},
+  -- BufferAlternateSign = {},
+  -- BufferAlternateTarget = {},
+  -- BufferAlternateWARN = {},
+  -- BufferVisible = {},
+  -- BufferVisibleERROR = {},
+  -- BufferVisibleHINT = {},
+  -- -- BufferVisibleIcon = {},
+  -- BufferVisibleINFO = {},
+  -- BufferVisibleWARN = {},
+  -- BufferVisibleIndex = {},
+  -- BufferVisibleMod = {},
+  -- BufferVisibleSign = {},
+  -- BufferVisibleTarget = {},
+  -- BufferInactive = {},
+  -- BufferInactiveERROR = {},
+  -- BufferInactiveHINT = {},
+  -- -- BufferInactiveIcon = {},
+  -- BufferInactiveINFO = {},
+  -- BufferInactiveWARN = {},
+  -- BufferInactiveIndex = {},
+  -- BufferInactiveMod = {},
+  -- BufferInactiveSign = {},
+  -- BufferInactiveTarget = {},
+  -- BufferOffset = {},
+  -- BufferTabpageFill = {},
+  -- BufferTabpages = {},
 
   -- justinmk/vim-sneak
   Sneak = { fg = "bg", bg = "accent" },
   SneakScope = { bg = "selection" },
 
   -- smoka7/hop.nvim
-  HopNextKey = {},
-  HopNextKey1 = {},
-  HopNextKey2 = {},
-  HopUnmatched = {},
+  -- HopNextKey = {},
+  -- HopNextKey1 = {},
+  -- HopNextKey2 = {},
+  -- HopUnmatched = {},
 
   -- mfussenegger/nvim-treehopper
-  TSNodeKey = {},
-  TSNodeUnmatched = {},
+  -- TSNodeKey = {},
+  -- TSNodeUnmatched = {},
 
   -- ggandor/leap.nvim
-  LeapMatch = {},
-  LeapLabelPrimary = {},
-  LeapLabelSecondary = {},
-  LeapBackdrop = {},
+  LeapMatch = { fg = "green", bold = true },
+  LeapLabelPrimary = { fg = "pink2", bold = true },
+  LeapLabelSecondary = { fg = "pink", bold = true },
+  LeapBackdrop = { fg = "text" },
 
   -- folke/flash.nvim
-  FlashBackdrop = {},
-  FlashLabel = {},
+  FlashBackdrop = { fg = "text" },
+  FlashLabel = { bg = "pink2" },
 
   -- ggandor/lightspeed.nvim
-  LightspeedGreyWash = {},
-  -- LightspeedCursor = { link = "Cursor" },
-  LightspeedLabel = {},
-  LightspeedLabelDistant = {},
-  LightspeedLabelDistantOverlapped = {},
-  LightspeedLabelOverlapped = {},
-  LightspeedMaskedChar = {},
-  LightspeedOneCharMatch = {},
-  LightspeedPendingOpArea = {},
-  LightspeedShortcut = {},
-  -- LightspeedShortcutOverlapped = { link = "LightspeedShortcut" },
-  -- LightspeedUniqueChar = { link = "LightspeedUnlabeledMatch" },
-  LightspeedUnlabeledMatch = {},
+  -- LightspeedGreyWash = {},
+  -- -- LightspeedCursor = { link = "Cursor" },
+  -- LightspeedLabel = {},
+  -- LightspeedLabelDistant = {},
+  -- LightspeedLabelDistantOverlapped = {},
+  -- LightspeedLabelOverlapped = {},
+  -- LightspeedMaskedChar = {},
+  -- LightspeedOneCharMatch = {},
+  -- LightspeedPendingOpArea = {},
+  -- LightspeedShortcut = {},
+  -- -- LightspeedShortcutOverlapped = { link = "LightspeedShortcut" },
+  -- -- LightspeedUniqueChar = { link = "LightspeedUnlabeledMatch" },
+  -- LightspeedUnlabeledMatch = {},
 
   -- hrsh7th/nvim-cmp
-  CmpDocumentation = {},
-  CmpDocumentationBorder = {},
-  CmpGhostText = {},
+  -- TODO: cmp
+  -- CmpDocumentation = {},
+  -- CmpDocumentationBorder = {},
+  -- CmpGhostText = {},
+  --
+  -- CmpItemAbbr = {},
+  -- CmpItemAbbrDeprecated = {},
+  -- CmpItemAbbrMatch = {},
+  -- CmpItemAbbrMatchFuzzy = {},
+  --
+  -- CmpItemMenu = {},
 
-  CmpItemAbbr = {},
-  CmpItemAbbrDeprecated = {},
-  CmpItemAbbrMatch = {},
-  CmpItemAbbrMatchFuzzy = {},
-
-  CmpItemMenu = {},
-
-  CmpItemKindDefault = {},
-
-  CmpItemKindCodeium = {},
-  CmpItemKindCopilot = {},
-  CmpItemKindTabNine = {},
+  -- CmpItemKindDefault = {},
+  -- CmpItemKindCodeium = {},
+  -- CmpItemKindCopilot = {},
+  -- CmpItemKindTabNine = {},
 
   -- lukas-reineke/headlines.nvim
-  CodeBlock = {},
+  -- CodeBlock = {},
 
   -- SmiteshP/nvim-navic
-  NavicSeparator = {},
-  NavicText = {},
+  -- NavicSeparator = {},
+  -- NavicText = {},
 
   -- stevearc/aerial.nvim
-  AerialNormal = {},
-  AerialGuide = {},
+  AerialNormal = { link = "NormalSB" },
+  -- AerialGuide = {},
   AerialLine = { link = "LspInlayHint" },
 
   -- lukas-reineke/indent-blankline.nvim
@@ -655,42 +670,43 @@ local M = {
   IblScope = { fg = "highlight" },
 
   -- petertriho/nvim-scrollbar
-  ScrollbarHandle = {},
-
-  ScrollbarSearchHandle = {},
-  ScrollbarSearch = {},
-
-  ScrollbarErrorHandle = {},
-  ScrollbarError = {},
-
-  ScrollbarWarnHandle = {},
-  ScrollbarWarn = {},
-
-  ScrollbarInfoHandle = {},
-  ScrollbarInfo = {},
-
-  ScrollbarHintHandle = {},
-  ScrollbarHint = {},
-
-  ScrollbarMiscHandle = {},
-  ScrollbarMisc = {},
+  -- ScrollbarHandle = {},
+  --
+  -- ScrollbarSearchHandle = {},
+  -- ScrollbarSearch = {},
+  --
+  -- ScrollbarErrorHandle = {},
+  -- ScrollbarError = {},
+  --
+  -- ScrollbarWarnHandle = {},
+  -- ScrollbarWarn = {},
+  --
+  -- ScrollbarInfoHandle = {},
+  -- ScrollbarInfo = {},
+  --
+  -- ScrollbarHintHandle = {},
+  -- ScrollbarHint = {},
+  --
+  -- ScrollbarMiscHandle = {},
+  -- ScrollbarMisc = {},
 
   -- gbprod/yanky.nvim
   YankyPut = { link = "IncSearch" },
   YankyYanked = { link = "IncSearch" },
 
   -- folke/lazy.nvim
-  LazyProgressDone = {},
-  LazyProgressTodo = {},
+  -- LazyProgressDone = {},
+  -- LazyProgressTodo = {},
 
   -- rcarriga/nvim-notify
-  NotifyBackground = {},
+  -- NotifyBackground = {},
   --- Border
-  NotifyERRORBorder = {},
-  NotifyWARNBorder = {},
-  NotifyINFOBorder = {},
-  NotifyDEBUGBorder = {},
-  NotifyTRACEBorder = {},
+  -- TODO: darken borders?
+  NotifyERRORBorder = { link = "NotifyERRORIcon" },
+  NotifyWARNBorder = { link = "NotifyWARNIcon" },
+  NotifyINFOBorder = { link = "NotifyINFOIcon" },
+  NotifyDEBUGBorder = { link = "NotifyDEBUGIcon" },
+  NotifyTRACEBorder = { link = "NotifyTRACEIcon"},
   --- Icons
   NotifyERRORIcon = { link = "DiagnosticError" },
   NotifyWARNIcon = { link = "DiagnosticWarn" },
@@ -706,74 +722,74 @@ local M = {
 
   -- echasnovski/mini.nvim
   -- mini.completion
-  MiniCompletionActiveParameter = {},
+  -- MiniCompletionActiveParameter = {},
 
   -- mini.cursorword
-  MiniCursorword = {},
-  MiniCursorwordCurrent = {},
+  -- MiniCursorword = {},
+  -- MiniCursorwordCurrent = {},
 
   -- mini.indentscope
-  MiniIndentscopeSymbol = {},
-  MiniIndentscopePrefix = {}, -- Make it invisible
+  -- MiniIndentscopeSymbol = {},
+  -- MiniIndentscopePrefix = {}, -- Make it invisible
 
   -- mini.jump
-  MiniJump = {},
+  -- MiniJump = {},
 
   -- mini.jump2d
-  MiniJump2dSpot = {},
+  -- MiniJump2dSpot = {},
 
   -- mini.starter
-  MiniStarterCurrent = {},
-  MiniStarterFooter = {},
-  MiniStarterHeader = {},
-  MiniStarterInactive = {},
-  MiniStarterItem = {},
-  MiniStarterItemBullet = {},
-  MiniStarterItemPrefix = {},
-  MiniStarterSection = {},
-  MiniStarterQuery = {},
+  -- MiniStarterCurrent = {},
+  -- MiniStarterFooter = {},
+  -- MiniStarterHeader = {},
+  -- MiniStarterInactive = {},
+  -- MiniStarterItem = {},
+  -- MiniStarterItemBullet = {},
+  -- MiniStarterItemPrefix = {},
+  -- MiniStarterSection = {},
+  -- MiniStarterQuery = {},
 
   -- mini.statusline
-  MiniStatuslineDevinfo = {},
-  MiniStatuslineFileinfo = {},
-  MiniStatuslineFilename = {},
-  MiniStatuslineInactive = {},
-  MiniStatuslineModeCommand = {},
-  MiniStatuslineModeInsert = {},
-  MiniStatuslineModeNormal = {},
-  MiniStatuslineModeOther = {},
-  MiniStatuslineModeReplace = {},
-  MiniStatuslineModeVisual = {},
+  -- MiniStatuslineDevinfo = {},
+  -- MiniStatuslineFileinfo = {},
+  -- MiniStatuslineFilename = {},
+  -- MiniStatuslineInactive = {},
+  -- MiniStatuslineModeCommand = {},
+  -- MiniStatuslineModeInsert = {},
+  -- MiniStatuslineModeNormal = {},
+  -- MiniStatuslineModeOther = {},
+  -- MiniStatuslineModeReplace = {},
+  -- MiniStatuslineModeVisual = {},
 
   -- mini.surround
-  MiniSurround = {},
+  -- MiniSurround = {},
 
   -- mini.tabline
-  MiniTablineCurrent = {},
-  MiniTablineFill = {},
-  MiniTablineHidden = {},
-  MiniTablineModifiedCurrent = {},
-  MiniTablineModifiedHidden = {},
-  MiniTablineModifiedVisible = {},
-  MiniTablineTabpagesection = {},
-  MiniTablineVisible = {},
+  -- MiniTablineCurrent = {},
+  -- MiniTablineFill = {},
+  -- MiniTablineHidden = {},
+  -- MiniTablineModifiedCurrent = {},
+  -- MiniTablineModifiedHidden = {},
+  -- MiniTablineModifiedVisible = {},
+  -- MiniTablineTabpagesection = {},
+  -- MiniTablineVisible = {},
 
   -- mini.test
-  MiniTestEmphasis = {},
-  MiniTestFail = {},
-  MiniTestPass = {},
+  -- MiniTestEmphasis = {},
+  -- MiniTestFail = {},
+  -- MiniTestPass = {},
 
   -- mini.trailspace
-  MiniTrailspace = {},
+  -- MiniTrailspace = {},
 
   -- folke/noice.nvim
-  NoiceCompletionItemKindDefault = {},
+  -- NoiceCompletionItemKindDefault = {},
 
   -- nvim-treesitter/nvim-treesitter-context
-  TreesitterContext = {},
+  -- TreesitterContext = {},
 
   -- m-demare/hlargs.nvim
-  Hlargs = {},
+  -- Hlargs = {},
 
   -- nvim-lualine/lualine.nvim (custom)
   LualineNormalA = { fg = "bg", bg = "accent", bold = true },
@@ -859,6 +875,7 @@ for i, c in ipairs(h_rainbow) do
   M["markdownH" .. i .. "Delimiter"] = { link = "@markup.heading." .. i .. ".marker" }
   M["htmlH" .. i] = { link = "@markup.heading." .. i }
 end
+M["@markup.heading"] = { link = "@markup.heading.1" }
 
 -- diagnostic group links
 if not vim.diagnostic then
@@ -880,16 +897,16 @@ if not vim.diagnostic then
 end
 
 -- Apply user-defined config
-if config.borders then
-  M.VertSplit.fg = "border"
-end
 if config.transparent.background then
   M.Normal.bg = "NONE"
 end
 if config.transparent.float then
   M.NormalFloat.bg = "NONE"
+  M.FloatBorder.bg = "NONE"
 end
 if config.transparent.popup then
+  M.Pmenu.bg = "NONE"
+  M.PmenuSel = { fg = "highlight", italic = true }
 end
 if config.transparent.sidebar then
   M.NormalSB.bg = "NONE"

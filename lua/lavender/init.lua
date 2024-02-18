@@ -12,7 +12,12 @@ local M = {}
 function M.load()
   -- Clear existing highlights only if a colorscheme has been set
   if vim.g.colors_name then
+    if vim.g.colors_name == "lavender" then
+      return
+    end
+
     vim.cmd("highlight clear")
+    -- FIX: ?
     -- vim.cmd("syntax reset")
     -- if vim.fn.exists("syntax_on") then vim.cmd("syntax reset") end
   end
