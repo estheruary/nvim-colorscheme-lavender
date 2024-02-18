@@ -19,14 +19,17 @@ local config = require("lavender.config")
 ---@field underdashed? boolean
 ---@field strikethrough? boolean
 ---@field italic? boolean
----@field reverse? boolean
+---@field reverse? boolean swaps fg and bg, increases priority of the group - see below
 ---@field nocombine? boolean
 ---@field link? string another highlight group to link to :help highlight-link
 ---@field default? boolean :help highlight-default
----@field ctermfg? integer | string foreground of cterm color :help ctermfg
----@field ctermbg? integer | string background of cterm color :help ctermbg
----@field cterm? string cterm attribute map :help highlight-args
+---@field ctermfg? integer | string foreground of cterm color - :help ctermfg
+---@field ctermbg? integer | string background of cterm color - :help ctermbg
+---@field cterm? string cterm attribute map - :help highlight-args
 ---@field force? boolean
+
+-- reverse:
+-- https://old.reddit.com/r/vim/comments/ga4xe0/why_use_reverse_for_tui_highlights/foxlzha/
 
 ---@alias Highlights table<string,Highlight>
 
@@ -43,10 +46,10 @@ local M = {
   CursorColumn = {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
   CursorLine = {}, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
   Directory = {}, -- directory names (and other special names in listings)
-  DiffAdd = { bg = "green" }, -- diff mode: Added line |diff.txt|
-  DiffChange = { bg = "yellow" }, -- diff mode: Changed line |diff.txt|
-  DiffDelete = { bg = "red" }, -- diff mode: Deleted line |diff.txt|
-  DiffText = { bg = "selection" }, -- diff mode: Changed text within a changed line |diff.txt|
+  DiffAdd = { fg = "green", reverse = true }, -- diff mode: Added line |diff.txt|
+  DiffChange = { fg = "yellow", reverse = true }, -- diff mode: Changed line |diff.txt|
+  DiffDelete = { fg = "red", reverse = true }, -- diff mode: Deleted line |diff.txt|
+  DiffText = { fg = "selection", reverse = true }, -- diff mode: Changed text within a changed line |diff.txt|
   EndOfBuffer = {}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
   -- TermCursor = {}, -- cursor in a focused terminal
   -- TermCursorNC = {}, -- cursor in an unfocused terminal
@@ -77,8 +80,8 @@ local M = {
   PmenuSbar = {}, -- Popup menu: scrollbar.
   PmenuThumb = {}, -- Popup menu: Thumb of the scrollbar.
   Question = {}, -- |hit-enter| prompt and yes/no questions
-  QuickFixLine = {}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-  Search = {}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+  QuickFixLine = { fg = "highlight", italic = true }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+  Search = { fg = "white", bg = "highlight" }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
   IncSearch = {}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
   CurSearch = { link = "IncSearch" },
   SpecialKey = {}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
@@ -153,27 +156,16 @@ local M = {
   Error = {}, -- (preferred) any erroneous construct
   Todo = {}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-  qfLineNr = {},
-  qfFileName = {},
+  -- qfLineNr = {},
+  -- qfFileName = {},
 
-  htmlH1 = {},
-  htmlH2 = {},
+  htmlLink = { fg = "link", underline = true },
 
-  -- mkdHeading = {},
-  -- mkdCode = {},
-  mkdCodeDelimiter = {},
-  mkdCodeStart = {},
-  mkdCodeEnd = {},
-  -- mkdLink = {},
-
-  markdownHeadingDelimiter = {},
   markdownCode = {},
   markdownCodeBlock = {},
-  markdownH1 = {},
-  markdownH2 = {},
   markdownLinkText = {},
 
-  ["helpCommand"] = {},
+  helpCommand = {},
 
   debugPC = {}, -- used for highlighting the current line in terminal-debug
   debugBreakpoint = {}, -- used for breakpoint colors in terminal-debug
@@ -183,15 +175,15 @@ local M = {
   -- These groups are for the native LSP client. Some other LSP clients may
   -- use these groups, or use their own. Consult your LSP client's
   -- documentation.
-  LspReferenceText = {}, -- used for highlighting "text" references
-  LspReferenceRead = {}, -- used for highlighting "read" references
-  LspReferenceWrite = {}, -- used for highlighting "write" references
+  LspReferenceText = { bg = "highlight" }, -- used for highlighting "text" references
+  LspReferenceRead = { bg = "highlight" }, -- used for highlighting "read" references
+  LspReferenceWrite = { bg = "highlight" }, -- used for highlighting "write" references
 
   DiagnosticError = { fg = "error" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticWarn = { fg = "yellow" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticInfo = { fg = "paleblue" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticHint = { fg = "purple" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticUnnecessary = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticUnnecessary = { fg = "comments" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
   DiagnosticVirtualTextError = { link = "DiagnosticError", italic = true }, -- Used for "Error" diagnostic virtual text
   DiagnosticVirtualTextWarn = { link = "DiagnosticWarn", italic = true }, -- Used for "Warning" diagnostic virtual text
@@ -214,43 +206,26 @@ local M = {
 
   DapStoppedLine = {}, -- Used for "Warning" diagnostic virtual text
 
-  -- These groups are for the Neovim tree-sitter highlights.
+  -- nvim-treesitter/nvim-treesitter
+  ["@none"] = {},
   ["@annotation"] = { link = "PreProc" },
   ["@attribute"] = { link = "PreProc" },
-  ["@boolean"] = { link = "Boolean" },
-  ["@character"] = { link = "Character" },
-  ["@character.special"] = { link = "SpecialChar" },
-  ["@comment"] = { link = "Comment" },
-  ["@keyword.conditional"] = { link = "Conditional" },
-  ["@constant"] = { link = "Constant" },
-  ["@constant.builtin"] = { link = "Special" },
-  ["@constant.macro"] = { link = "Define" },
-  ["@keyword.debug"] = { link = "Debug" },
-  ["@keyword.directive.define"] = { link = "Define" },
-  ["@keyword.exception"] = { link = "Exception" },
-  ["@number.float"] = { link = "Float" },
-  ["@function"] = { link = "Function" },
-  ["@function.builtin"] = { link = "Special" },
-  ["@function.call"] = { link = "@function" },
-  ["@function.macro"] = { link = "Macro" },
-  ["@keyword.import"] = { link = "Include" },
-  ["@keyword.coroutine"] = { link = "@keyword" },
-  ["@keyword.operator"] = { link = "@operator" },
-  ["@keyword.return"] = { link = "@keyword" },
-  ["@function.method"] = { link = "Function" },
-  ["@function.method.call"] = { link = "@function.method" },
-  ["@namespace.builtin"] = { link = "@variable.builtin" },
-  ["@none"] = {},
-  ["@number"] = { link = "Number" },
-  ["@keyword.directive"] = { link = "PreProc" },
-  ["@keyword.repeat"] = { link = "Repeat" },
-  ["@keyword.storage"] = { link = "StorageClass" },
-  ["@string"] = { link = "String" },
-  ["@markup.link.label"] = { link = "SpecialChar" },
-  ["@markup.link.label.symbol"] = { link = "Identifier" },
-  ["@tag"] = { link = "Label" },
-  ["@tag.attribute"] = { link = "@property" },
-  ["@tag.delimiter"] = { link = "Delimiter" },
+
+  --- Text
+  -- ["@comment"] = { link = "Comment" },
+  ["@comment.note"] = { link = "DiagnosticHint" },
+  ["@comment.error"] = { link = "DiagnosticError" },
+  ["@comment.hint"] = { link = "DiagnosticHint" },
+  ["@comment.info"] = { link = "DiagnosticInfo" },
+  ["@comment.warning"] = { link = "DiagnosticWarn" },
+  ["@comment.todo"] = { fg = "lightblue" },
+  -- ["@comment.documentation"] = {}, -- TODO:
+
+  ["@punctuation.delimiter"] = {}, -- For delimiters ie: `.`
+  ["@punctuation.bracket"] = {}, -- For brackets and parens.
+  ["@punctuation.special"] = {}, -- For special symbols (e.g. `{}` in string interpolation)
+
+  --- Markup
   ["@markup"] = { link = "@none" },
   ["@markup.environment"] = { link = "Macro" },
   ["@markup.environment.name"] = { link = "Type" },
@@ -261,73 +236,92 @@ local M = {
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.underline"] = { underline = true },
   ["@markup.heading"] = { link = "Title" },
-  ["@comment.note"] = { link = "DiagnosticHint" },
-  ["@comment.error"] = { link = "DiagnosticError" },
-  ["@comment.hint"] = { link = "DiagnosticHint" },
-  ["@comment.info"] = { link = "DiagnosticInfo" },
-  ["@comment.warning"] = { link = "DiagnosticWarn" },
-  ["@comment.todo"] = { fg = "lightblue" },
   ["@markup.link.url"] = { link = "Underlined" },
-  ["@type"] = { link = "Type" },
-  ["@type.definition"] = { link = "Typedef" },
-  ["@type.qualifier"] = { link = "@keyword" },
+  ["@markup.link.label"] = { link = "SpecialChar" },
+  ["@markup.link.label.symbol"] = { link = "Identifier" },
 
-  --- Misc
-  -- TODO:
-  -- ["@comment.documentation"] = {},
-  ["@operator"] = {}, -- For any operator: `+`, but also `->` and `*` in C.
-
-  --- Punctuation
-  ["@punctuation.delimiter"] = {}, -- For delimiters ie: `.`
-  ["@punctuation.bracket"] = {}, -- For brackets and parens.
-  ["@punctuation.special"] = {}, -- For special symbols (e.g. `{}` in string interpolation)
-  ["@markup.list"] = {}, -- For special punctutation that does not fall in the catagories before.
-  ["@markup.list.markdown"] = {},
-
-  --- Literals
-  ["@string.documentation"] = {},
-  ["@string.regexp"] = {}, -- For regexes.
-  ["@string.escape"] = {}, -- For escape characters within a string.
-
-  --- Functions
-  ["@constructor"] = {}, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-  ["@variable.parameter"] = {}, -- For parameters of a function.
-  ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
-
-  --- Keywords
-  ["@keyword"] = {}, -- For keywords that don't fall in previous categories.
-  ["@keyword.function"] = {}, -- For keywords used to define a fuction.
-
-  ["@label"] = {}, -- For labels: `label:` in C and `:label:` in Lua.
-
-  --- Types
-  ["@type.builtin"] = {},
-  ["@variable.member"] = {}, -- For fields.
-  ["@property"] = {},
-
-  --- Identifiers
-  ["@variable"] = {}, -- Any variable name that does not have another highlight.
-  ["@variable.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
-  ["@module.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
-
-  --- Text
   -- ["@markup.raw.markdown"] = {},
   ["@markup.raw.markdown_inline"] = {},
   ["@markup.link"] = {},
 
+  ["@markup.list"] = {}, -- For special punctutation that does not fall in the catagories before.
+  ["@markup.list.markdown"] = {},
   ["@markup.list.unchecked"] = {}, -- For brackets and parens.
   ["@markup.list.checked"] = {}, -- For brackets and parens.
 
+  --- Literals
+  -- ["@constant"] = { link = "Constant" },
+  -- ["@constant.builtin"] = { link = "Special" },
+  -- ["@constant.macro"] = { link = "Define" },
+
+  -- ["@string"] = { link = "String" },
+  ["@string.documentation"] = {},
+  ["@string.escape"] = {}, -- For escape characters within a string.
+  ["@string.regexp"] = {}, -- For regexes.
+
+  -- ["@character"] = { link = "Character" },
+  -- ["@character.special"] = { link = "SpecialChar" },
+  -- ["@number"] = { link = "Number" },
+  ["@number.float"] = { link = "Float" },
+  -- ["@boolean"] = { link = "Boolean" },
+
+  --- Functions
+  -- ["@function"] = { link = "Function" },
+  -- ["@function.builtin"] = { link = "Special" },
+  ["@function.call"] = { link = "@function" },
+  -- ["@function.macro"] = { link = "Macro" },
+  ["@function.method"] = { link = "Function" },
+  ["@function.method.call"] = { link = "@function.method" },
+
+  ["@property"] = {},
+
+  ["@constructor"] = {}, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+  ["@constructor.tsx"] = {},
+
+  --- Keywords
+  ["@label"] = {}, -- For labels: `label:` in C and `:label:` in Lua.
+  -- ["@operator"] = {}, -- For any operator: `+`, but also `->` and `*` in C.
+  ["@keyword"] = {}, -- For keywords that don't fall in previous categories.
+  ["@keyword.conditional"] = { link = "Conditional" },
+  ["@keyword.coroutine"] = { link = "@keyword" },
+  ["@keyword.debug"] = { link = "Debug" },
+  ["@keyword.directive"] = { link = "PreProc" },
+  ["@keyword.directive.define"] = { link = "Define" },
+  ["@keyword.exception"] = { link = "Exception" },
+  ["@keyword.function"] = {}, -- For keywords used to define a fuction.
+  ["@keyword.import"] = { link = "Include" },
+  ["@keyword.operator"] = { link = "@operator" },
+  ["@keyword.repeat"] = { link = "Repeat" },
+  ["@keyword.return"] = { link = "@keyword" },
+  ["@keyword.storage"] = { link = "StorageClass" },
+
+  --- Identifiers
+  ["@variable"] = {}, -- Any variable name that does not have another highlight.
+  ["@variable.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
+  ["@variable.member"] = {}, -- For fields.
+  ["@variable.parameter"] = {}, -- For parameters of a function.
+  ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
+
+  -- ["@type"] = { link = "Type" },
+  ["@type.builtin"] = {},
+  -- ["@type.definition"] = { link = "Typedef" },
+  ["@type.qualifier"] = { link = "@keyword" },
+
+  ["@namespace.builtin"] = { link = "@variable.builtin" },
+
+  ["@module"] = { link = "Include" },
+  ["@module.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
+
+  ["@tag"] = { link = "Label" },
+  ["@tag.attribute"] = { link = "@property" },
+  ["@tag.delimiter"] = { link = "Delimiter" },
+  ["@tag.delimiter.tsx"] = {},
+  ["@tag.tsx"] = {},
+
+  --- Misc
   ["@diff.plus"] = { link = "DiffAdd" },
   ["@diff.minus"] = { link = "DiffDelete" },
   ["@diff.delta"] = { link = "DiffChange" },
-
-  ["@module"] = { link = "Include" },
-
-  -- tsx
-  ["@tag.tsx"] = {},
-  ["@constructor.tsx"] = {},
-  ["@tag.delimiter.tsx"] = {},
 
   -- LSP Semantic Token Groups
   ["@lsp.type.boolean"] = { link = "@boolean" },
@@ -868,13 +862,18 @@ for kind, link in pairs(kinds) do
   end
 end
 
+-- Rainbow headers
 ---@type string[]
--- local h_rainbow = { "blue", "yellow", "green", "teal", "magenta", "purple" }
--- for i, color in ipairs(h_rainbow) do
---   M["@markup.heading." .. i .. ".markdown"] = { fg = color, bold = true }
---   M["Headline" .. i] = { bg = util.darken(color, 0.05) }
--- end
--- M["Headline"] = { link = "Headline1" }
+local h_rainbow = { "purple3", "red", "green", "yellow", "purple" }
+for i, c in ipairs(h_rainbow) do
+  M["markdownH" .. i] = { fg = c, bold = true }
+  M["markdownH" .. i .. "Delimiter"] = { fg = c }
+
+  M["htmlH" .. i] = { link = "markdownH" .. i }
+  M["@markup.heading." .. i .. ".markdown"] = { link = "markdownH" .. i }
+  M["@markup.heading." .. i .. ".marker.markdown"] = { link = "markdownH" .. i .. "Delimiter" }
+end
+M.markdownHeadingDelimiter = { link = "markdownH1Delimiter"  }
 
 -- diagnostic group links
 if not vim.diagnostic then

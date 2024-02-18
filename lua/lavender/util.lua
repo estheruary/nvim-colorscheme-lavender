@@ -3,7 +3,7 @@
 
 local M = {}
 
----Load main theme highlights (tokyonight.util.syntax)
+---Load main theme highlights
 ---@param theme Highlights lavender.theme
 ---@param colors table lavender.colors
 function M.apply_theme(theme, colors)
@@ -26,7 +26,7 @@ function M.apply_theme(theme, colors)
   end
 end
 
----Load terminal colours (tokyonight.util.terminal)
+---Load terminal colours
 ---@param c Palette lavender.colors
 function M.hl_terminal(c)
   -- terminfo(5)
