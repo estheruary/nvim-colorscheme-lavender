@@ -48,7 +48,6 @@ local M = {
   link = 116, -- #87d7d7
   -- HexToCterm: END
 }
-M.grey = M.gray
 
 if config.contrast then
   M.sidebar = M.bg_alt

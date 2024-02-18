@@ -35,7 +35,7 @@ end
 function M.hl_terminal(c)
   -- terminfo(5)
   vim.g.terminal_color_0  = c.black
-  vim.g.terminal_color_8  = c.gray
+  vim.g.terminal_color_8  = c.highlight
 
   vim.g.terminal_color_1  = c.red
   vim.g.terminal_color_9  = c.red
@@ -71,17 +71,17 @@ function M.autocmds()
   })
 
   -- Window local backgrounds
-  -- TODO: does this even look good?
-  local alt_hl = { "Normal:NormalFloat", "SignColumn:NormalFloat" }
-  vim.api.nvim_create_autocmd("TermOpen", {
-    group = group,
-    callback = function() vim.wo.winhighlight = alt_hl end
-  })
-  vim.api.nvim_create_autocmd("FileType", {
-    group = group,
-    pattern = { "packer", "qf" },
-    callback = function() vim.wo.winhighlight = alt_hl end
-  })
+  -- TODO: are these necessary?
+  -- local alt_hl = "Normal:NormalFloat,SignColumn:NormalFloat"
+  -- vim.api.nvim_create_autocmd("TermOpen", {
+  --   group = group,
+  --   callback = function() vim.wo.winhighlight = alt_hl end
+  -- })
+  -- vim.api.nvim_create_autocmd("FileType", {
+  --   group = group,
+  --   pattern = { "packer", "qf" },
+  --   callback = function() vim.wo.winhighlight = alt_hl end
+  -- })
 end
 
 return M

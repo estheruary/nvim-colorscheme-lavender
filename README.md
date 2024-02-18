@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: LGPL-3.0-only -->
-# Moonlight
+# Lavender
 
 Canonical: <https://codeberg.org/jthvai/lavender.nvim><br />
 Mirror: <https://forge.jthv.ai/elias/lavender.nvim>
@@ -83,6 +83,8 @@ vim.g.lavender = {
 ```
 
 Custom hex colours are not mapped to 256-color on the fly for performance reasons.
+
+<!-- TODO: add config examples, particularly for overrides -->
 
 [^1]: I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
       [@mrcjkb](https://github.com/mrcjkb), developer of

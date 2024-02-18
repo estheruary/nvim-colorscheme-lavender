@@ -305,7 +305,7 @@ local M = {
   -- ["@variable"] = {}, -- Any variable name that does not have another highlight.
   ["@variable.builtin"] = { link = "@variable" }, -- Variable names that are defined by the languages, like `this` or `self`.
   -- ["@variable.member"] = {}, -- For fields.
-  ["@variable.parameter"] = { fg = "paleblue" }, -- For parameters of a function.
+  -- ["@variable.parameter"] = { fg = "paleblue" }, -- For parameters of a function. -- FIX:
   -- ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
   -- ["@type"] = { link = "Type" },
@@ -841,7 +841,7 @@ local kinds = {
   Package = "@module",
   Property = "@property",
   Reference = "@markup.link",
-  Snippet = "Conceal",
+  Snippet = "Conceal", -- FIX: too dark?
   String = "@string",
   Struct = "@lsp.type.struct",
   Unit = "@lsp.type.struct",

@@ -15,7 +15,7 @@ local M = {
   paleblue     = "#d6e7f0",
   white        = "#eeffff",
   red          = "#ff757f",
-  red2         = "#f67f81", -- FIX: old orange
+  red2         = "#f67f81",
   orange       = "#ff9e7b",
   yellow       = "#ffc777",
   green2       = "#59d6b5",
@@ -23,7 +23,7 @@ local M = {
   cyan         = "#16fcf8",
   blue         = "#04d1f9",
   purple2      = "#ad82ed",
-  purple3      = "#b994f1", -- FIX: old cyan; deprecate
+  purple3      = "#b994f1",
   purple       = "#b4a4f4",
   pink         = "#ecb2f0",
   pink2        = "#f77eae",
@@ -45,9 +45,6 @@ local M = {
   link         = "#80cbc4",
   -- HexToCterm: END
 }
--- FIX: deprecate
-M.gray = M.highlight
-M.active = M.border
 
 -- High(er) contrast backgrounds for sidebars and floating windows
 if config.contrast then
