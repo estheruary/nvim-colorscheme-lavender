@@ -1,4 +1,3 @@
--- SPDX-License-Identifier: LGPL-3.0-only
 ---@mod lavender.theme highlight definitions
 
 ---@type LavenderOpts
@@ -37,7 +36,7 @@ local config = require("lavender.config")
 local M = {
   Foo = {},
 
-  Comment = {}, -- any comment
+  Comment = { fg = "comments", italic = config.italic.comments }, -- any comment
   ColorColumn = {}, -- used for the columns set with 'colorcolumn'
   Conceal = {}, -- placeholder characters substituted for concealed text (see 'conceallevel')
   Cursor = {}, -- character under the cursor
@@ -54,12 +53,12 @@ local M = {
   -- TermCursor = {}, -- cursor in a focused terminal
   -- TermCursorNC = {}, -- cursor in an unfocused terminal
   ErrorMsg = {}, -- error messages on the command line
-  VertSplit = {}, -- the column separating vertically split windows
+  VertSplit = { fg = "bg" }, -- the column separating vertically split windows
   WinSeparator = {}, -- the column separating vertically split windows
   Folded = {}, -- line used for closed folds
   FoldColumn = {}, -- 'foldcolumn'
-  SignColumn = {}, -- column where |signs| are displayed
-  SignColumnSB = {}, -- column where |signs| are displayed
+  SignColumn = { link = "Normal" }, -- column where |signs| are displayed
+  -- SignColumnSB = {}, -- column where |signs| are displayed
   Substitute = {}, -- |:substitute| replacement text highlighting
   LineNr = {}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
   CursorLineNr = {}, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -68,13 +67,13 @@ local M = {
   MsgArea = {}, -- Area for messages and cmdline
   -- MsgSeparator = {}, -- Separator for scrolled messages, `msgsep` flag of 'display'
   MoreMsg = {}, -- |more-prompt|
-  NonText = {}, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-  Normal = {}, -- normal text
-  NormalNC = {}, -- normal text in non-current windows
-  NormalSB = {}, -- normal text in sidebar
-  NormalFloat = {}, -- Normal text in floating windows.
-  FloatBorder = {},
-  FloatTitle = {},
+  NonText = { fg = "disabled" }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+  Normal = { fg = "fg", bg = "bg" }, -- normal text
+  -- NormalNC = {}, -- normal text in non-current windows
+  NormalSB = { fg = "fg", bg = "sidebar" }, -- normal text in sidebar
+  NormalFloat = { fg = "fg", bg = "float" }, -- Normal text in floating windows.
+  -- FloatBorder = {},
+  -- FloatTitle = {},
   Pmenu = {}, -- Popup menu: normal item.
   PmenuSel = {}, -- Popup menu: selected item.
   PmenuSbar = {}, -- Popup menu: scrollbar.
@@ -94,15 +93,14 @@ local M = {
   TabLine = {}, -- tab pages line, not active tab page label
   TabLineFill = {}, -- tab pages line, where there are no labels
   TabLineSel = {}, -- tab pages line, active tab page label
-  Title = {}, -- titles for output from ":set all", ":autocmd" etc.
+  Title = { fg = "green", bold = true }, -- titles for output from ":set all", ":autocmd" etc.
   Visual = {}, -- Visual mode selection
   VisualNOS = {}, -- Visual mode selection when vim is "Not Owning the Selection".
   WarningMsg = {}, -- warning messages
-  Whitespace = {}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+  Whitespace = { link = "NonText" }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
   WildMenu = {}, -- current match in 'wildmenu' completion
   WinBar = { link = "StatusLine" }, -- window bar
   WinBarNC = { link = "StatusLineNC" }, -- window bar in inactive windows
-
 
   -- These groups are not listed as default vim groups,
   -- but they are defacto standard group names for syntax highlighting.
@@ -110,56 +108,53 @@ local M = {
   -- default,
   -- Uncomment and edit if you want more specific syntax highlighting.
 
-  Constant = {}, -- (preferred) any constant
-  String = {}, -- a string constant: "this is a string"
-  Character = {}, -- a character constant: 'c', '\n'
-  -- Number = {}, -- a number constant: 234, 0xff
-  -- Boolean = {}, -- a boolean constant: TRUE, false
-  -- Float = {}, -- a floating point constant: 2.3e10
+  Constant = { fg = "yellow" }, -- (preferred) any constant
+  String = { fg = "green", italic = true },    -- a string constant: "this is a string"
+  Character = { fg = "red2" },  -- a character constant: 'c', '\n'
+  Number = { fg = "red2" },     -- a number constant: 234, 0xff
+  Boolean = { fg = "red2" },    -- a boolean constant: TRUE, false
+  Float = { fg = "red2" },       -- a floating point constant: 2.3e10
 
-  Identifier = {}, -- (preferred) any variable name
-  Function = {}, -- function name (also: methods for classes)
+  Identifier = { fg = "cyan", italic = config.italic.variables }, -- (preferred) any variable name
+  Function = { fg = "blue", italic = config.italic.functions }, -- function name (also: methods for classes)
 
-  Statement = {}, -- (preferred) any statement
-  -- Conditional = {}, -- if, then, else, endif, switch, etc.
-  -- Repeat = {}, -- for, do, while, etc.
-  -- Label = {}, -- case, default, etc.
-  Operator = {}, -- "sizeof", "+", "*", etc.
-  Keyword = {}, -- any other keyword
-  -- Exception = {}, -- try, catch, throw
+  Statement = { fg = "pink" }, -- (preferred) any statement
+  Conditional = { fg = "purple", italic = config.italic.keywords }, -- if, then, else, endif, switch, etc.
+  Repeat = { fg = "purple", italic = config.italic.keywords  }, -- for, do, while, etc.
+  Label = { fg = "red" }, -- case, default, etc.
+  Operator = { fg = "pink" }, -- "sizeof", "+", "*", etc.
+  Keyword = { fg = "purple", italic = config.italic.keywords  }, -- any other keyword
+  Exception = { fg = "yellow" }, -- try, catch, throw
 
-  PreProc = {}, -- (preferred) generic Preprocessor
-  -- Include = {}, -- preprocessor #include
-  -- Define = {}, -- preprocessor #define
-  -- Macro = {}, -- same as Define
-  -- PreCondit = {}, -- preprocessor #if, #else, #endif, etc.
+  PreProc = { fg = "purple" }, -- (preferred) generic Preprocessor
+  Include = { fg = "blue" }, -- preprocessor #include
+  Define = { fg = "pink" }, -- preprocessor #define
+  Macro = { fg = "pink" }, -- same as Define
+  PreCondit = { fg = "purple3" }, -- preprocessor #if, #else, #endif, etc.
 
-  Type = {}, -- (preferred) int, long, char, etc.
+  Type = { fg = "purple" }, -- (preferred) int, long, char, etc.
   -- StorageClass = {}, -- static, register, volatile, etc.
   -- Structure = {}, -- struct, union, enum, etc.
-  -- Typedef = {}, -- A typedef
+  Typedef = { fg = "red" }, -- A typedef
 
-  Special = {}, -- (preferred) any special symbol
+  Special = { fg = "pink2" }, -- (preferred) any special symbol
   -- SpecialChar = {}, -- special character in a constant
   -- Tag = {}, -- you can use CTRL-] on this
-  Delimiter = { link = "Special" }, -- character that needs attention
-  -- SpecialComment = {}, -- special things inside a comment
-  Debug = { fg = "red2" }, -- debugging statements
+  Delimiter = { fg = "highlight" }, -- character that needs attention
+  SpecialComment = { fg = "highlight" }, -- special things inside a comment
+  Debug = { fg = "orange" }, -- debugging statements
 
-  Underlined = {}, -- (preferred) text that stands out, HTML links
-  Bold = {},
-  Italic = {},
+  Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
+  Bold = { bold = true },
+  Italic = { italic = true },
 
   -- ("Ignore", below, may be invisible...)
-  -- Ignore = { }, -- (preferred) left blank, hidden  |hl-Ignore|
+  Ignore = { fg = "disabled" }, -- (preferred) left blank, hidden  |hl-Ignore|
 
-  Error = {}, -- (preferred) any erroneous construct
-  Todo = {}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+  Error = { fg = "error", bold = true, underline = true }, -- (preferred) any erroneous construct
+  Todo = { fg = "yellow", bold = true, italic = true  }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-  -- qfLineNr = {},
-  -- qfFileName = {},
-
-  htmlLink = { fg = "link", underline = true },
+  htmlLink = { link = "@markup.link.url" },
 
   markdownCode = {},
   markdownCodeBlock = {},
@@ -180,20 +175,20 @@ local M = {
   LspReferenceWrite = { bg = "highlight" }, -- used for highlighting "write" references
 
   DiagnosticError = { fg = "error" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticWarn = { fg = "yellow" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-  DiagnosticInfo = { fg = "paleblue" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticWarn = { fg = "orange" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+  DiagnosticInfo = { fg = "lightblue" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticHint = { fg = "purple" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticUnnecessary = { fg = "comments" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
-  DiagnosticVirtualTextError = { link = "DiagnosticError", italic = true }, -- Used for "Error" diagnostic virtual text
-  DiagnosticVirtualTextWarn = { link = "DiagnosticWarn", italic = true }, -- Used for "Warning" diagnostic virtual text
-  DiagnosticVirtualTextInfo = { link = "DiagnosticInfo", italic = true }, -- Used for "Information" diagnostic virtual text
-  DiagnosticVirtualTextHint = { link = "DiagnosticHint", italic = true }, -- Used for "Hint" diagnostic virtual text
+  DiagnosticVirtualTextError = { fg = "error", italic = true }, -- Used for "Error" diagnostic virtual text
+  DiagnosticVirtualTextWarn = { fg = "orange", italic = true }, -- Used for "Warning" diagnostic virtual text
+  DiagnosticVirtualTextInfo = { fg = "lightblue", italic = true }, -- Used for "Information" diagnostic virtual text
+  DiagnosticVirtualTextHint = { fg = "purple", italic = true }, -- Used for "Hint" diagnostic virtual text
 
-  DiagnosticUnderlineError = { fg = "error", undercurl = true }, -- Used to underline "Error" diagnostics
-  DiagnosticUnderlineWarn = { fg = "yellow", undercurl = true }, -- Used to underline "Warning" diagnostics
-  DiagnosticUnderlineInfo = { fg = "paleblue", undercurl = true }, -- Used to underline "Information" diagnostics
-  DiagnosticUnderlineHint = { fg = "purple", undercurl = true }, -- Used to underline "Hint" diagnostics
+  DiagnosticUnderlineError = { sp = "error", underline = true }, -- Used to underline "Error" diagnostics
+  DiagnosticUnderlineWarn = { sp = "orange", underline = true }, -- Used to underline "Warning" diagnostics
+  DiagnosticUnderlineInfo = { sp = "lightblue", underline = true }, -- Used to underline "Information" diagnostics
+  DiagnosticUnderlineHint = { sp = "purple", underline = true }, -- Used to underline "Hint" diagnostics
 
   LspSignatureActiveParameter = {},
   LspCodeLens = {},
@@ -208,41 +203,40 @@ local M = {
 
   -- nvim-treesitter/nvim-treesitter
   ["@none"] = {},
-  ["@annotation"] = { link = "PreProc" },
-  ["@attribute"] = { link = "PreProc" },
+  ["@annotation"] = { fg = "red" },
+  ["@attribute"] = { fg = "yellow" },
 
   --- Text
   -- ["@comment"] = { link = "Comment" },
-  ["@comment.note"] = { link = "DiagnosticHint" },
-  ["@comment.error"] = { link = "DiagnosticError" },
-  ["@comment.hint"] = { link = "DiagnosticHint" },
-  ["@comment.info"] = { link = "DiagnosticInfo" },
-  ["@comment.warning"] = { link = "DiagnosticWarn" },
-  ["@comment.todo"] = { fg = "lightblue" },
+  ["@comment.error"] = { fg = "error", italic = config.italic.comments },
+  ["@comment.warning"] = { fg = "orange", italic = config.italic.comments },
+  ["@comment.info"] = { fg = "lightblue", italic = config.italic.comments },
+  ["@comment.hint"] = { fg = "purple", italic = config.italic.comments },
+  ["@comment.note"] = { link = "@comment.hint" },
+  ["@comment.todo"] = { fg = "lightblue", italic = config.italic.comments },
   -- ["@comment.documentation"] = {}, -- TODO:
 
-  ["@punctuation.delimiter"] = {}, -- For delimiters ie: `.`
-  ["@punctuation.bracket"] = {}, -- For brackets and parens.
-  ["@punctuation.special"] = {}, -- For special symbols (e.g. `{}` in string interpolation)
+  -- ["@punctuation.delimiter"] = {}, -- For delimiters ie: `.`
+  -- ["@punctuation.bracket"] = {}, -- For brackets and parens.
+  -- ["@punctuation.special"] = {}, -- For special symbols (e.g. `{}` in string interpolation)
 
   --- Markup
   ["@markup"] = { link = "@none" },
   ["@markup.environment"] = { link = "Macro" },
   ["@markup.environment.name"] = { link = "Type" },
-  ["@markup.raw"] = { link = "String" },
+  ["@markup.raw"] = { fg = "fg" },
   ["@markup.math"] = { link = "Special" },
   ["@markup.strong"] = { bold = true },
   ["@markup.emphasis"] = { italic = true },
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.underline"] = { underline = true },
-  ["@markup.heading"] = { link = "Title" },
-  ["@markup.link.url"] = { link = "Underlined" },
-  ["@markup.link.label"] = { link = "SpecialChar" },
+  -- ["@markup.heading"] = { link = "Title" },
+  -- ["@markup.link"] = {},
+  ["@markup.link.url"] = { link = "@string.special.url" },
+  -- ["@markup.link.label"] = { link = "SpecialChar" },
   ["@markup.link.label.symbol"] = { link = "Identifier" },
-
   -- ["@markup.raw.markdown"] = {},
-  ["@markup.raw.markdown_inline"] = {},
-  ["@markup.link"] = {},
+  -- ["@markup.raw.markdown_inline"] = {},
 
   ["@markup.list"] = {}, -- For special punctutation that does not fall in the catagories before.
   ["@markup.list.markdown"] = {},
@@ -251,44 +245,44 @@ local M = {
 
   --- Literals
   -- ["@constant"] = { link = "Constant" },
-  -- ["@constant.builtin"] = { link = "Special" },
-  -- ["@constant.macro"] = { link = "Define" },
+  ["@constant.builtin"] = { fg = "blue" },
+  ["@constant.macro"] = { fg = "blue" },
 
-  -- ["@string"] = { link = "String" },
   ["@string.documentation"] = {},
-  ["@string.escape"] = {}, -- For escape characters within a string.
-  ["@string.regexp"] = {}, -- For regexes.
+  ["@string.special.url"] = { fg = "link", underline = true },
+  ["@string.escape"] = { fg = "highlight" }, -- For escape characters within a string.
+  ["@string.regexp"] = { fg = "green2" }, -- For regexes.
 
   -- ["@character"] = { link = "Character" },
   -- ["@character.special"] = { link = "SpecialChar" },
   -- ["@number"] = { link = "Number" },
-  ["@number.float"] = { link = "Float" },
+  -- ["@number.float"] = { link = "Float" },
   -- ["@boolean"] = { link = "Boolean" },
 
   --- Functions
   -- ["@function"] = { link = "Function" },
-  -- ["@function.builtin"] = { link = "Special" },
+  ["@function.builtin"] = { fg = "purple3", italic = config.italic.functions },
   ["@function.call"] = { link = "@function" },
   -- ["@function.macro"] = { link = "Macro" },
   ["@function.method"] = { link = "Function" },
   ["@function.method.call"] = { link = "@function.method" },
 
-  ["@property"] = {},
+  ["@property"] = { fg = "paleblue" },
 
-  ["@constructor"] = {}, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-  ["@constructor.tsx"] = {},
+  -- ["@constructor"] = { fg = "purple" }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+  -- ["@constructor.tsx"] = {},
 
   --- Keywords
   ["@label"] = {}, -- For labels: `label:` in C and `:label:` in Lua.
   -- ["@operator"] = {}, -- For any operator: `+`, but also `->` and `*` in C.
-  ["@keyword"] = {}, -- For keywords that don't fall in previous categories.
+  -- ["@keyword"] = {}, -- For keywords that don't fall in previous categories.
   ["@keyword.conditional"] = { link = "Conditional" },
   ["@keyword.coroutine"] = { link = "@keyword" },
   ["@keyword.debug"] = { link = "Debug" },
   ["@keyword.directive"] = { link = "PreProc" },
   ["@keyword.directive.define"] = { link = "Define" },
   ["@keyword.exception"] = { link = "Exception" },
-  ["@keyword.function"] = {}, -- For keywords used to define a fuction.
+  ["@keyword.function"] = { link = "@keyword" }, -- For keywords used to define a fuction.
   ["@keyword.import"] = { link = "Include" },
   ["@keyword.operator"] = { link = "@operator" },
   ["@keyword.repeat"] = { link = "Repeat" },
@@ -296,11 +290,11 @@ local M = {
   ["@keyword.storage"] = { link = "StorageClass" },
 
   --- Identifiers
-  ["@variable"] = {}, -- Any variable name that does not have another highlight.
-  ["@variable.builtin"] = {}, -- Variable names that are defined by the languages, like `this` or `self`.
-  ["@variable.member"] = {}, -- For fields.
-  ["@variable.parameter"] = {}, -- For parameters of a function.
-  ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
+  -- ["@variable"] = {}, -- Any variable name that does not have another highlight.
+  ["@variable.builtin"] = { link = "@variable" }, -- Variable names that are defined by the languages, like `this` or `self`.
+  -- ["@variable.member"] = {}, -- For fields.
+  ["@variable.parameter"] = { fg = "paleblue" }, -- For parameters of a function.
+  -- ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
   -- ["@type"] = { link = "Type" },
   ["@type.builtin"] = {},
@@ -315,8 +309,6 @@ local M = {
   ["@tag"] = { link = "Label" },
   ["@tag.attribute"] = { link = "@property" },
   ["@tag.delimiter"] = { link = "Delimiter" },
-  ["@tag.delimiter.tsx"] = {},
-  ["@tag.tsx"] = {},
 
   --- Misc
   ["@diff.plus"] = { link = "DiffAdd" },
@@ -491,13 +483,13 @@ local M = {
   GlyphPaletteDirectory = { fg = "text" },
 
   -- nvimdev/dashboard-nvim
-  DashboardShortCut = {},
-  DashboardHeader = {},
-  DashboardCenter = {},
-  DashboardFooter = {},
-  DashboardKey = {},
-  DashboardDesc = {},
-  DashboardIcon = {},
+  DashboardShortCut = { fg = "blue" },
+  DashboardHeader = { fg = "red" },
+  DashboardCenter = { fg = "purple3" },
+  DashboardFooter = { fg = "green", italic = true },
+  -- DashboardKey = {},
+  -- DashboardDesc = {},
+  -- DashboardIcon = {},
 
   -- goolord/alpha-nvim
   AlphaShortcut = {},
@@ -700,23 +692,17 @@ local M = {
   NotifyDEBUGBorder = {},
   NotifyTRACEBorder = {},
   --- Icons
-  NotifyERRORIcon = {},
-  NotifyWARNIcon = {},
-  NotifyINFOIcon = {},
-  NotifyDEBUGIcon = {},
-  NotifyTRACEIcon = {},
+  NotifyERRORIcon = { link = "DiagnosticError" },
+  NotifyWARNIcon = { link = "DiagnosticWarn" },
+  NotifyINFOIcon = { link = "DiagnosticInfo" },
+  NotifyDEBUGIcon = { link = "DiagnosticHint" },
+  NotifyTRACEIcon = { fg = "border" },
   --- Title
-  NotifyERRORTitle = {},
-  NotifyWARNTitle = {},
-  NotifyINFOTitle = {},
-  NotifyDEBUGTitle = {},
-  NotifyTRACETitle = {},
-  --- Body
-  NotifyERRORBody = {},
-  NotifyWARNBody = {},
-  NotifyINFOBody = {},
-  NotifyDEBUGBody = {},
-  NotifyTRACEBody = {},
+  NotifyERRORTitle = { link = "NotifyERRORIcon" },
+  NotifyWARNTitle = { link = "NotifyWARNIcon" },
+  NotifyINFOTitle = { link = "NotifyINFOIcon" },
+  NotifyDEBUGTitle = { link = "NotifyDEBUGIcon" },
+  NotifyTRACETitle = { link = "NotifyTRACEIcon" },
 
   -- echasnovski/mini.nvim
   -- mini.completion
@@ -864,16 +850,15 @@ end
 
 -- Rainbow headers
 ---@type string[]
-local h_rainbow = { "purple3", "red", "green", "yellow", "purple" }
+local h_rainbow = { "purple2", "pink2", "pink", "green", "cyan", "purple" }
 for i, c in ipairs(h_rainbow) do
-  M["markdownH" .. i] = { fg = c, bold = true }
-  M["markdownH" .. i .. "Delimiter"] = { fg = c }
+  M["@markup.heading." .. i] = { fg = c, bold = true }
+  M["@markup.heading." .. i .. ".marker"] = { fg = c }
 
-  M["htmlH" .. i] = { link = "markdownH" .. i }
-  M["@markup.heading." .. i .. ".markdown"] = { link = "markdownH" .. i }
-  M["@markup.heading." .. i .. ".marker.markdown"] = { link = "markdownH" .. i .. "Delimiter" }
+  M["markdownH" .. i] = { link = "@markup.heading." .. i }
+  M["markdownH" .. i .. "Delimiter"] = { link = "@markup.heading." .. i .. ".marker" }
+  M["htmlH" .. i] = { link = "@markup.heading." .. i }
 end
-M.markdownHeadingDelimiter = { link = "markdownH1Delimiter"  }
 
 -- diagnostic group links
 if not vim.diagnostic then
@@ -895,16 +880,20 @@ if not vim.diagnostic then
 end
 
 -- Apply user-defined config
--- if config.transparent.background then
--- if config.transparent.float then
--- if config.transparent.popup then
--- if config.transparent.sidebar then
--- if config.borders then
--- if config.contrast then
--- if config.italic.comments then
--- if config.italic.functions then
--- if config.italic.keywords then
--- if config.italic.variables then
+if config.borders then
+  M.VertSplit.fg = "border"
+end
+if config.transparent.background then
+  M.Normal.bg = "NONE"
+end
+if config.transparent.float then
+  M.NormalFloat.bg = "NONE"
+end
+if config.transparent.popup then
+end
+if config.transparent.sidebar then
+  M.NormalSB.bg = "NONE"
+end
 
 -- Merge user-defined overrides
 M = vim.tbl_extend("force", M, config.overrides.theme or {})

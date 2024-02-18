@@ -11,7 +11,6 @@ local config = require("lavender.config")
 local M = {
   -- HexToCterm: START
   black        = "#000000",
-  gray         = "#a1abe0",
   lightblue    = "#add8e6", -- LightBlue
   paleblue     = "#d6e7f0",
   white        = "#eeffff",
@@ -19,6 +18,7 @@ local M = {
   red2         = "#f67f81", -- FIX: old orange
   orange       = "#ff9e7b",
   yellow       = "#ffc777",
+  green2       = "#59d6b5",
   green        = "#2df4c0",
   cyan         = "#16fcf8",
   blue         = "#04d1f9",
@@ -35,10 +35,9 @@ local M = {
   comments     = "#7486d6",
   selection    = "#403c64",
   contrast     = "#1b1c2b",
-  active       = "#414863", -- border
   border       = "#414863",
   line_numbers = "#596399",
-  highlight    = "#a1abe0", -- gray
+  highlight    = "#a1abe0",
   disabled     = "#515772",
   cursor       = "#5cb4fc",
   accent       = "#a3ace1",
@@ -46,7 +45,9 @@ local M = {
   link         = "#80cbc4",
   -- HexToCterm: END
 }
-M.grey = M.gray
+-- FIX: deprecate
+M.gray = M.highlight
+M.active = M.border
 
 -- TODO: bg transparency check cannot happen here as "bg" is used directly
 -- as a colour elsewhere
