@@ -114,7 +114,7 @@ local M = {
   Float = { fg = "red2" },       -- a floating point constant: 2.3e10
 
   Identifier = { fg = "cyan", italic = config.italic.variables }, -- (preferred) any variable name
-  Function = { fg = "blue", italic = config.italic.functions }, -- function name (also: methods for classes)
+  Function = { fg = "blue2", italic = config.italic.functions }, -- function name (also: methods for classes)
 
   Statement = { fg = "pink" }, -- (preferred) any statement
   Conditional = { fg = "purple", italic = config.italic.keywords }, -- if, then, else, endif, switch, etc.
@@ -125,7 +125,7 @@ local M = {
   Exception = { fg = "yellow" }, -- try, catch, throw
 
   PreProc = { fg = "purple" }, -- (preferred) generic Preprocessor
-  Include = { fg = "blue" }, -- preprocessor #include
+  Include = { fg = "blue2" }, -- preprocessor #include
   Define = { fg = "pink" }, -- preprocessor #define
   Macro = { fg = "pink" }, -- same as Define
   PreCondit = { fg = "purple3" }, -- preprocessor #if, #else, #endif, etc.
@@ -259,8 +259,8 @@ local M = {
 
   --- Literals
   -- ["@constant"] = { link = "Constant" },
-  ["@constant.builtin"] = { fg = "blue" },
-  ["@constant.macro"] = { fg = "blue" },
+  ["@constant.builtin"] = { fg = "orange" },
+  ["@constant.macro"] = { link = "Macro" },
 
   -- ["@string.documentation"] = {},
   ["@string.special.url"] = { fg = "link", underline = true },
@@ -275,7 +275,7 @@ local M = {
 
   --- Functions
   -- ["@function"] = { link = "Function" },
-  ["@function.builtin"] = { fg = "purple3", italic = config.italic.functions },
+  ["@function.builtin"] = { link = "@function" },
   ["@function.call"] = { link = "@function" },
   -- ["@function.macro"] = { link = "Macro" },
   ["@function.method"] = { link = "Function" },
@@ -305,7 +305,7 @@ local M = {
 
   --- Identifiers
   -- ["@variable"] = {}, -- Any variable name that does not have another highlight.
-  ["@variable.builtin"] = { link = "@variable" }, -- Variable names that are defined by the languages, like `this` or `self`.
+  ["@variable.builtin"] = { fg = "blue" }, -- Variable names that are defined by the languages, like `this` or `self`.
   -- ["@variable.member"] = {}, -- For fields.
   -- ["@variable.parameter"] = { fg = "paleblue" }, -- For parameters of a function. -- FIX:
   -- ["@variable.parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
@@ -399,7 +399,7 @@ local M = {
   diffAdded = { fg = "green" },
   diffRemoved = { fg = "red" },
   diffChanged = { fg = "yellow" },
-  diffOldFile = { fg = "yelow" },
+  diffOldFile = { fg = "yellow" },
   diffNewFile = { fg = "red2" },
   diffFile = { fg = "blue" },
   diffLine = { fg = "comments" },
@@ -440,7 +440,7 @@ local M = {
   -- NeoTreeCursorLine = { bold = true },
   NeoTreeIndentMarker = { link = "Whitespace" },
   NeoTreeTabActive = { fg = "bg", bg = "accent" },
-  NeoTreeTabInactive = { fg = "title", bg = "border" },
+  NeoTreeTabInactive = { fg = "fg", bg = "border" },
 
   NeoTreeDimText = { fg = "text" },
   NeoTreeDotfile = { fg = "text" },
@@ -604,7 +604,7 @@ local M = {
 
   -- nvim-lualine/lualine.nvim (custom)
   LualineNormalA = { fg = "bg", bg = "accent", bold = true },
-  LualineNormalB = { fg = "title", bg = "border" },
+  LualineNormalB = { fg = "fg", bg = "border" },
   LualineNormalC = { fg = "fg", bg = "selection" },
 
   LualineInsertA = { fg = "bg", bg = "green", bold = true },

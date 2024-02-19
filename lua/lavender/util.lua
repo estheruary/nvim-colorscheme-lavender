@@ -10,20 +10,37 @@ function M.apply_theme(theme, colors)
   for group, hl in pairs(theme) do
     local fg_name = hl.fg
     local bg_name = hl.bg
+    local ctermfg_name = hl.ctermfg
+    local ctermbg_name = hl.ctermbg
 
-    hl.fg = colors.hex[fg_name]
-    hl.bg = colors.hex[bg_name]
-    hl.sp = colors.hex[hl.sp]
-
-    if fg_name == "NONE" then
-      hl.ctermfg = fg_name
-    elseif hl.ctermfg == nil and not (colors.cterm[fg_name] == nil) then
-      hl.ctermfg = colors.cterm[fg_name]
+    if type(ctermfg_name) == "string" and ctermfg_name ~= "NONE" then
+      hl.ctermfg = colors.cterm[ctermfg_name]
     end
-    if bg_name == "NONE" then
+
+    if colors.hex[fg_name] ~= nil then
+      hl.fg = colors.hex[fg_name]
+      if ctermfg_name == nil and colors.cterm[fg_name] ~= nil then
+        hl.ctermfg = colors.cterm[fg_name]
+      end
+    elseif fg_name == "NONE" and ctermfg_name == nil then
+      hl.ctermfg = fg_name
+    end
+
+    if type(ctermbg_name) == "string" and ctermbg_name ~= "NONE" then
+      hl.ctermbg = colors.cterm[ctermbg_name]
+    end
+
+    if colors.hex[bg_name] ~= nil then
+      hl.bg = colors.hex[bg_name]
+      if ctermbg_name == nil and colors.cterm[bg_name] ~= nil then
+        hl.ctermbg = colors.cterm[bg_name]
+      end
+    elseif bg_name == "NONE" and ctermbg_name == nil then
       hl.ctermbg = bg_name
-    elseif hl.ctermbg == nil and not (colors.cterm[bg_name] == nil) then
-      hl.ctermbg = colors.cterm[bg_name]
+    end
+
+    if colors.hex[hl.sp] ~= nil then
+      hl.sp = colors.hex[hl.sp]
     end
 
     vim.api.nvim_set_hl(0, group, hl)

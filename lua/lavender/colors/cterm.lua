@@ -25,6 +25,7 @@ local M = {
   green = 50, -- #00ffd7
   cyan = 51, -- #00ffff
   blue = 45, -- #00d7ff
+  blue2 = 75, -- #5fafff
   purple2 = 141, -- #af87ff
   purple3 = 140, -- #af87d7
   purple = 147, -- #afafff

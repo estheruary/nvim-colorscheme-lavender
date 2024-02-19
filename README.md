@@ -11,11 +11,31 @@ rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.n
 
 ## Features
 
-<!-- TODO: -->
+Support is provided for each item from the listed version to the next breaking change, as well as whatever is
+backwards compatible from that verion.
+
+- [Neovim](https://neovim.io/) `0.9.5` (including LSP client)
+  - markdown regex parser
+  <!-- - asciidoc regex parser -->
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main@8e1df60b`
+- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+
+If something is wrong (particularly if highlights are missing[^4]) with one of these, please [submit an
+issue](https://codeberg.org/jthvai/lavender.nvim/issues).
+
+Several popular plugins are also supported. See [theme.lua](lua/lavender/theme.lua) (about midway through) for details.
+
+In general, I am not too keen on providing tailored support for plugins that I use[^3], as I'm unlikely to notice if
+something breaks or looks bad. **But!** It is really easy to extend this colorscheme - see [Examples](#examples) below.
+
+[^3]: [my plugins, and their config](https://forge.jthv.ai/elias/nvim-config/src/branch/main/lua/plugins/README.md)
+[^4]: use `:Inspect` with your cursor over an element to inspect the syntax tokens
 
 ## Requirements
 
-- [Neovim](https://neovim.io/) >= [0.9.2](https://github.com/neovim/neovim/releases/tag/v0.9.2)
+- Neovim >= 0.9.2
+
+_Julia is **not** a runtime dependency._
 
 ## Installation
 
@@ -84,13 +104,37 @@ vim.g.lavender = {
 
 Custom hex colours are not mapped to 256-color on the fly for performance reasons.
 
-<!-- TODO: add config examples, particularly for overrides -->
-
 [^1]: I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
       [@mrcjkb](https://github.com/mrcjkb), developer of
       [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim).
 [^2]: You could _probably_ do it in vimscript if you really wanted to, but I don't know how and certainly couldn't tell
       you.
+
+### Examples
+
+```lua
+vim.g.lavender = {
+  overrides = {
+    theme = {
+      NormalFoo = { fg = "fg", bg = "purple3", bold = true }, -- add a new highlight group using lavender's colours
+      NormalBar = { fg = "Red", bg = "#303030", ctermfg = 196, ctermbg = 236 }, -- using colours directly
+      NormalBaz = { fg = "custom_red", ctermfg = "custom_blue" }, -- using colours added in colour overrides below
+      -- lavender's colours are lowercase, while nvim's internal colour names are pascal case
+
+      Normal = { fg = "white", bg = "bg_alt", ctermfg = "white", ctermbg = "bg_alt" }, -- override a highlight group
+      -- overriding existing highlight groups will replace the entire definition
+    },
+    colors = {
+      hex = {
+        custom_red = "#ff3300", -- add a new colour; this can now be used in any highlight group
+      },
+      cterm = {
+        custom_blue = 33,
+      },
+    },
+  },
+}
+```
 
 ## Palette
 

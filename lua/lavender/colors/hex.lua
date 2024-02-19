@@ -22,6 +22,7 @@ local M = {
   green        = "#2df4c0",
   cyan         = "#16fcf8",
   blue         = "#04d1f9",
+  blue2        = "#5fafff",
   purple2      = "#ad82ed",
   purple3      = "#b994f1",
   purple       = "#b4a4f4",
