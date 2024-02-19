@@ -41,7 +41,8 @@ local M = {
   lCursor = { link = "Cursor" }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
   CursorIM = { link = "Cursor" }, -- like Cursor, but used when in IME mode |CursorIM|
   CursorColumn = { bg = "border" }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-  CursorLine = { bg = "border" }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+  CursorLine = { bold = true, italic = true }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+  -- CursorLine = { bg = "border" },
   Directory = { fg = "blue" }, -- directory names (and other special names in listings)
   DiffAdd = { fg = "green", reverse = true }, -- diff mode: Added line |diff.txt|
   DiffChange = { fg = "yellow", reverse = true }, -- diff mode: Changed line |diff.txt|
@@ -152,19 +153,103 @@ local M = {
   Error = { fg = "error", bold = true, underline = true }, -- (preferred) any erroneous construct
   Todo = { fg = "yellow", bold = true, italic = true  }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-  htmlLink = { link = "@markup.link.url" },
+  -- HTML regex parser
+  htmlLink = { link = "@markup.link.url.html" },
 
-  -- TODO: check (find more) markdown regex highlight groups
-  markdownCodeBlock = { link = "@markup.raw" },
-  markdownLinkText = { link = "@markup.link.label" },
+  -- Markdown regex parser
+  markdownListMarker = { link = "@markup.list.markdown" },
+
+  markdownLinkText = { link = "@markup.link.label.markdown" },
   markdownLinkTextDelimiter = { link = "Delimiter" },
   markdownLink = { link = "@markup.link.markdown_inline" },
   markdownLinkDelimiter = { link = "Delimiter" },
-  markdownUrl = { link = "@markup.link.url" },
+  markdownUrl = { link = "@markup.link.url.markdown" },
 
-  markdownListMarker = { link = "@markup.list" },
+  markdownCodeBlock = { link = "@markup.raw.markdown" },
 
-  -- TODO: asciidoc highlight groups
+  markdownEscape = { link = "@string.escape.markdown"},
+
+  -- Asciidoc regex parser
+  asciidocOneLineTitle  = { link = "@markup.heading.asciidoc" },
+  asciidocBlockTite = { link = "asciidocOneLineTitle" },
+  asciidocTwoLineTitle  = { link = "asciidocOneLineTitle" },
+
+  asciidocBackslash = { link = "@string.escape.asciidoc" },
+  asciidocEntityRef = { link = "asciidocBackslash"},
+
+  asciidocLineBreak = { link = "@punctuation.special.asciidoc" },
+  asciidocPagebreak = { link = "asciidocLineBreak" },
+  asciidocRuler = { link = "asciidocPagebreak" },
+
+  asciidocLiteralBlock = { link = "@markup.raw.asciidoc" },
+  asciidocLiteralParagraph = { link = "asciidocLiteralBlock" },
+  asciidocListingBlock = { link = "asciidocLiteralBlock" },
+
+  asciidocPassthroughBlock = { link = "@markup.raw.asciidoc" },
+  asciidocDoubleDollarPassthrough = { link = "asciidocPassthroughBlock" },
+  asciidocTriplePlusPassthrough = { link = "asciidocPassthroughBlock" },
+
+  asciidocOpenBlockDelimiter = { link = "@punctuation.delimiter.asciidoc" },
+  asciidocQuoteBlockDelimiter = { link = "@punctuation.delimiter.asciidoc" },
+  asciidocExampleBlockDelimiter = { link = "@punctuation.delimiter.asciidoc" },
+  asciidocSidebarDelimiter = { link = "@punctuation.delimiter.asciidoc" },
+
+  asciidocTableDelimiter = { link = "@punctuation.special.asciidoc" },
+  asciidocTableDelimiter2 = { link = "asciidocTableDelimiter" },
+  asciidocTablePrefix = { link = "asciidocTableDelimiter" },
+  asciidocTablePrefix2 = { link = "asciidocTableDelimiter" },
+
+  asciidocListBullet = { link = "@markup.list.asciidoc" },
+  asciidocListContinuation = { link = "asciidocListBullet" },
+  asciidocListLabel = { link = "asciidocListBullet" },
+  asciidocListNumber = { link = "asciidocListBullet" },
+
+  asciidocAdmonition = { link = "Todo" },
+  asciidocCallout = { link = "asciidocListBullet" },
+
+  asciidocQuotedBold = { link = "@markup.strong.asciidoc" },
+  asciidocQuotedUnconstrainedBold = { link = "asciidocQuotedBold" },
+
+  asciidocQuotedEmphasized = { link = "@markup.emphasis.asciidoc" },
+  asciidocQuotedEmphasized2 = { link = "asciidocQuotedEmphasized" },
+  asciidocQuotedEmphasizedItalic = { link = "asciidocQuotedEmphasized" },
+  asciidocQuotedUnconstrainedEmphasized = { link = "asciidocQuotedEmphasized" },
+
+  asciidocQuotedMonospaced = { link = "@markup.raw.asciidoc" },
+  asciidocQuotedMonospaced2 = { link = "asciidocQuotedMonospaced" },
+  asciidocQuotedUnconstrainedMonospaced = { link = "asciidocQuotedMonospaced" },
+
+  -- asciidocQuotedSubscript = { link = "Type" },
+  -- asciidocQuotedSuperscript = { link = "Type" },
+
+  -- ???
+  -- asciidocQuotedSingleQuoted = { link = "Label" },
+  -- asciidocQuotedDoubleQuoted = { link = "Label" },
+
+  asciidocAttributeEntry = { link = "@constant.builtin.asciidoc" },
+  asciidocAttributeRef = { link = "@constant.asciidoc" },
+  asciidocAttributeList = { link = "@variable.builtin.asciidoc" },
+  asciidocQuotedAttributeList = { link = "asciidocAttributeList" },
+
+  asciidocURL = { link = "@markup.link.url.asciidoc" },
+  asciidocEmail = { link = "asciidocURL"},
+  asciidocRefMacro = { link = "asciidocURL" },
+
+  -- The vast majority of macros are URIs or URI-like objects so set the link colour
+  -- but underlining also underlines the [] which is obnoxious
+  asciidocMacro = { link = "@markup.link.asciidoc" },
+  asciidocMacroAttributes = { link = "@markup.link.label.asciidoc" },
+
+  asciidocAnchorMacro = { link = "Title" }, -- link source, not destination
+
+  -- deprecated or undocumented syntax
+  asciidocFilterBlock = { link = "@none" },
+  asciidocToDo = { link = "@none" },
+  asciidocHLabel = { link = "@none" },
+  asciidocTable_OLD = { link = "@none" },
+  asciidocIdMarker = { link = "@none" },
+  -- asciidocAttributeMacro = {}, -- doesn't have a syntax definition
+  -- asciidocIndexTerm = {}, -- same
 
   -- helpCommand = {},
 
@@ -224,20 +309,22 @@ local M = {
 
   -- ["@punctuation.delimiter"] = {}, -- For delimiters ie: `.`
   -- ["@punctuation.bracket"] = {}, -- For brackets and parens.
-  -- ["@punctuation.special"] = {}, -- For special symbols (e.g. `{}` in string interpolation)
+  ["@punctuation.special"] = { fg = "pink" }, -- For special symbols (e.g. `{}` in string interpolation)
 
   --- Markup
   ["@markup"] = { link = "@none" },
 
-  ["@markup.environment"] = { link = "Macro" },
+  ["@markup.environment"] = { fg = "purple2", bold = true }, -- only used by latex & xml?
   ["@markup.environment.name"] = { link = "Type" },
 
+  ["@markup.heading"] = { link = "@markup.heading.1" },
   ["@markup.heading.gitcommit"] = { link = "Title" },
 
-  ["@markup.math"] = { link = "Special" },
+  ["@markup.math"] = { link = "Identifier" },
 
   ["@markup.strong"] = { bold = true },
   ["@markup.emphasis"] = { italic = true },
+  ["@markup.italic"] = { link = "@markup.emphasis"},
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.underline"] = { underline = true },
 
@@ -247,12 +334,12 @@ local M = {
   ["@markup.link.label.symbol"] = { link = "SpecialChar" },
   ["@markup.link.markdown_inline"] = { link = "Delimiter" },
 
-  ["@markup.raw"] = { fg = "paleblue" },
+  ["@markup.raw"] = { fg = "lightblue" },
   ["@markup.raw.delimiter"] = { link = "Delimiter" },
   ["@markup.raw.markdown"] = { link = "@markup.raw" },
   ["@markup.raw.markdown_inline"] = { link = "@markup.raw" },
 
-  ["@markup.list"] = { link = "Label" }, -- For special punctutation that does not fall in the catagories before.
+  ["@markup.list"] = { link = "Label" }, -- For special punctuation that does not fall in the catagories before.
   -- ["@markup.list.markdown"] = {},
   ["@markup.list.unchecked"] = { link = "Delimiter" }, -- For brackets and parens.
   ["@markup.list.checked"] = { link = "Delimiter" }, -- For brackets and parens.
@@ -437,6 +524,7 @@ local M = {
   -- nvim-neo-tree/neo-tree.nvim
   -- TODO: hunt down the "(n hidden items)" highlight group
   NeoTreeNormal = { link = "NormalSB" },
+  NeoTreeNormalNC = { link = "NeoTreeNormal" },
   -- NeoTreeCursorLine = { bold = true },
   NeoTreeIndentMarker = { link = "Whitespace" },
   NeoTreeTabActive = { fg = "bg", bg = "accent" },
@@ -682,11 +770,9 @@ for i, c in ipairs(h_rainbow) do
   M["@markup.heading." .. i] = { fg = c, bold = true }
   M["@markup.heading." .. i .. ".marker"] = { fg = c }
 
-  M["markdownH" .. i] = { link = "@markup.heading." .. i }
-  M["markdownH" .. i .. "Delimiter"] = { link = "@markup.heading." .. i .. ".marker" }
   M["htmlH" .. i] = { link = "@markup.heading." .. i }
+  M["markdownH" .. i .. "Delimiter"] = { link = "@markup.heading." .. i .. ".marker" }
 end
-M["@markup.heading"] = { link = "@markup.heading.1" }
 
 -- diagnostic group links
 if not vim.diagnostic then
@@ -710,7 +796,7 @@ end
 -- Apply user-defined config
 if config.transparent.background then
   M.Normal.bg = "NONE"
-  M.CursorLine = { bold = true, italic = true }
+  -- M.CursorLine = { bold = true, italic = true } -- if CursorLine is solid bg
 end
 if config.transparent.float then
   M.NormalFloat.bg = "NONE"
