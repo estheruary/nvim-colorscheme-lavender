@@ -659,7 +659,8 @@ local M = {
   LazyDir = { fg = "blue" },
   LazyH1 = { fg = "white", bg = "highlight", bold = true },
   LazyProgressDone = { fg = "green" },
-  LazyProp = { fg = "purple" },
+  LazyProp = { fg = "purple2" },
+  LazySpecial = { fg = "purple" },
   LazyUrl = { link = "@markup.link.url" },
 
   -- rcarriga/nvim-notify
