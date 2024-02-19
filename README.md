@@ -17,7 +17,8 @@ backwards compatible from that verion.
 - [Neovim](https://neovim.io/) `0.9.5` (including LSP client)
   - markdown regex parser
   <!-- - asciidoc regex parser -->
-- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main@8e1df60b`
+  - basic 256-color support (automatically generated - override the colours yourself if you have issues)
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main @ 8e1df60b (2024-02-12)`
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 If something is wrong (particularly if highlights are missing[^4]) with one of these, please [submit an
