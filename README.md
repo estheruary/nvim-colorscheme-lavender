@@ -6,6 +6,14 @@ Mirror: <https://forge.jthv.ai/elias/lavender.nvim>
 
 Purple-hued dark mode colorscheme for [Neovim](https://neovim.io/).
 
+![opaque background](src/readme-assets/opaque.png)
+
+![transparent background](src/readme-assets/transparent.png)[^wallpaper]
+
+[^wallpaper]: Taken with [swayfx](https://github.com/WillPower3309/swayfx) with default blur settings; **WALLPAPER AND
+  COMPOSITOR NOT INCLUDED** - though you can find this specific wallpaper [here](https://wallpapercave.com/w/wp6332617)
+  (I tweaked the brightness for this screenshot).
+
 Palette inspired by [atomiks/moonlight-vscode-theme](https://github.com/atomiks/moonlight-vscode-theme); a complete
 rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.nvim), which is no longer maintained.
 
@@ -20,16 +28,17 @@ backwards compatible from that verion.
 - [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main @ 8e1df60b (2024-02-12)`
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
-If something is wrong (particularly if highlights are missing[^4]) with one of these, please [submit an
+If something is wrong (particularly if highlights are missing[^inspect]) with one of these, please [submit an
 issue](https://codeberg.org/jthvai/lavender.nvim/issues).
 
 Several popular plugins are also supported. See [theme.lua](lua/lavender/theme.lua) (about midway through) for details.
 
-In general, I am not too keen on providing tailored support for plugins that I use[^3], as I'm unlikely to notice if
-something breaks or looks bad. **But!** It is really easy to extend this colorscheme - see [Examples](#examples) below.
+In general, I am not too keen on providing tailored support for plugins that I use[^plugins], as I'm unlikely to notice
+if something breaks or looks bad. **But!** It is really easy to extend this colorscheme - see [Examples](#examples)
+below.
 
-[^3]: [my plugins, and their config](https://forge.jthv.ai/elias/nvim-config/src/branch/main/lua/plugins/README.md)
-[^4]: use `:Inspect` with your cursor over an element to inspect the syntax tokens
+[^plugins]: [said plugins, and their config](https://forge.jthv.ai/elias/nvim-config/src/branch/main/lua/plugins/README.md)
+[^inspect]: use `:Inspect` with your cursor over an element to inspect the syntax tokens - `:help :Inspect`
 
 ## Requirements
 
@@ -65,10 +74,10 @@ vim.cmd "colorscheme lavender"
 ## Configuration
 
 **WARNING**: Do not call `require("lavender").setup()` — it does not exist, and is not used to configure this
-plugin[^1].
+plugin[^setup].
 
-Add `vim.g.lavender` to `init.lua` or wherever else global variables may be set in lua[^2], _e.g._ lazy.nvim's `config`
-function. Do this before calling `:colorscheme lavender`.
+Add `vim.g.lavender` to `init.lua` or wherever else global variables may be set in lua[^vimscript], _e.g._ lazy.nvim's
+`config` function. Do this before calling `:colorscheme lavender`.
 
 ```lua
 -- Default config in lua
@@ -104,11 +113,11 @@ vim.g.lavender = {
 
 Custom hex colours are not mapped to 256-color on the fly for performance reasons.
 
-[^1]: I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
-      [@mrcjkb](https://github.com/mrcjkb), developer of
-      [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim).
-[^2]: You could _probably_ do it in vimscript if you really wanted to, but I don't know how and certainly couldn't tell
-      you.
+[^setup]: I took [advice](https://mrcjkb.dev/posts/2023-08-22-setup.html) on config design from
+  [@mrcjkb](https://github.com/mrcjkb), developer of
+  [haskell-tools.nvim](https://github.com/mrcjkb/haskell-tools.nvim).
+[^vimscript]: You could _probably_ do it in vimscript if you really wanted to, but I don't know how and certainly
+  couldn't tell you.
 
 ### Examples
 
@@ -155,7 +164,7 @@ vim.g.lavender = {
 | `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1) | `#59d6b5` ![swatch](https://placehold.co/1/59d6b5/59d6b5) |
 | `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0) | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0) |
 | `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa) | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9) |
-| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) | `#5fafff` ![swatch](https://placehold.co/1/5fafff/5fafff) |                                                           |
+| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) | `#5fafff` ![swatch](https://placehold.co/1/5fafff/5fafff) |
 
 ## License
 

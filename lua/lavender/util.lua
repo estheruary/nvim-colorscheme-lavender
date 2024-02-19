@@ -51,6 +51,7 @@ end
 ---@param c Palette lavender.colors
 function M.hl_terminal(c)
   -- terminfo(5)
+  -- TODO: would possibly like 16 colours instead of 8
   vim.g.terminal_color_0  = c.black
   vim.g.terminal_color_8  = c.highlight
 
