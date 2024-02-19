@@ -155,7 +155,7 @@ vim.g.lavender = {
 | `#a3ace1` ![swatch](https://placehold.co/1/a3ace1/a3ace1) | `#59d6b5` ![swatch](https://placehold.co/1/59d6b5/59d6b5) |
 | `#d6e7f0` ![swatch](https://placehold.co/1/d6e7f0/d6e7f0) | `#2df4c0` ![swatch](https://placehold.co/1/2df4c0/2df4c0) |
 | `#e4f3fa` ![swatch](https://placehold.co/1/e4f3fa/e4f3fa) | `#04d1f9` ![swatch](https://placehold.co/1/04d1f9/04d1f9) |
-| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) |                                                           |
+| `#eeffff` ![swatch](https://placehold.co/1/eeffff/eeffff) | `#5fafff` ![swatch](https://placehold.co/1/5fafff/5fafff) |                                                           |
 
 ## License
 
