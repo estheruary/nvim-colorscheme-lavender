@@ -20,7 +20,7 @@ rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.n
 ## Features
 
 Support is provided for each item from the listed version to the next breaking change, as well as whatever is
-backwards compatible from that verion.
+backwards compatible from that version.
 
 - [Neovim](https://neovim.io/) `0.9.5` (including LSP client)
   - Asciidoc & Markdown Vim syntax highlighting
@@ -33,9 +33,9 @@ issue](https://codeberg.org/jthvai/lavender.nvim/issues).
 
 Several popular plugins are also supported. See [theme.lua](lua/lavender/theme.lua) (about midway through) for details.
 
-In general, I am not too keen on providing tailored support for plugins that I use[^plugins], as I'm unlikely to notice
-if something breaks or looks bad. **But!** It is really easy to extend this colorscheme - see [Examples](#examples)
-below.
+In general, I am not too keen on providing tailored support for plugins that I don't use[^plugins], as I'm unlikely to
+notice if something breaks or looks bad. **But!** It is really easy to extend this colorscheme - see
+[Examples](#examples) below.
 
 [^plugins]: [said plugins, and their config](https://forge.jthv.ai/elias/nvim-config/src/branch/main/lua/plugins/README.md)
 [^inspect]: use `:Inspect` with your cursor over an element to inspect the syntax tokens - `:help :Inspect`
@@ -53,7 +53,7 @@ _Julia is **not** a runtime dependency._
 ```lua
 {
   url = "https://codeberg.org/jthvai/lavender.nvim",
-  branch = "stable",
+  branch = "stable", -- versioned tags + docs updates from main
   lazy = false,
   priority = 1000,
 }
@@ -128,7 +128,7 @@ vim.g.lavender = {
       NormalFoo = { fg = "fg", bg = "purple3", bold = true }, -- add a new highlight group using lavender's colours
       NormalBar = { fg = "Red", bg = "#303030", ctermfg = 196, ctermbg = 236 }, -- using colours directly
       NormalBaz = { fg = "custom_red", ctermfg = "custom_blue" }, -- using colours added in colour overrides below
-      -- lavender's colours are lowercase, while nvim's internal colour names are pascal case
+      -- lavender's colours are lowercase, while nvim's internal colour names are PascalCase
 
       Normal = { fg = "white", bg = "bg_alt", ctermfg = "white", ctermbg = "bg_alt" }, -- override a highlight group
       -- overriding existing highlight groups will replace the entire definition
