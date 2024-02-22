@@ -25,7 +25,7 @@ backwards compatible from that version.
 - [Neovim](https://neovim.io/) `0.9.5` (including LSP client)
   - Asciidoc & Markdown Vim syntax highlighting
   - basic 256-color support (automatically generated - override the colours yourself if you have issues)
-- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main @ 8e1df60b (2024-02-12)`
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main @ 1398b1b (2024-02-22)`
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 If something is wrong (particularly if highlights are missing[^inspect]) with one of these, please [submit an
@@ -42,7 +42,11 @@ notice if something breaks or looks bad. **But!** It is really easy to extend th
 
 ## Requirements
 
-- Neovim >= 0.9.2
+- [Neovim](https://neovim.io/) (same versions as in [Features](#features))
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (optional)
+  - I strongly recommend installing treesitter, and parsers for your favourite languages, as I will not particularly
+    ensure that Vim's native syntax highlighting looks good for languages where treesitter queries are available, except
+    the ones explicitly stated in [Features](#features).
 
 _Julia is **not** a runtime dependency._
 
