@@ -10,7 +10,6 @@ local config = require("lavender.config")
 ---@type Palette
 local M = {
   -- HexToCterm: START
-  black        = "#000000",
   lightblue    = "#add8e6", -- LightBlue
   paleblue     = "#d6e7f0",
   white        = "#eeffff",

@@ -13,7 +13,6 @@ local config = require("lavender.config")
 ---@type ANSIPalette
 local M = {
   -- HexToCterm: START
-  black = 16, -- #000000
   lightblue = 152, -- #afd7d7
   paleblue = 254, -- #e4e4e4
   white = 195, -- #d7ffff
