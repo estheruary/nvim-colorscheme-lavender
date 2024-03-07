@@ -160,9 +160,9 @@ local M = {
   markdownListMarker = { link = "@markup.list.markdown" },
 
   markdownLinkText = { link = "@markup.link.label.markdown" },
-  markdownLinkTextDelimiter = { link = "Delimiter" },
+  markdownLinkTextDelimiter = { link = "@punctuation.delimiter.markdown" },
   markdownLink = { link = "@markup.link.markdown_inline" },
-  markdownLinkDelimiter = { link = "Delimiter" },
+  markdownLinkDelimiter = { link = "@punctuation.delimiter.markdown" },
   markdownUrl = { link = "@markup.link.url.markdown" },
 
   markdownCodeBlock = { link = "@markup.raw.markdown" },
