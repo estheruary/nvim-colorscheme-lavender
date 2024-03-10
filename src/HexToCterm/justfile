@@ -7,6 +7,5 @@ convert:
 
 update-packages:
   #!/usr/bin/julia
-  import Dates,Pkg; Pkg.activate(".")
-  Pkg.gc(collect_delay=Dates.Day(0))
+  import Pkg; Pkg.activate(".")
   Pkg.Registry.update(); Pkg.update()

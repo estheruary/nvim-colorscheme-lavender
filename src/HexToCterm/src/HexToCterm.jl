@@ -16,13 +16,8 @@ const HexRGB = RGB{N0f8}
 const ansi_strs::Dict{String, String} = TOML.parsefile("ansi_rgb.toml")
 
 const ansi::Dict{String,HexRGB} =
-  (function()
-    d = Dict{String,HexRGB}()
-    for (k, v) ∈ pairs(ansi_strs)
-      d[k] = parse(HexRGB, "#$v")
-    end
-    return d
-  end)()
+  Dict(k => parse(HexRGB, v)
+         for (k, v) ∈ (pairs ∘ TOML.parsefile)("data/ansi_rgb.toml"))
 
 const theme::Dict{String,HexRGB} =
   (function()
