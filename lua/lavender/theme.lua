@@ -388,7 +388,6 @@ local M = {
   ["@keyword.operator"] = { link = "@operator" },
   ["@keyword.repeat"] = { link = "Repeat" },
   ["@keyword.return"] = { link = "@keyword" },
-  ["@keyword.storage"] = { link = "StorageClass" },
 
   --- Identifiers
   -- ["@variable"] = {}, -- Any variable name that does not have another highlight.
@@ -400,7 +399,6 @@ local M = {
   -- ["@type"] = { link = "Type" },
   -- ["@type.builtin"] = {},
   -- ["@type.definition"] = { link = "Typedef" },
-  ["@type.qualifier"] = { link = "@keyword" },
 
   ["@namespace.builtin"] = { link = "@variable.builtin" },
 
