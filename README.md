@@ -22,10 +22,10 @@ rewrite of [shaunsingh/moonlight.nvim](https://github.com/shaunsingh/moonlight.n
 Support is provided for each item from the listed version to the next breaking change, as well as whatever is
 backwards compatible from that version.
 
-- [Neovim](https://neovim.io/) `0.9.5` (including LSP client)
+- [Neovim](https://neovim.io/) `0.10.0` (including LSP client)
   - Asciidoc & Markdown Vim syntax highlighting
   - basic 256-color support (automatically generated - override the colours yourself if you have issues)
-- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main @ 5d75359 (2024-03-16)`
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) `main @ d184407 (2024-05-20)`
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 
 If something is wrong (particularly if highlights are missing[^inspect]) with one of these, please [submit an

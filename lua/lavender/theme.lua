@@ -53,7 +53,7 @@ local M = {
   -- TermCursorNC = {}, -- cursor in an unfocused terminal
   ErrorMsg = { fg = "error" }, -- error messages on the command line
   VertSplit = { fg = "border" }, -- the column separating vertically split windows
-  -- WinSeparator = {}, -- the column separating vertically split windows
+  WinSeparator = { link = "VertSplit" }, -- the column separating vertically split windows
   Folded = { fg = "disabled", italic = true }, -- line used for closed folds
   FoldColumn = { fg = "accent" }, -- 'foldcolumn'
   SignColumn = { link = "Normal" }, -- column where |signs| are displayed
@@ -210,7 +210,7 @@ local M = {
   asciidocQuotedBold = { link = "@markup.strong.asciidoc" },
   asciidocQuotedUnconstrainedBold = { link = "asciidocQuotedBold" },
 
-  asciidocQuotedEmphasized = { link = "@markup.emphasis.asciidoc" },
+  asciidocQuotedEmphasized = { link = "@markup.italic.asciidoc" },
   asciidocQuotedEmphasized2 = { link = "asciidocQuotedEmphasized" },
   asciidocQuotedEmphasizedItalic = { link = "asciidocQuotedEmphasized" },
   asciidocQuotedUnconstrainedEmphasized = { link = "asciidocQuotedEmphasized" },
@@ -323,8 +323,7 @@ local M = {
   ["@markup.math"] = { link = "Identifier" },
 
   ["@markup.strong"] = { bold = true },
-  ["@markup.emphasis"] = { italic = true },
-  ["@markup.italic"] = { link = "@markup.emphasis"},
+  ["@markup.italic"] = { italic = true },
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.underline"] = { underline = true },
 
@@ -349,6 +348,7 @@ local M = {
   ["@constant.builtin"] = { fg = "orange" },
   ["@constant.macro"] = { link = "Macro" },
 
+  -- ["@string"] = { link = "String" },
   -- ["@string.documentation"] = {},
   ["@string.special.url"] = { fg = "link", underline = true },
   -- ["@string.escape"] = {}, -- For escape characters within a string.
@@ -357,16 +357,16 @@ local M = {
   -- ["@character"] = { link = "Character" },
   -- ["@character.special"] = { link = "SpecialChar" },
   -- ["@number"] = { link = "Number" },
-  -- ["@number.float"] = { link = "Float" },
+  ["@number.float"] = { link = "Float" },
   -- ["@boolean"] = { link = "Boolean" },
 
   --- Functions
   -- ["@function"] = { link = "Function" },
-  ["@function.builtin"] = { link = "@function" },
-  ["@function.call"] = { link = "@function" },
-  -- ["@function.macro"] = { link = "Macro" },
-  ["@function.method"] = { link = "Function" },
-  ["@function.method.call"] = { link = "@function.method" },
+  -- ["@function.builtin"] = {},
+  -- ["@function.call"] = {},
+  ["@function.macro"] = { link = "Macro" },
+  -- ["@function.method"] = {},
+  -- ["@function.method.call"] = {},
 
   -- ["@property"] = { link = "Identifier" },
 
@@ -375,8 +375,8 @@ local M = {
 
   --- Keywords
   -- ["@label"] = { link = "Label" }, -- For labels: `label:` in C and `:label:` in Lua.
-  -- ["@operator"] = {}, -- For any operator: `+`, but also `->` and `*` in C.
-  -- ["@keyword"] = {}, -- For keywords that don't fall in previous categories.
+  -- ["@operator"] = { link = "Operator" }, -- For any operator: `+`, but also `->` and `*` in C.
+  -- ["@keyword"] = { link = "Keyword" }, -- For keywords that don't fall in previous categories.
   ["@keyword.conditional"] = { link = "Conditional" },
   ["@keyword.coroutine"] = { link = "@keyword" },
   ["@keyword.debug"] = { link = "Debug" },
@@ -390,7 +390,7 @@ local M = {
   ["@keyword.return"] = { link = "@keyword" },
 
   --- Identifiers
-  -- ["@variable"] = {}, -- Any variable name that does not have another highlight.
+  ["@variable"] = { link = "Identifier" }, -- Any variable name that does not have another highlight. WARN: broken in 0.10 but not documented?
   ["@variable.builtin"] = { fg = "blue" }, -- Variable names that are defined by the languages, like `this` or `self`.
   -- ["@variable.member"] = {}, -- For fields.
   -- ["@variable.parameter"] = { fg = "paleblue" }, -- For parameters of a function. -- FIX:
@@ -398,7 +398,7 @@ local M = {
 
   -- ["@type"] = { link = "Type" },
   -- ["@type.builtin"] = {},
-  -- ["@type.definition"] = { link = "Typedef" },
+  ["@type.definition"] = { link = "Typedef" },
 
   ["@namespace.builtin"] = { link = "@variable.builtin" },
 

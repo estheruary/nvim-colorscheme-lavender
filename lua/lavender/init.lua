@@ -17,6 +17,8 @@ function M.load()
     end
 
     vim.cmd("highlight clear")
+    -- FIX: possibly remove
+    vim.cmd("colorscheme vim")
     -- FIX: ?
     -- vim.cmd("syntax reset")
     -- if vim.fn.exists("syntax_on") then vim.cmd("syntax reset") end
