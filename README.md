@@ -11,7 +11,8 @@ Purple-hued dark mode colorscheme for [Neovim](https://neovim.io/).
 ![transparent background](src/readme-assets/transparent.png)[^wallpaper]
 
 [^wallpaper]: Taken with [swayfx](https://github.com/WillPower3309/swayfx) with default blur settings; **WALLPAPER AND
-  COMPOSITOR NOT INCLUDED** - though you can find this specific wallpaper [here](https://wallpapercave.com/w/wp6332617)
+  COMPOSITOR NOT INCLUDED** - though you can find this specific wallpaper
+  [here](https://web.archive.org/web/20240507050312/https://wallpapercave.com/wp/wp6332617.jpg)
   (I tweaked the brightness for this screenshot).
 
 Palette inspired by [atomiks/moonlight-vscode-theme](https://github.com/atomiks/moonlight-vscode-theme); a complete
