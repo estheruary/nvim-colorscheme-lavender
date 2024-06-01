@@ -1,9 +1,11 @@
 -- SPDX-License-Identifier: LGPL-3.0-only
 
+---@type LavenderOpts
+local config    = require("lavender.config")
 ---@type Highlights
 local theme     = require("lavender.theme")
----@type Palette
 local colors    = require("lavender.colors")
+---@type Palette
 local hexcolors = require("lavender.colors.hex")
 local util      = require("lavender.util")
 
@@ -31,6 +33,10 @@ function M.load()
   util.hl_terminal(hexcolors)
   -- Load main highlights
   util.apply_theme(theme, colors)
+  -- Load diagnostic signs
+  if config.signs then
+    util.diagnostic_signs()
+  end
   -- Define autocommands
   util.autocmds()
 end

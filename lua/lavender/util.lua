@@ -77,6 +77,21 @@ function M.hl_terminal(c)
   vim.g.terminal_color_15 = c.white
 end
 
+---Load icon diagnostic signs
+function M.diagnostic_signs()
+  local sev = vim.diagnostic.severity
+  vim.diagnostic.config {
+    signs = {
+      text = {
+        [sev.ERROR] = "",
+        [sev.WARN]  = "",
+        [sev.INFO]  = "󰋽",
+        [sev.HINT]  = "󰌶",
+      }
+    }
+  }
+end
+
 ---Define autocommands
 function M.autocmds()
   local group = vim.api.nvim_create_augroup("lavender", { clear = true })

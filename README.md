@@ -47,6 +47,8 @@ notice if something breaks or looks bad. **But!** It is really easy to extend th
   - I strongly recommend installing treesitter, and parsers for your favourite languages, as I will not particularly
     ensure that Vim's native syntax highlighting looks good for languages where treesitter queries are available, except
     the ones explicitly stated in [Features](#features).
+- _(Optional)_ a [patched font](https://www.nerdfonts.com/) for custom diagnostic signs
+  (set `signs = true` in the config, `false` by default)
 
 _Julia is **not** a runtime dependency._
 
@@ -92,14 +94,16 @@ vim.g.lavender = {
     popup      = false, -- do not render the background in popup menus
     sidebar    = false, -- do not render the background in sidebars
   },
-  contrast    = true, -- colour the sidebar and floating windows differently to the main background
+  contrast = true, -- colour the sidebar and floating windows differently to the main background
 
-  italic      = {
+  italic = {
     comments  = true, -- italic comments
     functions = true, -- italic function names
     keywords  = false, -- italic keywords
     variables = false, -- italic variables
   },
+
+  signs = false, -- use icon (patched font) diagnostic sign text
 
   -- new values will be merged in
   overrides = {

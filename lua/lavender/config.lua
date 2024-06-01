@@ -5,6 +5,7 @@
 ---@field transparent? LavenderTransparentOpts
 ---@field contrast? boolean colour the sidebar and floating windows differently to the main background
 ---@field italic? LavenderItalicOpts
+---@field signs? boolean use icon (patched font) diagnostic sign text
 ---@field overrides? LavenderOverrides
 
 ---@class (exact) LavenderTransparentOpts
@@ -35,14 +36,16 @@ local M = {
     popup      = false,
     sidebar    = false,
   },
-  contrast    = true,
+  contrast = true,
 
-  italic      = {
+  italic = {
     comments  = true,
     functions = false,
     keywords  = true,
     variables = false,
   },
+
+  signs = false,
 
   overrides = {
     theme  = {},
