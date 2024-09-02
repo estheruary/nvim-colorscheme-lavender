@@ -97,13 +97,6 @@ vim.g.lavender = {
   },
   contrast = true, -- colour the sidebar and floating windows differently to the main background
 
-  italic = {
-    comments  = true, -- italic comments
-    functions = true, -- italic function names
-    keywords  = false, -- italic keywords
-    variables = false, -- italic variables
-  },
-
   signs = false, -- use icon (patched font) diagnostic sign text
 
   -- new values will be merged in

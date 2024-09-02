@@ -4,7 +4,6 @@
 ---@class (exact) LavenderOpts
 ---@field transparent? LavenderTransparentOpts
 ---@field contrast? boolean colour the sidebar and floating windows differently to the main background
----@field italic? LavenderItalicOpts
 ---@field signs? boolean use icon (patched font) diagnostic sign text
 ---@field overrides? LavenderOverrides
 
@@ -13,12 +12,6 @@
 ---@field float? boolean do not render the background in floating windows
 ---@field popup? boolean do not render the background in popup menus
 ---@field sidebar? boolean do not render the background in sidebars
-
----@class (exact) LavenderItalicOpts
----@field comments? boolean italic comments
----@field functions? boolean italic function names
----@field keywords? boolean italic keywords
----@field variables? boolean italic variables
 
 ---@class (exact) LavenderOverrides
 ---@field theme? Highlights highlight group overrides - see theme.lua
@@ -37,13 +30,6 @@ local M = {
     sidebar    = false,
   },
   contrast = true,
-
-  italic = {
-    comments  = true,
-    functions = false,
-    keywords  = true,
-    variables = false,
-  },
 
   signs = false,
 

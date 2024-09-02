@@ -34,14 +34,14 @@ local config = require("lavender.config")
 
 ---@type Highlights
 local M = {
-  Comment = { fg = "comments", italic = config.italic.comments }, -- any comment
+  Comment = { fg = "comments", italic = false }, -- any comment
   ColorColumn = { bg = "border" }, -- used for the columns set with 'colorcolumn'
   Conceal = { fg = "disabled" }, -- placeholder characters substituted for concealed text (see 'conceallevel')
   Cursor = { bg = "cursor" }, -- character under the cursor
   lCursor = { link = "Cursor" }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
   CursorIM = { link = "Cursor" }, -- like Cursor, but used when in IME mode |CursorIM|
   CursorColumn = { bg = "border" }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-  CursorLine = { bold = true, italic = true }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+  CursorLine = { bold = true, italic = false }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
   -- CursorLine = { bg = "border" },
   Directory = { fg = "blue" }, -- directory names (and other special names in listings)
   DiffAdd = { fg = "green", reverse = true }, -- diff mode: Added line |diff.txt|
@@ -54,7 +54,7 @@ local M = {
   ErrorMsg = { fg = "error" }, -- error messages on the command line
   VertSplit = { fg = "border" }, -- the column separating vertically split windows
   WinSeparator = { link = "VertSplit" }, -- the column separating vertically split windows
-  Folded = { fg = "disabled", italic = true }, -- line used for closed folds
+  Folded = { fg = "disabled", italic = false }, -- line used for closed folds
   FoldColumn = { fg = "accent" }, -- 'foldcolumn'
   SignColumn = { link = "Normal" }, -- column where |signs| are displayed
   -- SignColumnSB = {}, -- column where |signs| are displayed
@@ -78,7 +78,7 @@ local M = {
   PmenuSbar = { fg = "text", bg = "contrast" }, -- Popup menu: scrollbar.
   PmenuThumb = { fg = "fg", bg = "accent" }, -- Popup menu: Thumb of the scrollbar.
   Question = { fg = "green" }, -- |hit-enter| prompt and yes/no questions
-  QuickFixLine = { fg = "highlight", italic = true }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+  QuickFixLine = { fg = "highlight", italic = false }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
   Search = { fg = "white", bg = "highlight" }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
   IncSearch = { link = "Search" }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
   CurSearch = { link = "IncSearch" },
@@ -108,21 +108,21 @@ local M = {
   -- Uncomment and edit if you want more specific syntax highlighting.
 
   Constant = { fg = "yellow" }, -- (preferred) any constant
-  String = { fg = "green", italic = true },    -- a string constant: "this is a string"
+  String = { fg = "green", italic = false },    -- a string constant: "this is a string"
   Character = { fg = "red2" },  -- a character constant: 'c', '\n'
   Number = { fg = "red2" },     -- a number constant: 234, 0xff
   Boolean = { fg = "red2" },    -- a boolean constant: TRUE, false
   Float = { fg = "red2" },       -- a floating point constant: 2.3e10
 
-  Identifier = { fg = "cyan", italic = config.italic.variables }, -- (preferred) any variable name
-  Function = { fg = "blue2", italic = config.italic.functions }, -- function name (also: methods for classes)
+  Identifier = { fg = "cyan", italic = false }, -- (preferred) any variable name
+  Function = { fg = "blue2", italic = false }, -- function name (also: methods for classes)
 
   Statement = { fg = "pink" }, -- (preferred) any statement
-  Conditional = { fg = "purple", italic = config.italic.keywords }, -- if, then, else, endif, switch, etc.
-  Repeat = { fg = "purple", italic = config.italic.keywords  }, -- for, do, while, etc.
+  Conditional = { fg = "purple", italic = false }, -- if, then, else, endif, switch, etc.
+  Repeat = { fg = "purple", italic = false  }, -- for, do, while, etc.
   Label = { fg = "red" }, -- case, default, etc.
   Operator = { fg = "pink" }, -- "sizeof", "+", "*", etc.
-  Keyword = { fg = "purple", italic = config.italic.keywords  }, -- any other keyword
+  Keyword = { fg = "purple", italic = false  }, -- any other keyword
   Exception = { fg = "yellow" }, -- try, catch, throw
 
   PreProc = { fg = "purple" }, -- (preferred) generic Preprocessor
@@ -151,7 +151,7 @@ local M = {
   Ignore = { fg = "disabled" }, -- (preferred) left blank, hidden  |hl-Ignore|
 
   Error = { fg = "error", bold = true, underline = true }, -- (preferred) any erroneous construct
-  Todo = { fg = "yellow", bold = true, italic = true  }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+  Todo = { fg = "yellow", bold = true, italic = false  }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
   -- HTML regex parser
   htmlLink = { link = "@markup.link.url.html" },
@@ -272,10 +272,10 @@ local M = {
   DiagnosticHint = { fg = "purple" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
   DiagnosticUnnecessary = { fg = "comments" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
-  DiagnosticVirtualTextError = { fg = "error", italic = true }, -- Used for "Error" diagnostic virtual text
-  DiagnosticVirtualTextWarn = { fg = "orange", italic = true }, -- Used for "Warning" diagnostic virtual text
-  DiagnosticVirtualTextInfo = { fg = "lightblue", italic = true }, -- Used for "Information" diagnostic virtual text
-  DiagnosticVirtualTextHint = { fg = "purple", italic = true }, -- Used for "Hint" diagnostic virtual text
+  DiagnosticVirtualTextError = { fg = "error", italic = false }, -- Used for "Error" diagnostic virtual text
+  DiagnosticVirtualTextWarn = { fg = "orange", italic = false }, -- Used for "Warning" diagnostic virtual text
+  DiagnosticVirtualTextInfo = { fg = "lightblue", italic = false }, -- Used for "Information" diagnostic virtual text
+  DiagnosticVirtualTextHint = { fg = "purple", italic = false }, -- Used for "Hint" diagnostic virtual text
 
   DiagnosticUnderlineError = { sp = "error", underline = true }, -- Used to underline "Error" diagnostics
   DiagnosticUnderlineWarn = { sp = "orange", underline = true }, -- Used to underline "Warning" diagnostics
@@ -283,7 +283,7 @@ local M = {
   DiagnosticUnderlineHint = { sp = "purple", underline = true }, -- Used to underline "Hint" diagnostics
 
   LspSignatureActiveParameter = { bold = true },
-  LspCodeLens = { italic = true },
+  LspCodeLens = { italic = false },
 
   ALEErrorSign = { link = "DiagnosticError" },
   ALEWarningSign = { link = "DiagnosticWarn" },
@@ -299,12 +299,12 @@ local M = {
 
   --- Text
   -- ["@comment"] = { link = "Comment" },
-  ["@comment.error"] = { fg = "error", italic = config.italic.comments },
-  ["@comment.warning"] = { fg = "orange", italic = config.italic.comments },
-  ["@comment.info"] = { fg = "lightblue", italic = config.italic.comments },
-  ["@comment.hint"] = { fg = "purple", italic = config.italic.comments },
+  ["@comment.error"] = { fg = "error", italic = false },
+  ["@comment.warning"] = { fg = "orange", italic = false },
+  ["@comment.info"] = { fg = "lightblue", italic = false },
+  ["@comment.hint"] = { fg = "purple", italic = false },
   ["@comment.note"] = { link = "@comment.hint" },
-  ["@comment.todo"] = { fg = "lightblue", italic = config.italic.comments },
+  ["@comment.todo"] = { fg = "lightblue", italic = false },
   -- ["@comment.documentation"] = {}, -- TODO:
 
   -- ["@punctuation.delimiter"] = {}, -- For delimiters ie: `.`
@@ -323,7 +323,7 @@ local M = {
   ["@markup.math"] = { link = "Identifier" },
 
   ["@markup.strong"] = { bold = true },
-  ["@markup.italic"] = { italic = true },
+  ["@markup.italic"] = { italic = false },
   ["@markup.strikethrough"] = { strikethrough = true },
   ["@markup.underline"] = { underline = true },
 
@@ -532,10 +532,10 @@ local M = {
   NeoTreeDotfile = { fg = "text" },
 
   NeoTreeGitAdded = { link = "diffAdded" },
-  NeoTreeGitConflict = { fg = "orange", bold = true, italic = true },
+  NeoTreeGitConflict = { fg = "orange", bold = true, italic = false },
   NeoTreeGitDeleted = { link = "diffRemoved" },
   NeoTreeGitModified = { link = "diffChanged" },
-  NeoTreeGitUntracked = { fg = "orange", italic = true },
+  NeoTreeGitUntracked = { fg = "orange", italic = false },
 
   -- lambdalisue/glyph-palette.vim
   GlyphPalette1 = { fg = "red2" },
@@ -551,7 +551,7 @@ local M = {
   DashboardShortCut = { fg = "blue" },
   DashboardHeader = { fg = "red" },
   DashboardCenter = { fg = "purple3" },
-  DashboardFooter = { fg = "green", italic = true },
+  DashboardFooter = { fg = "green", italic = false },
   -- DashboardKey = {},
   -- DashboardDesc = {},
   -- DashboardIcon = {},
@@ -559,7 +559,7 @@ local M = {
   -- folke/which-key.nvim
   WhichKey = { fg = "accent", bold = true },
   WhichKeyGroup = { fg = "text" },
-  WhichKeyDesc = { fg = "blue", italic = true },
+  WhichKeyDesc = { fg = "blue", italic = false },
   WhichKeySeparator = { fg = "fg" },
   WhichKeyFloat = { link = "NormalFloat"},
   WhichKeyValue = { link = "NormalFloat" },
@@ -795,7 +795,7 @@ end
 -- Apply user-defined config
 if config.transparent.background then
   M.Normal.bg = "NONE"
-  -- M.CursorLine = { bold = true, italic = true } -- if CursorLine is solid bg
+  -- M.CursorLine = { bold = true, italic = false } -- if CursorLine is solid bg
 end
 if config.transparent.float then
   M.NormalFloat.bg = "NONE"
@@ -803,8 +803,8 @@ if config.transparent.float then
 end
 if config.transparent.popup then
   M.Pmenu.bg = "NONE"
-  M.PmenuSel = { bold = true, italic = true }
-  -- M.PmenuSel = { fg = "highlight", italic = true }
+  M.PmenuSel = { bold = true, italic = false }
+  -- M.PmenuSel = { fg = "highlight", italic = false }
 end
 if config.transparent.sidebar then
   M.NormalSB.bg = "NONE"
